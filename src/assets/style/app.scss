@@ -1,8 +1,9 @@
-*{
+page {
     border: 0;
     margin: 0;
     box-sizing: content-box;
     padding: 0;
+    --maincolor: #1cbbb4;
     --red: #e54d42;
     --orange: #f37b1d;
     --yellow: #fbbd08;
@@ -27,7 +28,7 @@
 }
 
 html{
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .border-box {
@@ -37,6 +38,10 @@ html{
 /* ==================
           背景
  ==================== */
+ .line-main::after, .lines-main::after {
+  border-color: var(--maincolor);
+}
+
 .line-red::after, .lines-red::after {
   border-color: var(--red);
 }
@@ -94,7 +99,12 @@ html{
 }
 
 .line-white::after, .lines-white::after {
-  border-color: #fff;
+  border-color: var(--white)
+}
+
+.bg-main {
+  background-color: var(--maincolor);
+  color: #fff;
 }
 
 .bg-red {
@@ -180,6 +190,11 @@ html{
 .bg-shadeBottom {
   background-image: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));
   color: #fff;
+}
+
+.bg-main .light{
+  color: var(--maincolor);
+  background-color: #ebd4ef;
 }
 
 .bg-red.light {
@@ -312,6 +327,10 @@ html{
 
 .text-right {
   text-align: right;
+}
+
+.text-main, .line-main, .lines-main {
+  color: var(--maincolor);
 }
 
 .text-red, .line-red, .lines-red {
@@ -457,8 +476,7 @@ html{
 
 .iblock {
     display: inline-block;
-    *display: inline;
-    *zoom: 1; }
+}
 
 .tleft {
     text-align: left; }
@@ -574,6 +592,14 @@ input, textarea{
 
 .absolute{
   position: absolute;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.relative {
+  position: relative;
 }
 
 .hidden {

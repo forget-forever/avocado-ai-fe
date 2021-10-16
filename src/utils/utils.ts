@@ -108,3 +108,46 @@ export const showMaskToast = (title: string, icon: Taro.showToast.Option['icon']
       resolve();
     }, duration);
   });
+
+/**
+ * 对象大驼峰命名转小驼峰命名
+ * @param data 需要转的对象
+ * @returns 转完后的样子
+ */
+export const toSmallCamel = <T extends IDataObject>(data: T): ISmallCamel<T> => {
+  if (typeof data != 'object' || !data) return data  
+  if (Array.isArray(data)) {
+    // @ts-ignore
+    return data.map(item => toSmallCamel(item))
+  }
+  const newData = {}
+  for (let key in data) {
+    let newKey = key.replace(/([A-Z])/g, (_p, m) => m.toLowerCase())
+    // @ts-ignore
+    newData[newKey] = toSmallCamel(data[key])
+  }
+  // @ts-ignore
+  return newData
+}
+
+/**
+ * 小驼峰对象转大驼峰
+ * @param data 需要转的对象
+ * @returns 转完之后的对象
+ */
+export const toBigCamel = <T extends IDataObject>(data: T): IBigCamel<T> => {
+  if (typeof data != 'object' || !data) return data
+  if (Array.isArray(data)) {
+    // @ts-ignore
+    return data.map(item => toBigCamel(item))
+  }
+  
+  const newData = {}
+  for (let key in data) {
+    let newKey = key.replace(/^\w/g, name => name.toUpperCase())
+    // @ts-ignore
+    newData[newKey] = toBigCamel(data[key])
+  }
+  // @ts-ignore
+  return newData
+}

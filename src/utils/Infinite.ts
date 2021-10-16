@@ -1,7 +1,7 @@
 import { showMaskToast } from "./utils";
 
 type IParams = {
-  pageNum: number;
+  current: number;
   pageSize: number;
 };
 
@@ -33,7 +33,7 @@ export default class Infinite<P, T> {
     pageSize: number = 20,
   ) {
     this.request = request;
-    this.params = { ...params, pageNum: 1, pageSize };
+    this.params = { ...params, current: 1, pageSize };
     this.showLoadingWarn = true;
     this.loading = false;
     this.finish = false;
@@ -47,7 +47,7 @@ export default class Infinite<P, T> {
    * @returns 获取到的数据，如果是error，则message有可能有loading、finished、onTop、destroyed四种状态，以及接口的报错
    */
   next(params: P = this.params, refresh?: boolean) {
-    if (this.params.pageNum > 1 && this.finish) {
+    if (this.params.current > 1 && this.finish) {
       if (this.showLoadingWarn) showMaskToast('已加载完');
       return Promise.reject(new Error('finished'));
     }
@@ -60,7 +60,7 @@ export default class Infinite<P, T> {
    * @returns 获取到的数据, 如果是error，则message有可能有loading、finished、onTop、destroyed四种状态，以及接口的报错
    */
   pre(params: P = this.params, refresh?: boolean) {
-    if (this.params.pageNum === 1) {
+    if (this.params.current === 1) {
       if (this.showLoadingWarn) showMaskToast('已到头部');
       return Promise.reject(new Error('onTop'));
     }
@@ -105,19 +105,19 @@ export default class Infinite<P, T> {
     }
     this.setLoading(true);
     try {
-      let { pageNum } = this.params;
+      let { current } = this.params;
       const { pageSize } = this.params;
       switch (mode) {
         case 'next':
-          pageNum += 1;
+          current += 1;
           break;
         case 'pre':
-          pageNum -= 1;
+          current -= 1;
           break;
         default:
       }
-      if (refresh) pageNum = 1;
-      const res = await this.request({ ...params, pageNum, pageSize });
+      if (refresh) current = 1;
+      const res = await this.request({ ...params, current, pageSize });
       this.setLoading(false);
       if (res.list.length < pageSize) {
         this.finish = true;
@@ -125,7 +125,7 @@ export default class Infinite<P, T> {
         this.finish = false;
       }
       if (this.status === 'destory') return Promise.reject(new Error('destroyed'));
-      this.params = { ...params, pageNum, pageSize };
+      this.params = { ...params, current, pageSize };
       return res;
     } catch (error) {
       this.setLoading(false);

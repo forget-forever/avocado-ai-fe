@@ -53,3 +53,40 @@ declare type IOptions<V = string | number, L = string> = {
   label: L;
 }
 
+type IKey = string | number
+type IValue = IKey | boolean | object | undefined | null | object
+/**
+ * 对象的通用类型
+ */
+declare type IDataObject = Record<IKey, IValue>
+
+/**
+ * 转小驼峰
+ */
+declare type ISmallCamel<T extends IDataObject> = {
+  [K in keyof T as Uncapitalize<K>]: T[K] extends object ? ISmallCamel<T[K]> : T[K]
+}
+
+/**
+ * 转大驼峰
+ */
+declare type IBigCamel<T extends IDataObject> = {
+  [K in keyof T as Capitalize<K>]: T[K] extends object ? IBigCamel<T[K]> : T[K]
+}
+
+// type T1 = [{
+//   aBfafrV: number;
+//   afdsaG: {
+//     AaBfafrV: number;
+//     srgvA: string;
+//     AfgtF: boolean
+//   }[]
+//   afgtF: boolean
+// }]
+// type T2 = IBigCamel<T1>
+
+// const aa: T2 = [{
+//   AfdsaG: [{
+//     a
+//   }]
+// }]

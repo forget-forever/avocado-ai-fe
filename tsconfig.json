@@ -23,6 +23,13 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "resolveJsonModule": true,
+    "paths": {
+      "@/router": ["./src/router"],
+      "@/assets/*": ["./src/assets/*"],
+      // "@/request/*": ["./src/lib/request/*"],
+      // "@/api": ["./src/api"],
+      "@/utils": ["./src/utils"],
+    }
   },
   "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"],
   "compileOnSave": false

@@ -1,3 +1,5 @@
+import path from 'path';
+
 const config = {
   projectName: 'affection-fe',
   date: '2021-10-15',
@@ -8,7 +10,14 @@ const config = {
     828: 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
+  outputRoot: `dist/${process.env.TARO_ENV}`,
+  alias: {
+    '@/router': path.resolve(__dirname, '..', 'src/router'),
+    // '@/request': path.resolve(__dirname, '..', 'src/lib/request'),
+    // '@/api': path.resolve(__dirname, '..', 'src/api'),
+    '@/assets': path.resolve(__dirname, '..', 'src/assets'),
+    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+  },
   plugins: [],
   defineConstants: {
   },
@@ -58,7 +67,8 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    esnextModules: ['taro-ui']
   }
 }
 

@@ -12,10 +12,10 @@ export const getPageQuery = () => parse(window.location.href.split('?')[1]);
  * @param  {[object]} obj [params object]
  * @return {[string]}     [string]
  */
-export function serializeParams(obj: Record<string, string>) {
+export function serializeParams(obj?: Record<string, string>) {
   let str = '';
   // eslint-disable-next-line no-restricted-syntax
-  for (const [key, value] of Object.entries(obj)) {
+  for (const [key, value] of Object.entries(obj || {})) {
     str += `&${key}=${value}`;
   }
   return str;

@@ -63,7 +63,6 @@ const request = async <T = never, U = undefined>(url: string, options?: IOptions
       method: options?.method || 'GET',
       data: options?.data,
       header: {
-        'custom-header': 'application/json', //自定义请求头信息
         ...options?.header
       },
     });

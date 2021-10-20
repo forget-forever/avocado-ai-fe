@@ -14,6 +14,7 @@ const Star: React.FC = () => {
       .exec((res) => {
         console.log(document.getElementById('myCanvas')?.style);
         console.log(res[0].node._canvasRef)
+        // console.log(document.createElementNS())
         // init(res[0].node._canvasRef)
         // const canvas = res[0].node
         // const ctx = canvas.getContext('2d')

@@ -1,3 +1,8 @@
+import { AtAvatar } from "taro-ui"
+
 export default () => {
-  return <>我的</>
+  return <>
+    <AtAvatar>
+    </AtAvatar>
+  </>
 }

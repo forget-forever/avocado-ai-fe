@@ -151,3 +151,13 @@ export const toBigCamel = <T extends IDataObject>(data: T): IBigCamel<T> => {
   // @ts-ignore
   return newData
 }
+
+/**
+ * 获取指定区间的随机数
+ * @param minNum 最小数
+ * @param maxNum 最大数
+ * @returns 
+ */
+export const getRandom = (minNum: number, maxNum: number) => {
+  return parseInt(Math.random() * (maxNum - minNum + 1) + minNum + '', 10); 
+}

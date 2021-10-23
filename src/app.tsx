@@ -1,17 +1,15 @@
-import { login } from '@tarojs/taro'
 import { Component } from 'react'
 import './app.scss'
+import { initLogin } from './utils/init'
 
 class App extends Component {
 
   componentDidMount () {}
 
   onLaunch () {
-    login({
-      success: (res) => {
-        console.log(`login code: ${res.code}`);
-      }
-    })
+    if (process.env.TARO_ENV !== 'h5') {
+      initLogin()
+    }
   }
 
   componentDidShow () {}

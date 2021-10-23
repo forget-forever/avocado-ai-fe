@@ -28,7 +28,7 @@
       "@/assets/*": ["./src/assets/*"],
       // "@/request/*": ["./src/lib/request/*"],
       // "@/api": ["./src/api"],
-      "@/utils": ["./src/utils"],
+      "@/utils/*": ["./src/utils/*"],
     }
   },
   "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"],

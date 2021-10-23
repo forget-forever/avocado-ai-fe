@@ -1,19 +1,31 @@
+export const uniquePages = {
+  h5: [ 'pages/h5pages/index/index'] as const,
+  weapp: [ 'pages/index/index' ] as const
+};
+export const generalPages = [ 'pages/my/index' ] as const
+const pages = (() => {
+  switch(process.env.TARO_ENV) {
+    case 'h5':
+      return uniquePages.h5;
+      break;
+    default:
+      return [...uniquePages.weapp, ...generalPages];
+  }
+})()
+
+
 export default {
-  pages: [
-    'pages/index/index',
-    'pages/my/index'
-  ] as const,
+  pages,
   window: {
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
+    backgroundTextStyle: 'dark',
+    navigationBarBackgroundColor: '#000',
     navigationBarTitleText: '情意盲盒',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'white'
   },
   tabBar: {
-    // custom: true, // 仅 微信小程序支持自定义 需修改 custom-tab-bar 组件
     color: '#999',
     selectedColor: '#aaa',
-    backgroundColor: '#FFF',
+    backgroundColor: '#000',
     list: [
       {
         selectedIconPath: 'assets/images/on-home.png',

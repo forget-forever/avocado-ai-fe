@@ -28,6 +28,10 @@ const config = {
     }
   },
   framework: 'react',
+  sass: {
+    resource: [path.resolve(__dirname, '..', 'src/app.scss')],
+    projectDirectory: path.resolve(__dirname, '..'),
+  },
   mini: {
     postcss: {
       pxtransform: {

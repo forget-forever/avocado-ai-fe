@@ -6,7 +6,7 @@
   "templateInfo": {
     "name": "default",
     "typescript": true,
-    "css": "scss"
+    "css": "sass"
   },
   "scripts": {
     "build:weapp": "taro build --type weapp",
@@ -44,7 +44,6 @@
     "path": "^0.12.7",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "scss": "^0.2.4",
     "taro-ui": "3.0.0-alpha.3"
   },
   "devDependencies": {

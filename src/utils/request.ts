@@ -50,15 +50,15 @@ type IResponseData<T = any> = {
 type IOptions<U extends string | General.IAnyObject | ArrayBuffer> = {
   method?: keyof Taro.request.method,
   data?: U,
-  header: General.IAnyObject
+  header?: General.IAnyObject
 }
 
 /**
  * 对接口的返回值进行二次的封装
  * */
-const request = async <T = never, U = undefined>(url: string, options?: IOptions<U>) => {
+export const request = async <T = never, U = undefined, E = never>(url: string, options: IOptions<U> = {}) => {
   try {
-    const res = await Taro.request<IResponseData<T>, U>({
+    const res = await Taro.request<IResponseData<T> & E, U>({
       url, //仅为示例，并非真实接口地址。
       method: options?.method || 'GET',
       data: options?.data,
@@ -81,4 +81,8 @@ const request = async <T = never, U = undefined>(url: string, options?: IOptions
     return new Error('')
   }
 };
-export default request;
+
+export const requestSmallCamel = () => {
+
+}
+// export default request;

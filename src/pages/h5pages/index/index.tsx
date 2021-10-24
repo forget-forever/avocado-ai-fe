@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { View } from '@tarojs/components'
-import className from 'classnames';
 import Star from './components/Star'
 import styles from './index.module.scss'
 
+console.log(styles);
 const Index: React.FC = () => {
 
   useEffect(() => {

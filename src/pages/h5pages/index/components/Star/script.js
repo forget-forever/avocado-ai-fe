@@ -95,13 +95,10 @@ export function init(dom) {
     }
 
     // 生成头像
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < 70; i++) {
         let url = getAvatarUrl();
         let starsMaterial = new THREE.PointsMaterial({
             size: 10,
-            // color: "#ffffff",
-            // transparent: true,
-            // opacity: 0.8,
             map: loader.load(url),
             blending: THREE.AdditiveBlending,
         });

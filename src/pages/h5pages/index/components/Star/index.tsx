@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useMemo } from "react"
 import { animate, init } from "./script"
 
 const Star: React.FC = () => {
@@ -14,18 +14,23 @@ const Star: React.FC = () => {
       destory && destory();
     }
   }, [])
-  const offset = 300
+  const { offsetX, offsetY } = useMemo(() => {
+    const offset = 280;
+    const y = offset;
+    const x = window.innerWidth / window.innerHeight * y;
+    return { offsetX: x, offsetY: y };
+  }, [])
 
   return <>
     {/* eslint-disable-next-line react/forbid-elements */}
     <div
       id='myCanvas'
       style={{
-        height: `calc(100vh + ${offset}px)`,
-        width: `calc(100vw + ${offset / 2}px)`,
+        height: `calc(100vh + ${offsetY}px)`,
+        width: `calc(100vw + ${offsetX}px)`,
         position: 'relative',
-        bottom: `${offset}px`,
-        right: `${offset / 4}px`
+        bottom: `${offsetY}px`,
+        right: `${offsetX / 2}px`,
       }}
     >
       <canvas style={{display: 'none'}}></canvas>

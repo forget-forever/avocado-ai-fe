@@ -1,5 +1,5 @@
 import { General } from "@tarojs/taro";
-import { showMaskToast } from "./utils";
+import { showMaskToast, toBigCamel, toSmallCamel } from "./utils";
 
 const codeMessage = {
   400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
@@ -19,9 +19,9 @@ const codeMessage = {
  * 异常处理程序
  */
 const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unknown>>) => {
-  const { data,statusCode } = err
+  const { data, statusCode } = err
   if (statusCode) {
-    const errorText = data.errmsg || codeMessage[statusCode];
+    const errorText = data.message || codeMessage[statusCode];
     return Promise.reject(new Error(errorText));
   }
   return Promise.reject(new Error('网络异常'));
@@ -30,59 +30,74 @@ const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unkn
 /**
  * 自己handle的错误
  */
-const errorHandlerSelf = (_err: Taro.request.SuccessCallbackResult<IResponseData<unknown>>) => {
-  return new Error('')
+const errorHandlerSelf = (err: Taro.request.SuccessCallbackResult<IResponseData<unknown>>) => {
+  switch (+err.data.data.code) {
+    case 10000: 
+    return Promise.reject(new Error('未登录'));
+    case 10001:
+      return Promise.reject(new Error('访问频繁'));
+    case 10002:
+      return Promise.reject(new Error(err.data.message));
+    default:
+  }
+  return Promise.reject(err.data);
 }
 
+type ICamelType = 'big' | 'small'
 /**
  * 配置request请求时的默认参数
  */
 type IResponseData<T = any> = {
-  errno: number;
-  errmsg: string;
-  error_no: number;
-  error_msg: string;
-  err_msg: string;
-  url: string;
-  data: T;
-  err_no: number;
+  isSuccess: boolean;
+  message: string;
+  stackTrace: string;
+  data: {
+    code: number;
+    data: T;
+  }
 };
-type IOptions<U extends string | General.IAnyObject | ArrayBuffer> = {
-  method?: keyof Taro.request.method,
-  data?: U,
-  header?: General.IAnyObject
+type IOptions<U extends any, C extends ICamelType> = {
+  method?: keyof Taro.request.method;
+  // @ts-ignore
+  data?: C extends 'big' ? IBigCamel<U> : U;
+  header?: General.IAnyObject;
+  paramsToBigCamel?: C extends 'big' ? true : false;
 }
 
 /**
  * 对接口的返回值进行二次的封装
  * */
-export const request = async <T = never, U = undefined, E = never>(url: string, options: IOptions<U> = {}) => {
+const request = async <T = any, U = any, C extends ICamelType = 'big', E = never>(url: string, options: IOptions<U, C> = {}) => {
+  const { paramsToBigCamel = true, data: params } = options;
+
   try {
     const res = await Taro.request<IResponseData<T> & E, U>({
-      url, //仅为示例，并非真实接口地址。
+      url,
       method: options?.method || 'GET',
-      data: options?.data,
+      // @ts-ignore
+      data: paramsToBigCamel ? toBigCamel(params || {}) : params,
       header: {
         ...options?.header
       },
     });
     const {data, statusCode} = res;
+    const resData = toSmallCamel(data);
     if(+statusCode <= 300 || +statusCode === 304) {
-      if (+data.err_no === 0) {
-        return data
+      if (resData.isSuccess) {
+        return resData.data
       } else {
-        return errorHandlerSelf(res)
+        return Promise.reject(errorHandlerSelf(res))
       }
     } else {
-      return errorHandler(res)
+      return Promise.reject(errorHandler(res))
     }
   } catch (error) {
     showMaskToast('网络异常')
-    return new Error('')
+    return Promise.reject(new Error('网络异常'))
   }
 };
 
-export const requestSmallCamel = () => {
+// export const requestSmallCamel = () => {
 
-}
-// export default request;
+// }
+export default request;

@@ -28,9 +28,10 @@ export function init(dom) {
     camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.01, 1000)
     camera.position.set(0, 0, 300);
 
-    const directionalLight = new THREE.DirectionalLight("#fff", 2);
-    directionalLight.position.set(0, 50, -20);
-    scene.add(directionalLight);
+    // 光源
+    // const directionalLight = new THREE.DirectionalLight("#fff", 2);
+    // directionalLight.position.set(0, 50, -20);
+    // scene.add(directionalLight);
 
     let ambientLight = new THREE.AmbientLight("#ffffff", 1);
     ambientLight.position.set(0, 20, 20);
@@ -54,7 +55,7 @@ export function init(dom) {
 
     const loader = new THREE.TextureLoader();
     // const textureSphereBg = loader.load('https://i.ibb.co/4gHcRZD/bg3-je3ddz.jpg');
-    const texturenucleus = loader.load('https://i.ibb.co/hcN2qXk/star-nc8wkw.jpg');
+    const texturenucleus = loader.load('https://oss.aiquyin.com/ContactMe/Images/moon.png');
     
     const texture1 = loader.load("https://i.ibb.co/F8by6wW/p2-b3gnym.png");  
     const texture2 = loader.load("https://i.ibb.co/yYS2yx5/p3-ttfn70.png");

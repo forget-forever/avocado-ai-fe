@@ -1,23 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { View } from '@tarojs/components'
 import Star from './components/Star'
 import styles from './index.module.scss'
+import Join from './components/Join'
 
-console.log(styles);
 const Index: React.FC = () => {
-
-  useEffect(() => {
-    // getUserInfo({
-    //   success: (res) => {
-    //     console.log(res)
-    //   }
-    // })
-  }, [])
   
   return (
     <View className={styles.container}>
       <Star />
-
+      <Join />
     </View>
   )
 }

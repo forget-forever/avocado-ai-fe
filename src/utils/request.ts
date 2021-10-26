@@ -1,4 +1,5 @@
 import { General } from "@tarojs/taro";
+import { rootBase } from "config/proxy";
 import { showMaskToast, toBigCamel, toSmallCamel } from "./utils";
 
 const codeMessage = {
@@ -14,6 +15,9 @@ const codeMessage = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
 };
+
+// 只有h5的网页需要代理
+const rootUrl = process.env.TARO_ENV === 'h5' ? '' : rootBase;
 
 /**
  * 异常处理程序
@@ -31,7 +35,7 @@ const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unkn
  * 自己handle的错误
  */
 const errorHandlerSelf = (err: Taro.request.SuccessCallbackResult<IResponseData<unknown>>) => {
-  switch (+err.data.data.code) {
+  switch (+err.data.code) {
     case 10000: 
     return Promise.reject(new Error('未登录'));
     case 10001:
@@ -43,36 +47,34 @@ const errorHandlerSelf = (err: Taro.request.SuccessCallbackResult<IResponseData<
   return Promise.reject(err.data);
 }
 
-type ICamelType = 'big' | 'small'
+// type ICamelType = 'big' | 'small'
 /**
  * 配置request请求时的默认参数
  */
 type IResponseData<T = any> = {
   isSuccess: boolean;
   message: string;
-  stackTrace: string;
-  data: {
-    code: number;
-    data: T;
-  }
+  code: number;
+  data: T
 };
-type IOptions<U extends any, C extends ICamelType> = {
+type IOptions<U extends any> = {
   method?: keyof Taro.request.method;
-  // @ts-ignore
-  data?: C extends 'big' ? IBigCamel<U> : U;
+  data?: U
   header?: General.IAnyObject;
-  paramsToBigCamel?: C extends 'big' ? true : false;
+  paramsToBigCamel?: boolean
 }
-
 /**
  * 对接口的返回值进行二次的封装
  * */
-const request = async <T = any, U = any, C extends ICamelType = 'big', E = never>(url: string, options: IOptions<U, C> = {}) => {
+const request = async <T extends IValue = any, U = any, E = never>(url: string, options: IOptions<U> = {}) => {
   const { paramsToBigCamel = true, data: params } = options;
-
+  let requestUrl = url.trim();
+  if (!/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-\(\)]*[\w@?^=%&/~+#-\(\)])?$/.test(requestUrl)) {
+    requestUrl = `${rootUrl}${requestUrl}`
+  }
   try {
     const res = await Taro.request<IResponseData<T> & E, U>({
-      url,
+      url: requestUrl,
       method: options?.method || 'GET',
       // @ts-ignore
       data: paramsToBigCamel ? toBigCamel(params || {}) : params,
@@ -83,8 +85,8 @@ const request = async <T = any, U = any, C extends ICamelType = 'big', E = never
     const {data, statusCode} = res;
     const resData = toSmallCamel(data);
     if(+statusCode <= 300 || +statusCode === 304) {
-      if (resData.isSuccess) {
-        return resData.data
+      if (resData.isSuccess || +resData.code) {
+        return resData
       } else {
         return Promise.reject(errorHandlerSelf(res))
       }

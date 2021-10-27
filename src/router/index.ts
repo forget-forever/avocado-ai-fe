@@ -1,4 +1,4 @@
-import { navigateTo, redirectTo, reLaunch, switchTab } from "@tarojs/taro";
+import { navigateBack as taroNavigateBack, navigateTo, redirectTo, reLaunch, switchTab } from "@tarojs/taro";
 import { serializeParams } from "../utils/utils";
 import { IRouterMap, routerMap, RouterType } from "./routerMap";
 
@@ -51,7 +51,7 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
 
 export const navigateBack = (num = 1, config: IConfig) => {
   const { success, fail, complete } = config;
-  Taro.navigateBack({
+  taroNavigateBack({
     delta: num,
     success,
     fail,

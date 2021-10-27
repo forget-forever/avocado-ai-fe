@@ -1,5 +1,5 @@
-import { General } from "@tarojs/taro";
-import { rootBase } from "config/proxy";
+import { General, request as taroRequest } from "@tarojs/taro";
+import { rootBase } from "../../config/proxy";
 import { showMaskToast, toBigCamel, toSmallCamel } from "./utils";
 
 const codeMessage = {
@@ -37,10 +37,13 @@ const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unkn
 const errorHandlerSelf = (err: Taro.request.SuccessCallbackResult<IResponseData<unknown>>) => {
   switch (+err.data.code) {
     case 10000: 
+    showMaskToast('未登录')
     return Promise.reject(new Error('未登录'));
     case 10001:
+    showMaskToast('访问频繁')
       return Promise.reject(new Error('访问频繁'));
     case 10002:
+    showMaskToast(err.data.message)
       return Promise.reject(new Error(err.data.message));
     default:
   }
@@ -66,14 +69,14 @@ type IOptions<U extends any> = {
 /**
  * 对接口的返回值进行二次的封装
  * */
-const request = async <T extends IValue = any, U = any, E = never>(url: string, options: IOptions<U> = {}) => {
+export const request = async <T extends IValue = any, U = any, E = never>(url: string, options: IOptions<U> = {}) => {
   const { paramsToBigCamel = true, data: params } = options;
   let requestUrl = url.trim();
   if (!/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-\(\)]*[\w@?^=%&/~+#-\(\)])?$/.test(requestUrl)) {
     requestUrl = `${rootUrl}${requestUrl}`
   }
   try {
-    const res = await Taro.request<IResponseData<T> & E, U>({
+    const res = await taroRequest<IResponseData<T> & E, U>({
       url: requestUrl,
       method: options?.method || 'GET',
       // @ts-ignore
@@ -102,4 +105,4 @@ const request = async <T extends IValue = any, U = any, E = never>(url: string, 
 // export const requestSmallCamel = () => {
 
 // }
-export default request;
+// export default request;

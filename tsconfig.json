@@ -28,7 +28,8 @@
       "@/assets/*": ["./src/assets/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/store": ["./src/store"],
-      "@/components/*":["./src/components/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/serves/*": ["./src/serves/*"]
       // "@/request/*": ["./src/lib/request/*"],
       // "@/api": ["./src/api"],
     }

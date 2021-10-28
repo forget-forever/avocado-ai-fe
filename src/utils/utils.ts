@@ -122,7 +122,7 @@ export const toSmallCamel = <T extends IDataObject>(data: T): ISmallCamel<T> => 
   }
   const newData = {}
   for (let key in data) {
-    let newKey = key.replace(/([A-Z])/g, (_p, m) => m.toLowerCase())
+    let newKey = key.replace(key[0], key[0].toLowerCase())
     // @ts-ignore
     newData[newKey] = toSmallCamel(data[key])
   }
@@ -144,7 +144,7 @@ export const toBigCamel = <T extends IDataObject>(data: T): IBigCamel<T> => {
   
   const newData = {}
   for (let key in data) {
-    let newKey = key.replace(/^\w/g, name => name.toUpperCase())
+    let newKey = key.replace(key[0], key[0].toUpperCase())
     // @ts-ignore
     newData[newKey] = toBigCamel(data[key])
   }
@@ -161,3 +161,13 @@ export const toBigCamel = <T extends IDataObject>(data: T): IBigCamel<T> => {
 export const getRandom = (minNum: number, maxNum: number) => {
   return parseInt(Math.random() * (maxNum - minNum + 1) + minNum + '', 10); 
 }
+
+/**
+ * 对数据进行类型守卫的函数
+ * @param data 守卫的数据
+ * @param cb 判断守卫的函数，把能够确定的逻辑写进来，返回true就是确定这个类型
+ * @returns 第二个参数返回true为这个类型，否则不是
+ */
+ export const projectType = <T extends U, U = unknown>(data: U, cb: (arg: U) => boolean): data is T => {
+  return cb(data);
+};

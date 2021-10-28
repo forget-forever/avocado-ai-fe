@@ -90,3 +90,11 @@ declare type IBigCamel<T extends IDataObject> = {
 //     a
 //   }]
 // }]
+
+declare type IDateTime = `/Date(${number}/`
+
+// 取promise中的类型
+declare type PromiseData<D> = D extends Promise<infer R> ? R : never 
+
+// 取返回值是Promise中的值
+declare type PromiseReturn<F> = ReturnType<F> extends Promise<infer R> ? R : never 

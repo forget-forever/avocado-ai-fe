@@ -171,3 +171,10 @@ export const getRandom = (minNum: number, maxNum: number) => {
  export const projectType = <T extends U, U = unknown>(data: U, cb: (arg: U) => boolean): data is T => {
   return cb(data);
 };
+
+export const setLocalStorage = <K extends keyof IStorage>(key: K, data: IStorage[K]) => {
+  Taro.setStorageSync(key, data)
+}
+export const getLocalStorage = <K extends keyof IStorage>(key: string) => {
+  return Taro.getStorageSync<IStorage[K]>(key)
+}

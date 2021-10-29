@@ -8,6 +8,7 @@ const Join: React.FC = () => {
       style={{position: 'relative', left: '16px'}}
       width={80}
       height={50}
+      className='animation-slide-left'
     >
       &nbsp;&nbsp;&nbsp;&nbsp;投
     </TrapezoidButton>
@@ -16,6 +17,7 @@ const Join: React.FC = () => {
       direction='bottom'
       width={80}
       height={50}
+      className='animation-slide-right'
     >
       抽&nbsp;&nbsp;&nbsp;&nbsp;
     </TrapezoidButton>

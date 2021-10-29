@@ -1,5 +1,8 @@
 const initState: GlobalState = {
-  common: {a: 10, b: 'a'},
+  common: {
+    userInfo: undefined,
+    openId: undefined,
+  },
   glopbal: {c: false, d: 20}
 }
 

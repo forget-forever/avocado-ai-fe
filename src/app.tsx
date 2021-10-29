@@ -4,7 +4,8 @@ import './app.scss'
 import './assets/style/app.css';
 import './assets/style/animation.css';
 import { store } from './store'
-import { initLogin } from './utils/init'
+import { initLogin } from './utils/init';
+import Modal from './components/Modal';
 
 class App extends Component {
 
@@ -24,7 +25,10 @@ class App extends Component {
 
   // this.props.children 是将要会渲染的页面
   render () {
-    return <Provider store={store}>{this.props.children}</Provider>
+    return <Provider store={store}>
+      {this.props.children}
+      <Modal />
+    </Provider>
   }
 }
 

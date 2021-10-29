@@ -1,7 +1,7 @@
 declare type GlobalState = {
   common: {
-    a: number,
-    b: string
+    userInfo: ISmallCamel<IRequest.Common.ILoginRes['UserInfo']> | undefined,
+    openId: string | undefined,
   };
   glopbal: {
     c: boolean;

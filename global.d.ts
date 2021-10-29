@@ -98,3 +98,5 @@ declare type PromiseData<D> = D extends Promise<infer R> ? R : never
 
 // 取返回值是Promise中的值
 declare type PromiseReturn<F> = ReturnType<F> extends Promise<infer R> ? R : never 
+
+declare type OtherParameters<T extends (...args: any) => any> = T extends (f: any, ...args: infer P) => any ? P : never;

@@ -1,5 +1,6 @@
 import { applyMiddleware, createStore } from 'redux'
 import ReduxThunk from 'redux-thunk';
+// import actions from './action';
 import initState from './initState';
 import reducers, { IReducers } from './reducers';
 
@@ -23,3 +24,9 @@ initialState();
 export const setState = <K extends keyof GlobalState>(namespace: K, state: Partial<GlobalState[K]>) => {
   store.dispatch({ type: 'SET_STATE', namespace, state });
 }
+
+export * from './action'
+
+// export const actionOption = <K extends keyof typeof actions>(option: K, params: OtherParameters<(typeof actions)[K]>[0]) => {
+//   return actions[option](store, params)
+// }

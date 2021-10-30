@@ -6,11 +6,11 @@ import { AtNavBar } from "taro-ui"
 export type NavigateProps = {
   title?: string;
   background?: string;
-  showBack?: boolean;
+  hideBack?: boolean;
   backHandle?: () => void;
 }
 const NaviagteBar: React.FC<NavigateProps> = (props) => {
-  const { title, showBack = true, backHandle, background } = props;
+  const { title, hideBack = true, backHandle, background } = props;
   const handleClick = () => {
     if (backHandle) {
       backHandle()
@@ -36,8 +36,9 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
           color='#fff'
           customStyle={{background: '#333'}}
           title={title || '导航栏'}
-          leftIconType={showBack ? 'chevron-left' : undefined}
+          leftIconType={!hideBack ? 'chevron-left' : undefined}
           border={false}
+          leftText='返回'
         />
       </View>
       <View style={{width: '100vw', height: `${system.customHeight}px`}} /> 

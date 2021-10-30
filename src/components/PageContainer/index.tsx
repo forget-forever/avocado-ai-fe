@@ -1,4 +1,5 @@
 // import { navigateBack } from '@/router';
+import { actions } from '@/store';
 import useData from '@/utils/hooks/useData';
 import { useRouter } from '@tarojs/taro';
 import React, { createRef, useEffect } from 'react';
@@ -36,7 +37,14 @@ const PageContainer: React.FC<IProps> = (props) => {
     <>
       {!hideNavigate && <NaviagteBar {...props} />}
       {children}
-      <Modal ref={modal} />
+      <Modal
+        ref={modal}
+        onCancel={() => {
+          if (modalMsg) {
+            actions.modalOption(undefined)
+          }
+        }}
+      />
     </>
   );
 }

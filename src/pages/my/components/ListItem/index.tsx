@@ -1,14 +1,17 @@
+import { actions } from "@/store";
 import useData from "@/utils/hooks/useData";
 import { Button } from "@tarojs/components";
-import { setState } from "@/store";
 
 export default () => {
-  const data = useData((state) => {
-    return state.common
-  })
+  // const data = useData((state) => {
+  //   return state.common
+  // })
   return <>
     <Button onClick={() => {
-      setState('common', {a: data.a + 10})
+      actions.modalOption({
+        title: '标题',
+        content: '这里是标题'
+      })
     }}
     >按钮</Button>
   </>

@@ -19,7 +19,9 @@ type ModalMsg = {
   positiveHandle?: () => void;
   passiveHandle?: () => void;
 }
-type IProps = {};
+type IProps = {
+  onCancel?: () => void;
+};
 interface Modal {
   props: IProps;
   state: {
@@ -41,13 +43,13 @@ class Modal extends Component {
       this.setState({
         msg,
         positiveButton: <Button type='primary' onClick={() => {
-          this.setState({msg: undefined}, () => resolve())
+            this.hideShow(() => resolve())
           }}
         >
           {msg.positiveIcon}{msg.positiveText || '确定' }
         </Button>,
         passiveButton: <Button type='primary' onClick={() => {
-            this.setState({msg: undefined}, () => reject())
+            this.hideShow(() => reject())
           }}
         >
           {msg.passiveIcon}{msg.passiveText || '取消' }
@@ -55,15 +57,22 @@ class Modal extends Component {
       })
     })
   }
-  hideShow = () => {
-    this.setState({msg: undefined});
+  hideShow = (cb?: () => void) => {
+    const { onCancel } = this.props;
+    onCancel?.()
+    this.setState({msg: undefined}, cb);
   }
 
   render() {
     const { msg, positiveButton, passiveButton } = this.state;
+    const { onCancel } = this.props;
 
     return (
-      <AtModal isOpened={!!msg} closeOnClickOverlay={msg?.closeOnClickOverlay ?? true}>
+      <AtModal
+        isOpened={!!msg}
+        closeOnClickOverlay={msg?.closeOnClickOverlay ?? true}
+        onCancel={onCancel}
+      >
         <AtModalHeader>{msg?.title}</AtModalHeader>
         <AtModalContent>{msg?.content}</AtModalContent>
         {!msg?.hideButton && <AtModalAction>

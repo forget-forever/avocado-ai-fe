@@ -38,7 +38,7 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
           title={title || '导航栏'}
           leftIconType={!hideBack ? 'chevron-left' : undefined}
           border={false}
-          leftText='返回'
+          leftText={!hideBack ? '返回' : undefined}
         />
       </View>
       <View style={{width: '100vw', height: `${system.customHeight}px`}} /> 

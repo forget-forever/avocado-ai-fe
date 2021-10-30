@@ -10,7 +10,7 @@ export default () => {
     //   showModal({title: 'test', content: 'data.openId' })
     // }, 2000);
   })
-  return <PageContainer title='个人中心'>
+  return <PageContainer title='个人中心' hideBack>
     <AtAvatar>
     </AtAvatar>
     <ListItem />

@@ -100,3 +100,9 @@ declare type PromiseData<D> = D extends Promise<infer R> ? R : never
 declare type PromiseReturn<F> = ReturnType<F> extends Promise<infer R> ? R : never 
 
 declare type OtherParameters<T extends (...args: any) => any> = T extends (f: any, ...args: infer P) => any ? P : never;
+
+declare namespace wx {
+  declare namespace miniProgram {
+    type navigateTo = typeof Taro.navigateTo
+  }
+}

@@ -4,8 +4,7 @@ import './app.scss'
 import './assets/style/app.css';
 import './assets/style/animation.css';
 import { store } from './store'
-import { initLogin } from './utils/init';
-import Modal from './components/Modal';
+import { initH5, initLogin } from './utils/init';
 
 class App extends Component {
 
@@ -14,6 +13,8 @@ class App extends Component {
   onLaunch () {
     if (process.env.TARO_ENV !== 'h5') {
       initLogin()
+    } else {
+      initH5()
     }
   }
 
@@ -27,7 +28,6 @@ class App extends Component {
   render () {
     return <Provider store={store}>
       {this.props.children}
-      <Modal />
     </Provider>
   }
 }

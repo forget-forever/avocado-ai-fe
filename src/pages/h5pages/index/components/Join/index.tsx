@@ -1,4 +1,5 @@
 import TrapezoidButton from "@/components/TrapezoidButton";
+import { h5Navigate } from "@/router/index";
 import { View } from "@tarojs/components";
 import styles from "./index.module.scss";
 
@@ -9,6 +10,9 @@ const Join: React.FC = () => {
       width={80}
       height={50}
       className='animation-slide-left'
+      onClick={() => {
+        h5Navigate('postMsg')
+      }}
     >
       &nbsp;&nbsp;&nbsp;&nbsp;投
     </TrapezoidButton>

@@ -5,8 +5,19 @@
 // @import '~taro-ui/dist/style/components/action-sheet.scss';
 // @import '~taro-ui/dist/style/components/noticebar.scss';
 // @import "~taro-ui/dist/style/components/swipe-action.scss";
+$color-brand: #333;
 @import "~taro-ui/dist/style/index.scss";
 
+.at-nav-bar__title {
+  color: #fff;
+}
+.at-nav-bar__left-view {
+  flex: auto;
+}
 .warp{
   box-sizing: border-box;
+}
+
+.at-modal__content {
+  min-height: 10px;
 }

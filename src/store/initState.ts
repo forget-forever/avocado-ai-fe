@@ -2,8 +2,11 @@ const initState: GlobalState = {
   common: {
     userInfo: undefined,
     openId: undefined,
+    token: undefined,
   },
-  glopbal: {c: false, d: 20}
+  global: {
+    modalMsg: undefined
+  }
 }
 
 export default initState;

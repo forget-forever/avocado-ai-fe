@@ -1,13 +1,15 @@
 export const uniquePages = {
   h5: [ 'pages/h5pages/index/index'] as const,
-  weapp: [ 'pages/index/index' ] as const
+  weapp: [
+    'pages/index/index',
+    'pages/index/post/index'
+  ] as const
 };
 export const generalPages = [ 'pages/my/index' ] as const
 const pages = (() => {
   switch(process.env.TARO_ENV) {
     case 'h5':
       return uniquePages.h5;
-      break;
     default:
       return [...uniquePages.weapp, ...generalPages];
   }
@@ -17,6 +19,7 @@ const pages = (() => {
 export default {
   pages,
   window: {
+    navigationStyle: "custom",
     backgroundTextStyle: 'dark',
     navigationBarBackgroundColor: '#000',
     navigationBarTitleText: '情意盲盒',

@@ -48,8 +48,14 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
       console.log(`是谁乱传type参数，传了个${type}`)
   }
 }
+export const h5Navigate = (urlKey: keyof IRouterMap) => {
+   // @ts-ignore
+   wx.miniProgram.navigateTo({
+    url: routerMap[urlKey]('navigate')
+  })
+}
 
-export const navigateBack = (num = 1, config: IConfig) => {
+export const navigateBack = (num = 1, config: IConfig = {}) => {
   const { success, fail, complete } = config;
   taroNavigateBack({
     delta: num,

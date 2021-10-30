@@ -7,5 +7,6 @@ declare global {
       age: number,
       gender: GenderEnum
     }
+    token: string;
   }>
 }

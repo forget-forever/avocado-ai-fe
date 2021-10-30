@@ -25,6 +25,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@/router": ["./src/router"],
+      "@/router/*": ["./src/router/*"],
       "@/assets/*": ["./src/assets/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/store": ["./src/store"],

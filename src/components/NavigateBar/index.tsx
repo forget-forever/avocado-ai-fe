@@ -12,6 +12,7 @@ export type NavigateProps = {
 const NaviagteBar: React.FC<NavigateProps> = (props) => {
   const { title, hideBack = true, backHandle, background } = props;
   const handleClick = () => {
+    if (hideBack) return;
     if (backHandle) {
       backHandle()
     } else {

@@ -1,7 +1,5 @@
 import { actions } from '@/store';
-import { system } from '@/utils/config';
 import useData from '@/utils/hooks/useData';
-import { View } from '@tarojs/components';
 import { useRouter } from '@tarojs/taro';
 import React, { createRef, useEffect } from 'react';
 import { Modal } from '..';
@@ -36,7 +34,7 @@ const PageContainer: React.FC<IProps> = (props) => {
   return (
     <>
       {!hideNavigate && <NaviagteBar {...props} />}
-      <View style={{height: `calc(100vh - ${system.customHeight}px)`}}>{children}</View>
+      {children}
       <Modal
         ref={modal}
         onCancel={() => {

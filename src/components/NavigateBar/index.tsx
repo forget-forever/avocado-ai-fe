@@ -38,6 +38,7 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
           background: background || themeColor,
           top: 0,
           boxSizing: 'border-box',
+          zIndex: 10,
         }}
       >
         <AtNavBar

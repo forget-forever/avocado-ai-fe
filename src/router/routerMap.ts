@@ -9,9 +9,11 @@ export type IRouterMap = {
   my: undefined;
   index: undefined;
   postMsg: undefined;
+  bindPhoneNumber: undefined;
 }
 export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPageList}`> = {
   my: (_type) => '/pages/my/index',
   index: (_type) => '/pages/index/index',
   postMsg: (_type) => "/pages/index/post/index",
+  bindPhoneNumber: (_type) => '/pages/my/bindPhone/index',
 }

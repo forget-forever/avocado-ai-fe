@@ -22,7 +22,7 @@ const TrapezoidButton: React.FC<IProps> = (props) => {
     height = 100,
     borderRight = 36,
     onClick,
-    background = 'blue'
+    background = 'maincolor'
   } = props;
   const trapezoidStyle = useMemo<CSSProperties>(() => {
     if (direction === 'top') {

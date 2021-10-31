@@ -53,7 +53,7 @@ declare global {
         Birthday: string;
         UpdateTime: IDateTime;
         CreateTime: IDateTime;
-      }    
+      }
     }
     
   }

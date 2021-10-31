@@ -1,20 +1,30 @@
-// @import '~taro-ui/dist/style/components/indexes.scss';
-// @import '~taro-ui/dist/style/components/list.scss';
-// @import '~taro-ui/dist/style/components/icon.scss';
-// @import '~taro-ui/dist/style/components/toast.scss';
-// @import '~taro-ui/dist/style/components/action-sheet.scss';
-// @import '~taro-ui/dist/style/components/noticebar.scss';
-// @import "~taro-ui/dist/style/components/swipe-action.scss";
 $color-brand: #333;
 @import "~taro-ui/dist/style/index.scss";
 
 .at-nav-bar__title {
   color: #fff;
 }
+button[type=primary], .button-hover[type=primary], button[loading][type=primary]  {
+  background-color: $color-brand;
+}
+button[disabled][type=primary] {
+  background-color: $color-brand;
+  opacity: 0.6;
+}
+button[loading][type=primary] {
+  opacity: 0.6;
+}
 .warp{
   box-sizing: border-box;
 }
 
+.at-nav-bar__left-view {
+  background-color: $color-brand !important;
+}
 .at-modal__content {
   min-height: 10px;
+}
+
+view, form, page {
+  box-sizing: border-box;
 }

@@ -199,3 +199,11 @@ export const compactObj = (obj: IDataObject, fn = isEmpty) => {
 
 // 删除空对象 删除'', null, undefined
 const isEmpty = (foo: string | number | boolean) => (foo === null || foo === undefined)
+
+export const isPhone = (val: string) => {
+  try {
+    return /^(?:(?:\+|00)86)?1\d{10}$/.test(val)
+  } catch (error) {
+    return false
+  }
+}

@@ -1,8 +1,9 @@
 export const uniquePages = {
   h5: [ 'pages/h5pages/index/index'] as const,
-  weapp: [
+  miniapp: [
     'pages/index/index',
-    'pages/index/post/index'
+    'pages/index/post/index',
+    'pages/my/bindPhone/index'
   ] as const
 };
 export const generalPages = [ 'pages/my/index' ] as const
@@ -11,7 +12,7 @@ const pages = (() => {
     case 'h5':
       return uniquePages.h5;
     default:
-      return [...uniquePages.weapp, ...generalPages];
+      return [...uniquePages.miniapp, ...generalPages];
   }
 })()
 

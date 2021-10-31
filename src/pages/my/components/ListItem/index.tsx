@@ -7,7 +7,7 @@ export default () => {
   //   return state.common
   // })
   return <>
-    <Button onClick={() => {
+    <Button type='primary' onClick={() => {
       actions.modalOption({
         title: '标题',
         content: '这里是标题'

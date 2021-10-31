@@ -1,10 +1,10 @@
-// import { navigateBack } from '@/router';
 import { actions } from '@/store';
+import { system } from '@/utils/config';
 import useData from '@/utils/hooks/useData';
+import { View } from '@tarojs/components';
 import { useRouter } from '@tarojs/taro';
 import React, { createRef, useEffect } from 'react';
-// import { AtNavBar } from 'taro-ui';
-import Modal from '../Modal';
+import { Modal } from '..';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
 
 type IProps = NavigateProps & {
@@ -36,7 +36,7 @@ const PageContainer: React.FC<IProps> = (props) => {
   return (
     <>
       {!hideNavigate && <NaviagteBar {...props} />}
-      {children}
+      <View style={{height: `calc(100vh - ${system.customHeight}px)`}}>{children}</View>
       <Modal
         ref={modal}
         onCancel={() => {

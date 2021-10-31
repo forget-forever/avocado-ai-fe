@@ -1,4 +1,4 @@
-import PageContainer from "@/components/PageContainer"
+import { PageContainer } from "@/components/index"
 import { useEffect } from "react"
 import { AtAvatar } from "taro-ui"
 import ListItem from "./components/ListItem"

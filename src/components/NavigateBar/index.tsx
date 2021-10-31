@@ -1,5 +1,6 @@
-import { navigateBack } from "@/router"
+import { navigate, navigateBack } from "@/router"
 import { system } from "@/utils/config"
+import useData from "@/utils/hooks/useData"
 import { View } from "@tarojs/components"
 import { AtNavBar } from "taro-ui"
 
@@ -11,15 +12,22 @@ export type NavigateProps = {
 }
 const NaviagteBar: React.FC<NavigateProps> = (props) => {
   const { title, hideBack, backHandle, background } = props;
-  const handleClick = () => {
+
+  const handleClick = async () => {
     if (hideBack) return;
     if (backHandle) {
       backHandle()
     } else {
-      navigateBack()
+      try {
+        navigateBack()
+      } catch (error) {
+        navigate('index', {type: 'reLaunch'});
+      }
+      
     }
   }
-  
+  const themeColor = useData((state) => state.common.themeColor);
+
   return (
     <>
       <View
@@ -27,7 +35,7 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
         style={{
           width: '100vw',
           paddingTop: `${system.statusBarHeight}px`,
-          background: background || '#333',
+          background: background || themeColor,
           top: 0,
           boxSizing: 'border-box',
         }}
@@ -35,11 +43,11 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
         <AtNavBar
           onClickLeftIcon={handleClick}
           color='#fff'
-          customStyle={{background: '#333'}}
-          title={title || '导航栏'}
+          customStyle={{background: themeColor}}
+          title={title || '情谊盲盒'}
           leftIconType={!hideBack ? 'chevron-left' : undefined}
-          border={false}
           leftText={!hideBack ? '返回' : undefined}
+          border={false}
         />
       </View>
       <View style={{width: '100vw', height: `${system.customHeight}px`}} /> 

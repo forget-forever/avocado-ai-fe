@@ -1,12 +1,12 @@
-import { GenderEnum } from "./enum";
+// import { GenderEnum } from "./enum";
 
-declare global {
+// declare global {
   declare type IStorage = Partial<{
-    openId: string;
-    userInfo: {
-      age: number,
-      gender: GenderEnum
+    info: {
+      openId: GlobalState['common']['openId']
+      userInfo: GlobalState['common']['userInfo']
+      token: GlobalState['common']['token'];
     }
-    token: string;
+    openId: GlobalState['common']['openId']
   }>
-}
+// }

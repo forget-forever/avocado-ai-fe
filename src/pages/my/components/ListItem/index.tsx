@@ -1,5 +1,5 @@
 import { actions } from "@/store";
-import useData from "@/utils/hooks/useData";
+// import useData from "@/utils/hooks/useData";
 import { Button } from "@tarojs/components";
 
 export default () => {

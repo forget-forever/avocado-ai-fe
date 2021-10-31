@@ -1,7 +1,7 @@
 import { login } from '@tarojs/taro'
 import { loginServe } from '@/serves/common';
-import { actions, setState } from '@/store';
-import { showModal } from '@/components/Modal/options';
+import { actions } from '@/store';
+// import { showModal } from '@/components/Modal/options';
 import { projectType } from './utils';
 
 type IRes = PromiseReturn<typeof loginServe>
@@ -16,9 +16,6 @@ export const initLogin = async () => {
     if (projectType<IRes>(err, (e) => !!(e as IRes)?.data.openId)) {
       const { data } = err;
       actions.setOpenId(data.openId)
-      setTimeout(() => {
-        showModal({title: 'test', content: data.openId })
-      }, 2000);
     }
   }
 }

@@ -4,12 +4,13 @@ import PageContainer from "@/components/PageContainer";
 import { bindWxPhone } from "@/serves/common";
 import { actions } from "@/store";
 import useData from "@/utils/hooks/useData";
+import { initLogin } from "@/utils/init";
 import { View } from "@tarojs/components";
 import { createRef, useEffect } from "react";
 
 const Post: React.FC = () => {
   const modal = createRef<Modal>();
-  const { token, openId = '' } = useData((state) => state.common)
+  const { token, openId } = useData((state) => state.common)
   // const getPhoneNumber = 
   // const bindPhone = async ()
   useEffect(() => {
@@ -19,14 +20,17 @@ const Post: React.FC = () => {
       content: <>
         尚未绑定个人信息，没有绑定个人信息的时，无法将自己的信息放入盲盒。
         <GetPhone onSubmit={async ({detail}) => {
-            console.log(detail);
             const { iv, errMsg, encryptedData, cloudId } = detail as (typeof detail) & {cloudId?: string} ;
             if(errMsg.includes(':ok')) {
-              const res = await bindWxPhone({
+              const {result} = await bindWxPhone({
                 rawData: {iv, encryptedData, cloudID: cloudId},
-                openId,
+                openId: openId!,
               })
-              console.log(res)
+              if (result) {
+                await initLogin()
+              }
+            } else {
+              
             }
           }}
         />

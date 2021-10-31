@@ -49,8 +49,9 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
   }
 }
 export const h5Navigate = (urlKey: keyof IRouterMap) => {
-   // @ts-ignore
-   wx.miniProgram.navigateTo({
+  // @ts-ignore
+  const wxProgram = wx.miniProgram as Pick<typeof Taro, 'navigateTo' | 'navigateBack' | 'switchTab' | 'redirectTo'>
+  wxProgram.navigateTo({
     url: routerMap[urlKey]('navigate')
   })
 }

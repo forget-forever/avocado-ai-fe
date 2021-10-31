@@ -1,6 +1,7 @@
+import { store } from "@/store";
 import { General, request as taroRequest } from "@tarojs/taro";
 import { rootBase } from "../../config/proxy";
-import { showMaskToast, toBigCamel, toSmallCamel } from "./utils";
+import { filterNull, showMaskToast, toBigCamel, toSmallCamel } from "./utils";
 
 const codeMessage = {
   400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
@@ -76,15 +77,18 @@ export const request = async <T extends IValue = any, E = {}>(url: string, optio
   if (!/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-\(\)]*[\w@?^=%&/~+#-\(\)])?$/.test(requestUrl)) {
     requestUrl = `${rootUrl}${requestUrl}`
   }
+  const { common: { token } } = store.getState()
   try {
     const res = await taroRequest<IResponseData<T> & E>({
       url: requestUrl,
       method: options?.method || 'GET',
       // @ts-ignore
-      data: paramsToBigCamel ? toBigCamel(params || {}) : params,
-      header: {
-        ...options?.header
-      },
+      data: filterNull(paramsToBigCamel ? toBigCamel(params || {}) : params),
+      header: filterNull({
+        ...options?.header,
+        Token: token?.val,
+        Cookie: `p_token=${token?.val}`
+      }),
     });
     const {data, statusCode} = res;
     const resData = toSmallCamel(data);

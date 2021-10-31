@@ -65,13 +65,12 @@ class Modal extends Component {
 
   render() {
     const { msg, positiveButton, passiveButton } = this.state;
-    const { onCancel } = this.props;
 
     return (
       <AtModal
         isOpened={!!msg}
         closeOnClickOverlay={msg?.closeOnClickOverlay ?? true}
-        onCancel={onCancel}
+        onCancel={() => this.hideShow()}
       >
         <AtModalHeader>{msg?.title}</AtModalHeader>
         <AtModalContent>{msg?.content}</AtModalContent>

@@ -21,14 +21,14 @@ export default {
   window: {
     navigationStyle: "custom",
     backgroundTextStyle: 'dark',
-    navigationBarBackgroundColor: '#000',
+    navigationBarBackgroundColor: '#333',
     navigationBarTitleText: '情意盲盒',
     navigationBarTextStyle: 'white'
   },
   tabBar: {
     color: '#999',
     selectedColor: '#aaa',
-    backgroundColor: '#000',
+    backgroundColor: '#333',
     list: [
       {
         selectedIconPath: 'assets/images/on-home.png',

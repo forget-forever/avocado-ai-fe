@@ -9,6 +9,7 @@ declare global {
         val: string;
         time: number;
       } | undefined
+      themeColor: string
     };
     global: {
       modalMsg: (Modal['state']['msg'] & Partial<Record<'success' | 'cancel' | 'complete', () => void>>) | undefined

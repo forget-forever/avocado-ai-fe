@@ -10,18 +10,13 @@ export const actions = {
   },
   setToken: async ( msg: {openId: string, token: string, userInfo: GlobalState['common']['userInfo']} ) => {
     const { openId, token, userInfo } = msg;
-    setState('common', {
-      openId,
-      token: {
-        val: token,
-        time: +moment().format('x')
-      },
-      userInfo
-    })
+    const tokenData = { val: token, time: +moment().format('x')}
+    setLocalStorage('info', {openId, token: tokenData, userInfo})
+    setState('common', { openId, token: tokenData, userInfo })
   },
   modalOption: async (msg: GlobalState['global']['modalMsg']) => {
     setTimeout(() => {
       setState('global', {modalMsg: msg})
-    }, 1)
+    }, 0)
   }
 }

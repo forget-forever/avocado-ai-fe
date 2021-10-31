@@ -175,6 +175,27 @@ export const getRandom = (minNum: number, maxNum: number) => {
 export const setLocalStorage = <K extends keyof IStorage>(key: K, data: IStorage[K]) => {
   Taro.setStorageSync(key, data)
 }
-export const getLocalStorage = <K extends keyof IStorage>(key: string) => {
+export const getLocalStorage = <K extends keyof IStorage>(key: K) => {
   return Taro.getStorageSync<IStorage[K]>(key)
 }
+
+/**
+ * 去除对象中所有符合条件的对象
+ * @param {Object} obj 来源对象
+ * @param {Function} fn 函数验证每个字段
+ */
+export const compactObj = (obj: IDataObject, fn = isEmpty) => {
+  for (var i in obj) {
+    if (typeof obj[i] === 'object') {
+      // @ts-ignore
+      compactObj(obj[i], fn)
+    }
+    // @ts-ignore
+    if (fn(obj[i])) {
+      delete obj[i]
+    }
+  }
+}
+
+// 删除空对象 删除'', null, undefined
+const isEmpty = (foo: string | number | boolean) => (foo === null || foo === undefined)

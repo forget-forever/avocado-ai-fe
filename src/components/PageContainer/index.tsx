@@ -17,7 +17,7 @@ const PageContainer: React.FC<IProps> = (props) => {
   // console.log(router);
   const modalMsg = useData((state) => state.global.modalMsg);
   useEffect(() => {
-    if (`/${router?.onShow}`?.includes(router.path)) {
+    if (modalMsg && `/${router?.onShow}`?.includes(router.path)) {
       if (modalMsg) {
         const { success, cancel, complete } = modalMsg;
         (async () => {

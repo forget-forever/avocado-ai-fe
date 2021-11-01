@@ -6,6 +6,7 @@ type IProps<V, L> = {
   options: IOptions<V, L>[];
   style?: CSSProperties;
   className?: string;
+  labelStyle?: CSSProperties;
   onChange?: (val: V) => void;
 }
 type IState<V extends string | number> = {
@@ -36,12 +37,12 @@ class MyRadio<V extends string | number, L> extends Component {
     return this.state.val;
   };
   render() {
-    const { options, style, className } = this.props;
+    const { options, style, className, labelStyle } = this.props;
     const { val } = this.state;
     const { themeColor } = store.getState().common
     return(<RadioGroup className={className} style={{display: 'flex', ...style}} onChange={this.onChange}>
       {options.map(({value, label}) => (
-        <Label for={`${value}`} key={`${value}`}>
+        <Label style={{margin: '0 10px', ...labelStyle}} for={`${value}`} key={`${value}`}>
           <Radio color={themeColor} value={value as string} checked={val === value}>{label}</Radio>
         </Label>
       ))}

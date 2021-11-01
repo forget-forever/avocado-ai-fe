@@ -13,8 +13,6 @@ const config = {
   outputRoot: `dist/${process.env.TARO_ENV}`,
   alias: {
     '@/router': path.resolve(__dirname, '..', 'src/router'),
-    // '@/request': path.resolve(__dirname, '..', 'src/lib/request'),
-    // '@/api': path.resolve(__dirname, '..', 'src/api'),
     '@/assets': path.resolve(__dirname, '..', 'src/assets'),
     '@/utils': path.resolve(__dirname, '..', 'src/utils'),
     '@/store': path.resolve(__dirname, '..', 'src/store'),
@@ -31,8 +29,11 @@ const config = {
     }
   },
   framework: 'react',
-  sass: {
-    resource: [],
+  sass: process.env.TARO_ENV === 'h5' ? {} : {
+    resource: path.resolve(__dirname, '..', 'src/utils/sass/miniapp.scss'),
+  },
+  cssLoaderOption: {
+    localsConvention: 'camelCase',
   },
   mini: {
     postcss: {

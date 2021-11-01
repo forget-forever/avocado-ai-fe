@@ -1,5 +1,6 @@
 $color-brand: #333;
 @import "~taro-ui/dist/style/index.scss";
+@import "https://at.alicdn.com/t/font_2907804_owo8mzrua59.css";
 
 .at-nav-bar__title {
   color: #fff;
@@ -27,4 +28,8 @@ button[loading][type=primary] {
 
 view, form, page {
   box-sizing: border-box;
+}
+
+.iconfont {
+  font-size: 32px;
 }

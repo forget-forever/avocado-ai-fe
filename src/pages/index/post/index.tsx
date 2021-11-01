@@ -4,6 +4,8 @@ import { actions } from "@/store";
 import useData from "@/utils/hooks/useData";
 import { useEffect } from "react";
 import { GenderEnum } from "@/utils/enum";
+import { View } from "@tarojs/components";
+import { Label } from "../components";
 
 const Post: React.FC = () => {
   const { token } = useData((state) => state.common)
@@ -19,13 +21,14 @@ const Post: React.FC = () => {
   }, [token])
 
   return <PageContainer title='期待缘分与你相遇'>
-    <MyRadio
-      options={[
-        {value: GenderEnum.male, label: '男'},
-        {value: GenderEnum.female, label: '女'}
-      ]}
-      style={{width: '60%', justifyContent: 'space-around', margin: '20px auto'}}
-    />
+    <Label title='投送对象'>
+      <MyRadio
+        options={[
+          {value: GenderEnum.male, label: <View className='iconfont icon-gendermale'>男</View>},
+          {value: GenderEnum.female, label: <View className='iconfont icon-gender-female text-pink'>女</View>}
+        ]}
+      />
+    </Label>
   </PageContainer>
 }
 export default Post;

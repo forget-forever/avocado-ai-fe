@@ -13,8 +13,8 @@ export enum PlatformType {
   IosApp, //	Ios App
 }
 export enum ContentType {
-  ContactInfo = 1, //	联系方式
-  Moment = 2, //	动态
+  contactInfo = 1, //	联系方式
+  moment = 2, //	动态
 }
 // 账号类型
 export enum UserType {

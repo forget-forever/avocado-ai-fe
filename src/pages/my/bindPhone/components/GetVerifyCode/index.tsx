@@ -1,4 +1,4 @@
-import { isPhone } from "@/utils/utils"
+import { isPhone } from "@/utils/tool"
 import { Button } from "@tarojs/components"
 import { useState, useCallback } from "react"
 import { AtInput } from "taro-ui"

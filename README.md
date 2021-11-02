@@ -19,23 +19,7 @@
 
 ## 目录结构
 ```sh
-  ├─.eslintignore
-  ├─.eslintrc.js
-  ├─.prettierignore
-  ├─.prettierrc.js
-  ├─.stylelintrc.js
-  ├─README.md
-  ├─build.sh
-  ├─jest.config.js
-  ├─jsconfig.json
-  ├─package.json
-  ├─tsconfig.json
-  ├─upload.sh
-  ├─yarn.lock
-  ├─tests
-  ├─src
-  ├─mock
-  ├─config
+ 
 ``` 
 ## 关键技术点
 

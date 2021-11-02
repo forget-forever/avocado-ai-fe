@@ -1,7 +1,7 @@
 import { GenderEnum, UserStatus, UserType } from "@/utils/enum"
 
 declare global {
-  namespace Common {
+  namespace IRequest {
     type ILoginParams = {
       code: string
     }

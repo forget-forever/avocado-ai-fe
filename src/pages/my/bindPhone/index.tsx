@@ -6,7 +6,7 @@ import GetVerifyCode from './components/GetVerifyCode';
 import { canSubmit } from './util';
 
 const BindPhone: React.FC = () => {
-  const [ msg, setMsg ] = useState<User.VerifyCodeBindParams>({phone: '', verifyCode: ''});
+  const [ msg, setMsg ] = useState<IRequest.VerifyCodeBindParams>({phone: '', verifyCode: ''});
 
   return (
     <PageContainer title='绑定手机'>

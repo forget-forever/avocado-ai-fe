@@ -1,6 +1,5 @@
-import { PageContainer } from '@/components/index';
+import { MyButton, PageContainer } from '@/components/index';
 import { system } from '@/utils/config';
-import { Button } from '@tarojs/components';
 import React, { useState } from 'react';
 import { AtForm, AtInput } from 'taro-ui';
 import GetVerifyCode from './components/GetVerifyCode';
@@ -22,7 +21,7 @@ const BindPhone: React.FC = () => {
           onChange={(val) => setMsg({...msg, phone: `${val}`})}
         />
         <GetVerifyCode msg={msg} setMsg={(val) => setMsg(val)} />
-        <Button type='primary' className='width-8' style={{marginTop: '60px'}} disabled={canSubmit(msg)}>确定</Button>
+        <MyButton type='primary' className='width-8' style={{marginTop: '60px'}} disabled={canSubmit(msg)}>确定</MyButton>
       </AtForm>
     </PageContainer>
   )

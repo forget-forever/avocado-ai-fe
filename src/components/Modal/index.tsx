@@ -1,6 +1,6 @@
 import { AtModal, AtModalAction, AtModalContent, AtModalHeader } from 'taro-ui';
-import { Button } from '@tarojs/components';
 import { Component } from 'react';
+import MyButton from '../MyButton';
 // import { useMoalState } from './options';
 
 type ModalMsg = {
@@ -42,18 +42,18 @@ class Modal extends Component {
     return new Promise<void>((resolve, reject) => {
       this.setState({
         msg,
-        positiveButton: <Button type='primary' onClick={() => {
+        positiveButton: <MyButton type='primary' onClick={() => {
             this.hideShow(() => resolve())
           }}
         >
           {msg.positiveIcon}{msg.positiveText || '确定' }
-        </Button>,
-        passiveButton: <Button type='primary' onClick={() => {
+        </MyButton>,
+        passiveButton: <MyButton type='primary' onClick={() => {
             this.hideShow(() => reject())
           }}
         >
           {msg.passiveIcon}{msg.passiveText || '取消' }
-        </Button>
+        </MyButton>
       })
     })
   }

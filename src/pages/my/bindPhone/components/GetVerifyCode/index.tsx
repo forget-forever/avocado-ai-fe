@@ -1,5 +1,5 @@
+import { MyButton } from "@/components/index"
 import { isPhone } from "@/utils/tool"
-import { Button } from "@tarojs/components"
 import { useState, useCallback } from "react"
 import { AtInput } from "taro-ui"
 
@@ -35,7 +35,7 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
     onChange={(val) => setMsg({ ...msg, verifyCode: `${val}` })}
     name='verifyCode'
   >
-    <Button
+    <MyButton
       type='primary'
       disabled={!isPhone(msg.phone) || (tip !== '发送验证码' && tip !== '重新发送')}
       onClick={sendVerifyCode}
@@ -43,7 +43,7 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
       loading={false}
     >
       {tip}
-    </Button>
+    </MyButton>
   </AtInput>
 }
 export default GetVerifyCode;

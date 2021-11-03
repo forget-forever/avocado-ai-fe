@@ -67,6 +67,7 @@ npm build dev:h5、npm build dev:weapp
 - 所有的接口返回的参数是大驼峰的，所以说request函数中做了一个大驼峰变小驼峰的处理，request请求的时候参数也会自动转大驼峰，但是可以通过paramsToBigCamel参数控制要不要转
 - 再次强调，所有的页面都必须使用<PageContainer />包着，里面定义了安全高度，想要全屏高直接height: 100%即可，100vh会把NavigateBar页加进去
 - utls/hooks里面有一些定义hooks，防抖节流的都有
+- 字体图标库 https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.13&manage_type=myprojects&projectId=2907804 
 
 ## API
 

@@ -1,5 +1,4 @@
 import { MyButton, PageContainer } from '@/components/index';
-import { system } from '@/utils/config';
 import React, { useState } from 'react';
 import { AtForm, AtInput } from 'taro-ui';
 import GetVerifyCode from './components/GetVerifyCode';
@@ -10,7 +9,7 @@ const BindPhone: React.FC = () => {
 
   return (
     <PageContainer title='绑定手机'>
-      <AtForm customStyle={{padding: '20px 0', height: `calc(100vh - ${system.customHeight}px)`}}>
+      <AtForm customStyle={{padding: '20px 0', height: '100%'}}>
         <AtInput
           name='phone'
           type='phone'

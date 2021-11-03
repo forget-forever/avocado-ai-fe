@@ -1,6 +1,6 @@
 import app from '../app.config';
 
-type IPageList = ValueOf<(typeof app)['pages']>
+export type IPageList = ValueOf<(typeof app)['pages']>
 
 export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 

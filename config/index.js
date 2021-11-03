@@ -32,9 +32,6 @@ const config = {
   sass: process.env.TARO_ENV === 'h5' ? {} : {
     resource: path.resolve(__dirname, '..', 'src/utils/sass/miniapp.scss'),
   },
-  cssLoaderOption: {
-    localsConvention: 'camelCase',
-  },
   mini: {
     postcss: {
       pxtransform: {
@@ -56,7 +53,10 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    cssLoaderOption: {
+      localsConvention: 'camelCase',
+    },
   },
   h5: {
     publicPath: '/',
@@ -75,7 +75,10 @@ const config = {
         }
       }
     },
-    esnextModules: ['taro-ui']
+    esnextModules: ['taro-ui'],
+    cssLoaderOption: {
+      localsConvention: 'camelCase',
+    },
   }
 }
 

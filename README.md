@@ -1,4 +1,3 @@
---
 # 项目名称
 
 ```markdown
@@ -51,7 +50,7 @@ npm run dev:h5、npm run dev:weapp
 npm build dev:h5、npm build dev:weapp
 ```
 
-##  attention
+## attention
 
 - redux中的类型已经写好，放在GlobalState中，需要往redux中存数据的时候先写好类型
 - 取redux中的数据的时候使用useData的自定义hook，类型已写好，需要写的时候使用store中暴露出的setState即可
@@ -62,12 +61,13 @@ npm build dev:h5、npm build dev:weapp
 - Modal的弹出框都是使用actions.modalOption方法，根据类型提示即可
 - 所有的请求方法都放在src/serves中，类型写在src/serves/types中，放在IRequest的命名空间下
 - 缓存使用src/utils/utils中的setLocalStorage和getLocalStorage方法，需要在IStorage中加类型，达到最好的开发体验
-- scss文件需要.module.scss结尾，很杠下划线形式的命名都会被转为小驼峰形式（例如 .container-item会被编译成containerItem）
-- 推荐写在CSS Module插件，style就可以有智能提示了
+- scss文件需要.module.scss结尾，小驼峰形式的选择器字符串会被编译成横杠形式的命名（例如 containerItem 会被编译成 container-item）
+- 推荐下载CSS Module插件，style就可以有智能提示了
+- 下载好CSS Module后需要在setting.json中配置 "cssModules.camelCase": true ,要不然类选择器没有小驼峰的类型提示
 - 所有的接口返回的参数是大驼峰的，所以说request函数中做了一个大驼峰变小驼峰的处理，request请求的时候参数也会自动转大驼峰，但是可以通过paramsToBigCamel参数控制要不要转
-- 再次强调，所有的页面都必须使用<PageContainer />包着，里面定义了安全高度，想要全屏高直接height: 100%即可，100vh会把NavigateBar页加进去
+- 再次强调，所有的页面都必须使用 <PageContainer /> 包着，里面定义了安全高度，想要全屏高直接height: 100%即可，100vh会把NavigateBar页加进去
 - utls/hooks里面有一些定义hooks，防抖节流的都有
-- 字体图标库 https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.13&manage_type=myprojects&projectId=2907804 修改好后，需要在app.scss中替换css链接，还有就是替换src/utils/sass/iconfonts.scss中的内容，直接浏览器中打开内容复制过去替换
+- 字体图标库 https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.13&manage_type=myprojects&projectId=2907804 修改好后，需要在app.scss中替换css链接，还有就是替换src/utils/sass/iconfonts.scss中的内容，直接浏览器中打开内容复制过去替换（微信小程序不支持 @import 线上的css）
 
 ## API
 

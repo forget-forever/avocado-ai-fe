@@ -32,7 +32,7 @@ const PageContainer: React.FC<IProps> = (props) => {
 
   useEffect(() => {
     if (modalMsg && `/${router?.onShow}`?.includes(router.path)) {
-      if (modalMsg) {
+      if (modal.current?.showModal) {
         const { success, cancel, complete } = modalMsg;
         (async () => {
           try {

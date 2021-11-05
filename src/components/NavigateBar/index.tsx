@@ -5,9 +5,21 @@ import { View } from "@tarojs/components"
 import { AtNavBar } from "taro-ui"
 
 export type NavigateProps = {
+  /**
+   * navigateBar显示的标题
+   */
   title?: string;
+  /**
+   * navagateBar的背景
+   */
   background?: string;
+  /**
+   * 隐藏掉navagateBar的返回按钮
+   */
   hideBack?: boolean;
+  /**
+   * 拦截返回操作
+   */
   backHandle?: () => void;
 }
 const NaviagteBar: React.FC<NavigateProps> = (props) => {

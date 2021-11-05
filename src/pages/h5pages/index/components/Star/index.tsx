@@ -15,9 +15,10 @@ const Star: React.FC = () => {
     }
   }, [])
   const { offsetX, offsetY } = useMemo(() => {
+    const { innerHeight, innerWidth } = window;
     const offset = 280;
     const y = offset;
-    const x = window.innerWidth / window.innerHeight * y;
+    const x = innerWidth / innerHeight * y;
     return { offsetX: x, offsetY: y };
   }, [])
 

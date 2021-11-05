@@ -48,6 +48,10 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
       console.log(`是谁乱传type参数，传了个${type}`)
   }
 }
+/**
+ * webview页面跳回小程序的界面
+ * @param urlKey 跳转的routeMap值，记得在routerMap中加好类型和跳转方案
+ */
 export const h5Navigate = (urlKey: keyof IRouterMap) => {
   // @ts-ignore
   const wxProgram = wx.miniProgram as Pick<typeof Taro, 'navigateTo' | 'navigateBack' | 'switchTab' | 'redirectTo'>

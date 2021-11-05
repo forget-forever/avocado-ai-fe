@@ -1,5 +1,5 @@
 import { setLocalStorage } from "@/utils/utils"
-import moment from "moment";
+import dayjs from "dayjs";
 import { setState } from "."
 
 export const actions = {
@@ -10,7 +10,7 @@ export const actions = {
   },
   setToken: async ( msg: {openId: string, token: string, userInfo: GlobalState['common']['userInfo']} ) => {
     const { openId, token, userInfo } = msg;
-    const tokenData = { val: token, time: +moment().format('x')}
+    const tokenData = { val: token, time: +dayjs().unix()}
     setLocalStorage('info', {openId, token: tokenData, userInfo})
     setState('common', { openId, token: tokenData, userInfo })
   },

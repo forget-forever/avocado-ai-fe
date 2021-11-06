@@ -8,9 +8,10 @@ import { AtInput } from "taro-ui"
 type IProps = {
   msg: IRequest.VerifyCodeBindParams
   setMsg: (msg: IRequest.VerifyCodeBindParams) => void
+  className?: string;
 }
 const GetVerifyCode: React.FC<IProps> = (props) => {
-  const { msg, setMsg } = props;
+  const { msg, setMsg, className } = props;
   const [tip, setTip] = useState('发送验证码');
   const [ loading, setLoading ] = useState(false)
 
@@ -30,9 +31,11 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
   const sendVerifyCode = useCallback(async () => {
     const { phone, openId } = msg;
     setLoading(true)
-    await sendVerifyCodeByOpenId({ phone, openId, userType: SmsCodeUseType.wxBind });
+    try {
+      await sendVerifyCodeByOpenId({ phone, openId, userType: SmsCodeUseType.wxBind });
+      countDown(60);
+    } catch (error) {}
     setLoading(false);
-    countDown(60);
   }, [countDown, msg])
 
   return <AtInput
@@ -44,12 +47,13 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
     value={msg.smsCode}
     onChange={(val) => setMsg({ ...msg, smsCode: `${val}` })}
     name='smsCode'
+    className={className}
   >
     <MyButton
       type='primary'
       disabled={canSendVerifyCode}
       onClick={sendVerifyCode}
-      style={{borderRadius: 0, width: '140px'}}
+      style={{borderRadius: 0, width: '110px', padding: 0}}
       loading={loading}
     >
       {tip}

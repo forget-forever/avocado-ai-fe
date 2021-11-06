@@ -26,15 +26,13 @@ const BindPhone: React.FC = () => {
     try {
       setLoading(true);
       await bindwxProgramByPhone(msg);
+      showMaskToast('绑定成功');
       setTimeout(async () => {
-        setLoading(false);
-        showMaskToast('绑定成功');
         await initLogin()
-        navigateBack()
-      }, 500)
-    } catch (error) {
-      
-    }
+      }, 50)
+      navigateBack()
+    } catch (error) {}
+    setLoading(false);
   }, [msg])
 
   return (
@@ -47,9 +45,10 @@ const BindPhone: React.FC = () => {
           placeholder='请输入手机号码'
           value={msg?.phone}
           border
+          className={styles.inputItem}
           onChange={(val) => setMsg({...msg, phone: `${val}`})}
         />
-        <GetVerifyCode msg={msg} setMsg={(val) => setMsg(val)} />
+        <GetVerifyCode className={styles.inputItem} msg={msg} setMsg={(val) => setMsg(val)} />
         <MyButton
           type='primary'
           className={classNames('width-8', styles.submit)}

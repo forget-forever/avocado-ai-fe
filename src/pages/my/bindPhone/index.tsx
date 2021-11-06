@@ -1,11 +1,41 @@
-import { MyButton, PageContainer } from '@/components/index';
-import React, { useState } from 'react';
+import { GetPhone, MyButton, PageContainer } from '@/components/index';
+import { View, Text } from '@tarojs/components';
+import React, { useCallback, useMemo, useState } from 'react';
 import { AtForm, AtInput } from 'taro-ui';
+import classNames from 'classnames';
+import useData from '@/utils/hooks/useData';
+import { bindwxProgramByPhone } from '@/serves/user';
+import { showMaskToast } from '@/utils/utils';
+import { initLogin } from '@/utils/init';
+import { navigateBack } from '@/router';
 import GetVerifyCode from './components/GetVerifyCode';
 import { canSubmit } from './util';
+import styles from './index.module.scss';
 
 const BindPhone: React.FC = () => {
-  const [ msg, setMsg ] = useState<IRequest.VerifyCodeBindParams>({phone: '', verifyCode: ''});
+  const { themeColor, openId } = useData((state) => state.common)
+  const [ msg, setMsg ] = useState<IRequest.VerifyCodeBindParams>({
+    phone: '',
+    smsCode: '',
+    openId: openId!
+  });
+  const [ loading, setLoading ] = useState(false);
+  const isOk = useMemo(() => canSubmit(msg), [msg]);
+
+  const submit = useCallback(async () => {
+    try {
+      setLoading(true);
+      await bindwxProgramByPhone(msg);
+      setTimeout(async () => {
+        setLoading(false);
+        showMaskToast('绑定成功');
+        await initLogin()
+        navigateBack()
+      }, 500)
+    } catch (error) {
+      
+    }
+  }, [msg])
 
   return (
     <PageContainer title='绑定手机'>
@@ -20,7 +50,28 @@ const BindPhone: React.FC = () => {
           onChange={(val) => setMsg({...msg, phone: `${val}`})}
         />
         <GetVerifyCode msg={msg} setMsg={(val) => setMsg(val)} />
-        <MyButton type='primary' className='width-8' style={{marginTop: '60px'}} disabled={canSubmit(msg)}>确定</MyButton>
+        <MyButton
+          type='primary'
+          className={classNames('width-8', styles.submit)}
+          disabled={!isOk}
+          onClick={submit}
+          loading={loading}
+        >
+          确定
+        </MyButton>
+        <View className={styles.wxLogin}>
+          <GetPhone
+            style={{ width: '40%', background: '#fff', border: 0 }}
+            onSubmit={(res) => {
+              if (res === 'ok') {
+                navigateBack()
+              }
+            }}
+          >
+            <Text style={{ color: '#24dc5a', fontSize: '24px' }} className='iconfont icon-weixin'></Text>
+            &nbsp;&nbsp;<Text style={{ color: themeColor, fontSize: '24px' }}>微信登陆</Text>
+          </GetPhone>
+        </View>
       </AtForm>
     </PageContainer>
   )

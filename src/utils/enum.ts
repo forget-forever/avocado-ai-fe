@@ -70,3 +70,8 @@ export enum ChangeReasonEnum {
   purchase, // 购买
   advertisement, //	观看广告
 }
+
+// 发送验证码的场景
+export enum SmsCodeUseType {
+  wxBind = 1
+}

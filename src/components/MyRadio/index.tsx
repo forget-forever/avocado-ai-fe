@@ -7,6 +7,7 @@ type IProps<V, L> = {
   style?: CSSProperties;
   className?: string;
   labelStyle?: CSSProperties;
+  initValue?: V;
   onChange?: (val: V) => void;
 }
 type IState<V extends string | number> = {
@@ -20,8 +21,9 @@ interface MyRadio<V extends string | number, L> {
 class MyRadio<V extends string | number, L> extends Component {
   constructor(props: IProps<V, L>) {
     super(props);
+    const { initValue } = props;
     this.state = {
-      val: undefined
+      val: initValue
     }
   }
   onChange = (e: BaseEventOrig<{value: V}>) => {

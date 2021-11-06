@@ -8,7 +8,7 @@ const Index: React.FC = () => {
   
   return (
     <View className={styles.container}>
-      <Star />
+      {/* <Star /> */}
       <Join />
     </View>
   )

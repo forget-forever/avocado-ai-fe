@@ -13,7 +13,10 @@ const Post: React.FC = () => {
     if(!token) {
       actions.modalOption({
         title: '绑定提醒',
-        content: <>尚未绑定个人信息，没有绑定个人信息的时，无法将自己的信息放入盲盒。<GetPhone /></>,
+        content: <>
+          尚未绑定个人信息，没有绑定个人信息的时，无法将自己的信息放入盲盒。
+          <GetPhone>授权登陆</GetPhone>
+        </>,
         hideButton: true,
         closeOnClickOverlay: false,
       })
@@ -23,6 +26,7 @@ const Post: React.FC = () => {
   return <PageContainer title='期待缘分与你相遇'>
     <Label title='投送对象'>
       <MyRadio
+        initValue={GenderEnum.male}
         options={[
           {value: GenderEnum.male, label: <View className='iconfont icon-gendermale'>男</View>},
           {value: GenderEnum.female, label: <View className='iconfont icon-gender-female text-pink'>女</View>}

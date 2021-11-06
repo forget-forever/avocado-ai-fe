@@ -53,7 +53,7 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
       type='primary'
       disabled={canSendVerifyCode}
       onClick={sendVerifyCode}
-      style={{borderRadius: 0, width: '110px', padding: 0}}
+      style={{borderRadius: 0, width: '110px', padding: 0, height: '36px', lineHeight: '36px' }}
       loading={loading}
     >
       {tip}

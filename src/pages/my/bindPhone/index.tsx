@@ -68,7 +68,7 @@ const BindPhone: React.FC = () => {
             }}
           >
             <Text style={{ color: '#24dc5a', fontSize: '24px' }} className='iconfont icon-weixin'></Text>
-            &nbsp;&nbsp;<Text style={{ color: themeColor, fontSize: '24px' }}>微信登陆</Text>
+            &nbsp;&nbsp;<Text style={{ color: themeColor, fontSize: '24px', fontWeight: 300 }}>微信登陆</Text>
           </GetPhone>
         </View>
       </AtForm>

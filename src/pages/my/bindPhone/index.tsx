@@ -13,7 +13,7 @@ import { canSubmit } from './util';
 import styles from './index.module.scss';
 
 const BindPhone: React.FC = () => {
-  const { themeColor, openId } = useData((state) => state.common)
+  const { openId } = useData((state) => state.common)
   const [ msg, setMsg ] = useState<IRequest.VerifyCodeBindParams>({
     phone: '',
     smsCode: '',
@@ -68,7 +68,7 @@ const BindPhone: React.FC = () => {
             }}
           >
             <Text style={{ color: '#24dc5a', fontSize: '24px' }} className='iconfont icon-weixin'></Text>
-            &nbsp;&nbsp;<Text style={{ color: themeColor, fontSize: '24px', fontWeight: 300 }}>微信登陆</Text>
+            &nbsp;&nbsp;<Text className={styles.wxLoginButton}>微信登陆</Text>
           </GetPhone>
         </View>
       </AtForm>

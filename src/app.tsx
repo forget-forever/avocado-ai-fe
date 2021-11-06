@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Provider } from 'react-redux'
 import dayjs from 'dayjs';
+import "taro-ui/dist/style/index.scss";
 import './app.scss'
 import './assets/style/app.css';
 import './assets/style/animation.css';

@@ -18,7 +18,7 @@ const Index: React.FC = () => {
   }, [])
   
   return (
-    <WebView src='http://127.0.0.1:10086/#/pages/h5pages/index/index' ></WebView>
+    <WebView onMessage={(e) => {console.log(e)}} src='http://127.0.0.1:10086/#/pages/h5pages/index/index' ></WebView>
   )
 }
 export default Index

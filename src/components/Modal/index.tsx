@@ -42,15 +42,17 @@ class Modal extends Component {
     return new Promise<void>((resolve, reject) => {
       this.setState({
         msg,
-        positiveButton: <MyButton type='primary' onClick={() => {
-            this.hideShow(() => resolve())
-          }}
+        positiveButton: <MyButton
+          style={{ margin: '5px' }}
+          type='primary'
+          onClick={() => this.hideShow(() => resolve?.())}
         >
           {msg.positiveIcon}{msg.positiveText || '确定' }
         </MyButton>,
-        passiveButton: <MyButton type='primary' onClick={() => {
-            this.hideShow(() => reject())
-          }}
+        passiveButton: <MyButton
+          style={{ margin: '5px' }}
+          type='primary'
+          onClick={() => this.hideShow(() => reject?.())}
         >
           {msg.passiveIcon}{msg.passiveText || '取消' }
         </MyButton>

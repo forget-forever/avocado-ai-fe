@@ -6,10 +6,10 @@ export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 
 // 暂时以Record的形式传参
 export type IRouterMap = {
-  my: undefined;
-  index: undefined;
-  postMsg: undefined;
-  bindPhoneNumber: undefined;
+  my: never;
+  index: never;
+  postMsg: never;
+  bindPhoneNumber: never;
 }
 export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPageList}`> = {
   my: (_type) => '/pages/my/index',

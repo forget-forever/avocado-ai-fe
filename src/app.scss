@@ -4,14 +4,14 @@ $color-brand: #333333;
 .at-nav-bar__title {
   color: #fff;
 }
-button[type=primary], .button-hover[type=primary], button[loading][type=primary]  {
-  background-color: $color-brand;
+button[type=primary], taro-button-core[type=primary], .button-hover[type=primary], button[loading][type=primary]  {
+  background-color: $color-brand !important;
 }
-button[disabled][type=primary] {
-  background-color: $color-brand;
+button[disabled][type=primary], taro-button-core[disabled][type=primary] {
+  background-color: $color-brand !important;
   opacity: 0.6;
 }
-button[loading][type=primary] {
+button[loading][type=primary], taro-button-core[loading][type=primary] {
   opacity: 0.6;
 }
 .warp{

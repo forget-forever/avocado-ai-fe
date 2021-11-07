@@ -16,7 +16,7 @@ class App extends Component {
   onLaunch () {
     if (process.env.TARO_ENV !== 'h5') {
       const { token } = store.getState().common;
-      if (+dayjs().unix() - (token?.time || 0) >  60 * 3) {
+      if (+dayjs().unix() - (token?.time || 0) >  60 * 60 * 3) {
         initLogin()
       }
     } else {

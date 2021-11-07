@@ -1,30 +1,16 @@
-import TrapezoidButton from "@/components/TrapezoidButton";
-import { h5Navigate } from "@/router/index";
-import { View } from "@tarojs/components";
+import { View, Text } from "@tarojs/components";
+import OperateButton from "../OperateButton";
 import styles from "./index.module.scss";
 
 const Join: React.FC = () => {
+  
   return <View className={styles.container}>
-    <TrapezoidButton
-      style={{position: 'relative', left: '16px'}}
-      width={80}
-      height={50}
-      className='animation-slide-left'
-      onClick={() => {
-        h5Navigate('postMsg')
-      }}
-    >
-      &nbsp;&nbsp;&nbsp;&nbsp;投
-    </TrapezoidButton>
-    <TrapezoidButton
-      style={{position: 'relative', right: '16px'}}
-      direction='bottom'
-      width={80}
-      height={50}
-      className='animation-slide-right'
-    >
-      抽&nbsp;&nbsp;&nbsp;&nbsp;
-    </TrapezoidButton>
+    <OperateButton className='animation-slide-left'>
+      <Text style={{fontSize: '18px'}} className='iconfont icon-sousuoleimufill' /> 抽
+    </OperateButton>
+    <OperateButton className='animation-slide-right'>
+      <Text style={{fontSize: '18px'}} className='iconfont icon-sousuoleimufill' /> 投
+    </OperateButton>
   </View>
 };
 

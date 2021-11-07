@@ -11,9 +11,10 @@ type IProps = {
   onSubmit?: (res: 'ok' | 'fail', data: BaseEventOrig<ButtonProps.onGetPhoneNumberEventDetail>) => void;
   style?: CSSProperties;
   size?: "small" | "normal",
+  redirectBindPhone?: boolean
 }
 const GetPhone: React.FC<IProps> = (props) => {
-  const { onSubmit, style, size = 'small', children } = props;
+  const { onSubmit, style, size = 'small', children, redirectBindPhone = true } = props;
   const { openId } = useData((state) => state.common)
   return (
     <AtButton
@@ -38,7 +39,9 @@ const GetPhone: React.FC<IProps> = (props) => {
             showMaskToast('绑定失败');
           }
         } else {
-          navigate('bindPhoneNumber', { type: 'redirect' });
+          if ( redirectBindPhone ) {
+            navigate('bindPhoneNumber', { type: 'redirect' });
+          }
         }
         onSubmit?.(resData ,res)
       }}

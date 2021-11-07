@@ -60,7 +60,8 @@ const BindPhone: React.FC = () => {
         </MyButton>
         <View className={styles.wxLogin}>
           <GetPhone
-            style={{ width: '40%', background: '#fff', border: 0 }}
+            style={{ width: '60%', background: '#fff', height: '40px', lineHeight: '37px', borderRadius: '20px' }}
+            redirectBindPhone={false}
             onSubmit={(res) => {
               if (res === 'ok') {
                 navigateBack()

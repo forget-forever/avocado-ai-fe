@@ -3,7 +3,8 @@ export const uniquePages = {
   miniapp: [
     'pages/index/index',
     'pages/index/post/index',
-    'pages/my/bindPhone/index'
+    'pages/my/bindPhone/index',
+    'pages/planetary/index'
   ] as const
 };
 export const generalPages = [ 'pages/my/index' ] as const
@@ -36,6 +37,12 @@ export default {
         iconPath: 'assets/images/home.png',
         pagePath: 'pages/index/index',
         text: '首页',
+      },
+      {
+        iconPath: 'assets/images/my.png',
+        selectedIconPath: 'assets/images/on-my.png',
+        pagePath: 'pages/planetary/index',
+        text: '星球圈',
       },
       {
         iconPath: 'assets/images/my.png',

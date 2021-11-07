@@ -44,18 +44,22 @@ class RadioButton<L, V extends string | number> extends Component {
 
   render() {
     const { style, icon, title, options } = this.props;
+    const { val } = this.state;
     return <View style={style} className={styles.radioBlock}>
       <View className={styles.radioTitle}>
         {icon && icon} {title || ''}
       </View>
-      {options.map((item) => <MyButton
-        size='mini'
-        key={item.value}
-        onClick={() => this.onChange(item.value)}
-        className={styles.radioLabel}
-      >
-        {item.label}
-      </MyButton>)}
+      <View className={styles.labelBlock}>
+        {options.map((item) => <MyButton
+          size='mini'
+          type={val === item.value ? 'primary' : undefined}
+          key={item.value}
+          onClick={() => this.onChange(item.value)}
+          className={styles.radioLabel}
+        >
+          {item.label}
+        </MyButton>)}
+      </View>
     </View>
   }
 }

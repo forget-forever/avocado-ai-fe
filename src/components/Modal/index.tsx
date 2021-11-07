@@ -1,5 +1,5 @@
-import { AtModal, AtModalAction, AtModalContent, AtModalHeader } from 'taro-ui';
-import { Component } from 'react';
+import { AtIcon, AtModal, AtModalAction, AtModalContent, AtModalHeader } from 'taro-ui';
+import { Component, CSSProperties } from 'react';
 import MyButton from '../MyButton';
 // import { useMoalState } from './options';
 
@@ -16,10 +16,12 @@ type ModalMsg = {
   hideButton?: boolean;
   hidePositiveButton?: boolean;
   hidePassiveButton?: boolean;
+  showClose?: boolean;
   positiveHandle?: () => void;
   passiveHandle?: () => void;
 }
 type IProps = {
+  style?: CSSProperties;
   onCancel?: () => void;
 };
 interface Modal {
@@ -62,19 +64,33 @@ class Modal extends Component {
   hideShow = (cb?: () => void) => {
     const { onCancel } = this.props;
     onCancel?.()
-    this.setState({msg: undefined}, cb);
+    this.setState({
+      msg: undefined,
+      positiveButton: undefined,
+      passiveButton: undefined
+    }, cb);
   }
 
   render() {
     const { msg, positiveButton, passiveButton } = this.state;
-
+    const { style } = this.props;
     return (
       <AtModal
+        customStyle={style}
         isOpened={!!msg}
         closeOnClickOverlay={msg?.closeOnClickOverlay ?? true}
         onCancel={() => this.hideShow()}
       >
-        <AtModalHeader>{msg?.title}</AtModalHeader>
+        <AtModalHeader>
+          {msg?.title}
+          {msg?.showClose && <AtIcon
+            customStyle={{float: 'right'}}
+            value='close'
+            size='30'
+            color='#F00'
+            onClick={() => this.hideShow()}
+          />}
+        </AtModalHeader>
         <AtModalContent>{msg?.content}</AtModalContent>
         {!msg?.hideButton && <AtModalAction>
           {!msg?.hidePassiveButton && (msg?.passiveButton || passiveButton)}

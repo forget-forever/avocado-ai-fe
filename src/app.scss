@@ -1,6 +1,13 @@
 $color-brand: #333333;
 @import "https://at.alicdn.com/t/font_2907804_fgrulnynm7s.css";
 
+
+.self-modal_container .at-modal__container {
+  width: 95%;
+}
+.at-modal__container {
+  top: 45%;
+}
 .at-nav-bar__title {
   color: #fff;
 }

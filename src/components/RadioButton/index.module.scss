@@ -2,21 +2,27 @@
   display: flex;
   width: 100%;
   white-space: nowrap;
-  overflow-x: scroll;
   align-items: center;
+}
+
+.radio-title {
+  display: flex;
+  font-size: 32px;
+  width: 80px;
+}
+
+.label-block {
+  width: calc(100% - 80px);
+  overflow-x: auto;
+  line-height: 1;
   /* 隐藏滚动条 */
   overflow: -moz-hidden-unscrollable; /* fire fox */
   -ms-overflow-style: none; /* ie 10+ */
 }
 
 /* Chrome */
-.radio-block::-webkit-scrollbar {
+.label-block::-webkit-scrollbar {
   display: none; 
-}
-
-.radio-title {
-  display: flex;
-  font-size: 32px;
 }
 
 .radio-label {

@@ -13,7 +13,7 @@ const Index: React.FC = () => {
 
   useEffect(() => {
     const { token, time } = getPageQuery();
-    alert(token)
+    // alert(token)
     if (token) {
       setState('common', { token: {val: token as string, time: +(time as string)} })
     }

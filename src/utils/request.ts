@@ -39,8 +39,8 @@ const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unkn
 const errorHandlerSelf = (err: ISmallCamel<Taro.request.SuccessCallbackResult<IResponseData<unknown>>['data']>) => {
   switch (+err.code) {
     case 10000:
-    showMaskToast('未登录')
-    return Promise.reject(new Error('未登录'));
+      showMaskToast('未登录')
+      return Promise.reject(new Error('未登录'));
     case 10001:
     showMaskToast('访问频繁')
       return Promise.reject(new Error('访问频繁'));

@@ -1,6 +1,6 @@
 import { GetPhone, MyButton, PageContainer } from '@/components/index';
 import { View, Text } from '@tarojs/components';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AtForm, AtInput } from 'taro-ui';
 import classNames from 'classnames';
 import useData from '@/utils/hooks/useData';
@@ -8,6 +8,8 @@ import { bindwxProgramByPhone } from '@/serves/user';
 import { showMaskToast } from '@/utils/utils';
 import { initLogin } from '@/utils/init';
 import { navigateBack } from '@/router';
+import useRouterParams from '@/utils/hooks/useRouterParams';
+import { actions } from '@/store';
 import GetVerifyCode from './components/GetVerifyCode';
 import { canSubmit } from './util';
 import styles from './index.module.scss';
@@ -21,6 +23,26 @@ const BindPhone: React.FC = () => {
   });
   const [ loading, setLoading ] = useState(false);
   const isOk = useMemo(() => canSubmit(msg), [msg]);
+  const params = useRouterParams<'bindPhoneNumber'>()
+
+  useEffect(() => {
+    if (params?.needWxBind) {
+      actions.modalOption({
+        title: '绑定提醒',
+        content: <>
+          尚未绑定个人信息，没有绑定个人信息的时，无法将自己的信息放入盲盒。
+          <GetPhone
+            redirectBindPhone={false}
+            onSubmit={(res) => {
+              if (res === 'ok') navigateBack();
+            }}
+          >授权登陆</GetPhone>
+        </>,
+        hideButton: true,
+        closeOnClickOverlay: false,
+      });
+    }
+  }, [params?.needWxBind])
 
   const submit = useCallback(async () => {
     try {

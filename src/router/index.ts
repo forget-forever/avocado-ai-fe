@@ -1,6 +1,8 @@
+import { actions, store } from "@/store";
 import { navigateBack as taroNavigateBack, navigateTo, redirectTo, reLaunch, switchTab } from "@tarojs/taro";
+import { bindTipNode } from "../utils";
 import { serializeParams } from "../utils/utils";
-import { IRouterMap, routerMap, RouterType } from "./routerMap";
+import { IRouterMap, loginExcludeList, routerMap, RouterType } from "./routerMap";
 
 
 type IConfig = {
@@ -14,14 +16,33 @@ type IParams<U extends keyof IRouterMap> = IRouterMap[U] extends undefined ? {pa
  * 页面跳转的函数
  * @param url 跳转的routeMap值，记得在routerMap中加好类型和跳转方案
  * @param config 其他的配置参数，包括success，fail，events什么的
+ * @param straight 是不是跳过判定鉴权，直接跳转
  */
 export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'navigate'>(
   url: U,
   config?: IConfig & IParams<U> & {
     type?: T
     events?: T extends 'navigate' ? Record<string, any> | undefined : undefined
-  }
+  },
+  straight: boolean = false
 ) => {
+  if (!straight && process.env.TARO_ENV !== 'h5' && !loginExcludeList.includes(url)) {
+    const { token } = store.getState().common;
+    if (!token?.val) {
+      actions.modalOption({
+        title: '绑定提醒',
+        content: bindTipNode(() => {
+          setTimeout(() => {
+            navigate(url, config, true)
+          }, 1500)
+        }),
+        hideButton: true,
+        closeOnClickOverlay: false,
+      });
+      return ;
+    }
+  }
+
   const { type = 'navigate', events, success, fail, complete, params} = config || {}
 
   const querystring = serializeParams(params || {})

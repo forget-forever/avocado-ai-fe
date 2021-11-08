@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react'
-// import { View, Button } from '@tarojs/components'
-// import { AtBadge, AtButton } from 'taro-ui'
-// import { navigate } from '@/router'
-// import { getUserInfo } from '@tarojs/taro'
+import React, { useEffect, useMemo } from 'react'
 import { WebView } from '@tarojs/components'
-// import useData from '@/utils/hooks/useData'
+import useData from '@/utils/hooks/useData'
 
 const Index: React.FC = () => {
-  // const {} useData((state) => state.common.openId)
+  const token =  useData((state) => state.common.token);
+  
+  const src = useMemo(() => {
+    if (token?.val) {
+      return `http://127.0.0.1:10086/#/pages/h5pages/index/index?token=${token.val}&time=${token.time}`;
+    } else {
+      return 'http://127.0.0.1:10086/#/pages/h5pages/index/index';
+    }
+  }, [token])
 
   useEffect(() => {
     // getUserInfo({
@@ -15,10 +19,14 @@ const Index: React.FC = () => {
     //     console.log(res)
     //   }
     // })
+    // setTimeout(() => {
+    //   console.log('aaaaa')
+    //   setSrc1('http://127.0.0.1:10086/#/pages/h5pages/index/index?token=12345&time=123485968549')
+    // }, 5000)
   }, [])
   
   return (
-    <WebView onMessage={(e) => {console.log(e)}} src='http://127.0.0.1:10086/#/pages/h5pages/index/index' ></WebView>
+    <WebView onMessage={(e) => {console.log(e)}} src={src} ></WebView>
   )
 }
 export default Index

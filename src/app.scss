@@ -1,7 +1,14 @@
 $color-brand: #333333;
 @import "https://at.alicdn.com/t/font_2907804_fgrulnynm7s.css";
 
-
+div,
+view,
+text,
+taro-view-core,
+taro-scroll-view-core,
+scroll-view {
+  box-sizing: border-box;
+}
 .self-modal_container .at-modal__container {
   width: 95%;
 }

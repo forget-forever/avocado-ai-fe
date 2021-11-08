@@ -13,7 +13,7 @@ export type IRouterMap = {
   planetary: never;
 }
 // 可以不用登陆就能进的页面
-export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'planetary']
+export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'planetary', 'bindPhoneNumber']
 export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPageList}`> = {
   my: (_type) => '/pages/my/index',
   index: (_type) => '/pages/index/index',

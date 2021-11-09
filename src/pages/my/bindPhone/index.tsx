@@ -23,7 +23,7 @@ const BindPhone: React.FC = () => {
   });
   const [ loading, setLoading ] = useState(false);
   const isOk = useMemo(() => canSubmit(msg), [msg]);
-  const params = useRouterParams<'bindPhoneNumber'>()
+  const params = useRouterParams('bindPhoneNumber');
 
   useEffect(() => {
     if (params?.needWxBind) {

@@ -1,4 +1,6 @@
 import { Modal, MyButton, RadioButton } from "@/components";
+import { h5Navigate } from "@/router";
+import useData from "@/utils/hooks/useData";
 import { View } from "@tarojs/components";
 import { createRef } from "react";
 import OperateButton from "../OperateButton";
@@ -7,8 +9,13 @@ import styles from './index.module.scss';
 
 const Filter: React.FC  = () => {
   const ModalRef = createRef<Modal>();
+  const { token } = useData((state) => state.common)
 
   const clickHandle = async () => {
+    if(!token?.val) {
+      h5Navigate('bindPhoneNumber', {params: {needWxBind: 'yes'}});
+      return;
+    }
     await ModalRef.current?.showModal({
       title: '筛选条件',
       content: <>

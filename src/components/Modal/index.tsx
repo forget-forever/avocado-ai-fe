@@ -1,6 +1,7 @@
 import { AtIcon, AtModal, AtModalAction, AtModalContent, AtModalHeader } from 'taro-ui';
 import { Component, CSSProperties } from 'react';
 import MyButton from '../MyButton';
+import styles from './index.module.scss';
 // import { useMoalState } from './options';
 
 type ModalMsg = {
@@ -83,13 +84,7 @@ class Modal extends Component {
       >
         <AtModalHeader>
           {msg?.title}
-          {msg?.showClose && <AtIcon
-            customStyle={{float: 'right'}}
-            value='close'
-            size='30'
-            color='#F00'
-            onClick={() => this.hideShow()}
-          />}
+          {msg?.showClose && <AtIcon value='close' className={styles.closeIcon} onClick={() => this.hideShow()} />}
         </AtModalHeader>
         <AtModalContent>{msg?.content}</AtModalContent>
         {!msg?.hideButton && <AtModalAction>

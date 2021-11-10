@@ -46,12 +46,15 @@ export default class Infinite<P, T> {
    * @param refresh 是否是重新初始化，置为true之后请求的页数会变成1，相当于重新加载
    * @returns 获取到的数据，如果是error，则message有可能有loading、finished、onTop、destroyed四种状态，以及接口的报错
    */
-  next(params: P = this.params, refresh?: boolean) {
-    if (this.params.current > 1 && this.finish) {
+   next(params?: P, refresh?: boolean) {
+    let { current } = this.params;
+    if (current > 1 && this.finish) {
       if (this.showLoadingWarn) showMaskToast('已加载完');
       return Promise.reject(new Error('finished'));
     }
-    return this.getData('next', params, refresh);
+    current += 1;
+    if (refresh) current = 1;
+    return this.getData({...this.params, ...params, current});
   }
   /**
    * 获取上一页的数据
@@ -59,12 +62,15 @@ export default class Infinite<P, T> {
    * @param refresh 是否是重新初始化，置为true之后请求的页数会变成1，相当于重新加载
    * @returns 获取到的数据, 如果是error，则message有可能有loading、finished、onTop、destroyed四种状态，以及接口的报错
    */
-  pre(params: P = this.params, refresh?: boolean) {
-    if (this.params.current === 1) {
+  pre(params?: P, refresh?: boolean) {
+    let { current } = this.params;
+    if (current === 1) {
       if (this.showLoadingWarn) showMaskToast('已到头部');
       return Promise.reject(new Error('onTop'));
     }
-    return this.getData('pre', params, refresh);
+    current -= 1;
+    if (refresh) current = 1;
+    return this.getData({...this.params, ...params, current});
   }
   /**
    * 重新加载
@@ -98,25 +104,14 @@ export default class Infinite<P, T> {
     this.loading = sig;
   }
 
-  private async getData(mode: 'next' | 'pre', params: P, refresh?: boolean) {
+  private async getData(params: P & IParams) {
     if (this.loading) {
       if (this.showLoadingWarn) showMaskToast('加载中');
       return Promise.reject(new Error('loading'));
     }
     this.setLoading(true);
     try {
-      let { current } = this.params;
-      const { pageSize } = this.params;
-      switch (mode) {
-        case 'next':
-          current += 1;
-          break;
-        case 'pre':
-          current -= 1;
-          break;
-        default:
-      }
-      if (refresh) current = 1;
+      const { pageSize, current } = this.params;
       const res = await this.request({ ...params, current, pageSize });
       this.setLoading(false);
       if (res.list.length < pageSize) {

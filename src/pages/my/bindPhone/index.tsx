@@ -30,7 +30,7 @@ const BindPhone: React.FC = () => {
       actions.modalOption({
         title: '绑定提醒',
         content: <>
-          尚未绑定个人信息，没有绑定个人信息的时，无法将自己的信息放入盲盒。
+          尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。
           <GetPhone
             redirectBindPhone={false}
             onSubmit={(res) => {
@@ -39,7 +39,7 @@ const BindPhone: React.FC = () => {
           >授权登陆</GetPhone>
         </>,
         hideButton: true,
-        closeOnClickOverlay: false,
+        showClose: true,
       });
     }
   }, [params?.needWxBind])

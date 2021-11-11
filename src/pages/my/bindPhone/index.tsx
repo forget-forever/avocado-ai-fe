@@ -30,7 +30,6 @@ const BindPhone: React.FC = () => {
       actions.modalOption({
         title: '绑定提醒',
         content: <>
-          尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。
           <GetPhone
             redirectBindPhone={false}
             onSubmit={(res) => {
@@ -89,6 +88,7 @@ const BindPhone: React.FC = () => {
                 navigateBack()
               }
             }}
+            describe=''
           >
             <Text style={{ color: '#24dc5a', fontSize: '24px' }} className='iconfont icon-weixin'></Text>
             &nbsp;&nbsp;<Text className={styles.wxLoginButton}>微信登陆</Text>

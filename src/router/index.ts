@@ -10,7 +10,7 @@ type IConfig = {
   fail?: (arg: Taro.General.CallbackResult) => void,
   complete?: (arg: Taro.General.CallbackResult) => void
 }
-type IParams<U extends keyof IRouterMap> = IRouterMap[U] extends undefined ? {params?: IRouterMap[U]} : {params: IRouterMap[U]}
+type IParams<U extends keyof IRouterMap> = undefined extends IRouterMap[U] ? {params?: IRouterMap[U]} : {params: IRouterMap[U]}
 
 /**
  * 页面跳转的函数

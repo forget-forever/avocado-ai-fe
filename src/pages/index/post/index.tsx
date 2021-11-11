@@ -13,10 +13,7 @@ const Post: React.FC = () => {
     if(!token) {
       actions.modalOption({
         title: '绑定提醒',
-        content: <>
-          尚未绑定个人信息，没有绑定个人信息的时，无法将自己的信息放入盲盒。
-          <GetPhone>授权登陆</GetPhone>
-        </>,
+        content: <GetPhone>授权登陆</GetPhone>,
         hideButton: true,
         closeOnClickOverlay: false,
       })

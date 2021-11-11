@@ -10,13 +10,35 @@ import { AtButton } from "taro-ui";
 type IProps = {
   onSubmit?: (res: 'ok' | 'fail', data: BaseEventOrig<ButtonProps.onGetPhoneNumberEventDetail>) => void;
   style?: CSSProperties;
+  /**
+   * 按钮的大小
+   * @default 'normal'
+   */
   size?: "small" | "normal",
-  redirectBindPhone?: boolean
+  /**
+   * 拒绝绑定时跳手动绑定电话号码的页面
+   * @default true
+   */
+  redirectBindPhone?: boolean;
+  /**
+   * 提示绑定的描述文案
+   * @default 尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。
+   */
+  describe?: React.ReactNode;
 }
 const GetPhone: React.FC<IProps> = (props) => {
-  const { onSubmit, style, size = 'small', children, redirectBindPhone = true } = props;
+  const {
+    onSubmit,
+    style,
+    size = 'small',
+    children,
+    redirectBindPhone = true,
+    describe = '尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。'
+  } = props;
   const { openId } = useData((state) => state.common)
   return (
+    <>
+    {describe}
     <AtButton
       type='primary'
       customStyle={{marginTop: '12px', ...style}}
@@ -48,6 +70,7 @@ const GetPhone: React.FC<IProps> = (props) => {
     >
       {children || '授权登陆'}
     </AtButton>
+    </>
   )
 };
 export default GetPhone;

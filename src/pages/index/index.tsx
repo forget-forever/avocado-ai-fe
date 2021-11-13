@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { WebView } from '@tarojs/components'
 import useData from '@/utils/hooks/useData'
+import Star from '@/components/Star';
 
 const Index: React.FC = () => {
   const token =  useData((state) => state.common.token);
@@ -26,7 +27,7 @@ const Index: React.FC = () => {
   }, [])
   
   return (
-    <WebView onMessage={(e) => {console.log(e)}} src={src} ></WebView>
+    <Star />
   )
 }
 export default Index

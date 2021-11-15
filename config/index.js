@@ -29,13 +29,8 @@ const config = {
     }
   },
   framework: 'react',
-  sass: process.env.TARO_ENV === 'h5' ? {
+  sass: {
     resource: path.resolve(__dirname, '..', 'src/utils/sass/index.scss'),
-  } : {
-    resource: [
-      path.resolve(__dirname, '..', 'src/utils/sass/index.scss'),
-      path.resolve(__dirname, '..', 'src/utils/sass/miniapp.scss')
-    ],
   },
   mini: {
     postcss: {

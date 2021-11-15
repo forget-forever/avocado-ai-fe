@@ -5,7 +5,7 @@ import useData from "@/utils/hooks/useData";
 import { useEffect } from "react";
 import { GenderEnum } from "@/utils/enum";
 import { View } from "@tarojs/components";
-import { Label } from "../components";
+import { Label } from "../../components";
 
 const Post: React.FC = () => {
   const { token } = useData((state) => state.common)

@@ -1,5 +1,13 @@
 $color-brand: #333333;
-@import "https://at.alicdn.com/t/font_2907804_fgrulnynm7s.css";
+@import '~taro-ui/dist/style/components/indexes.scss';
+@import '~taro-ui/dist/style/components/list.scss';
+@import '~taro-ui/dist/style/components/icon.scss';
+@import '~taro-ui/dist/style/components/toast.scss';
+@import '~taro-ui/dist/style/components/nav-bar.scss';
+@import '~taro-ui/dist/style/components/avatar.scss';
+@import '~taro-ui/dist/style/components/tab-bar.scss';
+@import '~taro-ui/dist/style/components/badge.scss';
+@import './utils/sass/iconfonts.css';
 
 div,
 view,

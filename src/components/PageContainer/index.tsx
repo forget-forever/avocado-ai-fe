@@ -8,6 +8,7 @@ import { useRouter, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import React, { createRef, useEffect } from 'react';
 import { Modal } from '..';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
+import TabBar from '../TabBar';
 
 type IProps = NavigateProps & {
   hideNavigate?: boolean;
@@ -66,7 +67,7 @@ const PageContainer: React.FC<IProps> = (props) => {
     <>
       {!hideNavigate && <NaviagteBar {...props} />}
       <View style={{
-          height: hideNavigate ? '100vh' : `calc(100vh - ${system.customHeight}px)`,
+          height: hideNavigate ? '100vh' : `calc(100vh - ${hideNavigate ? 0 : system.customHeight}px)`,
           width: '100vw',
           overflowX: 'hidden',
           overflowY: 'auto'
@@ -74,6 +75,7 @@ const PageContainer: React.FC<IProps> = (props) => {
       >
         {children}
       </View>
+      <TabBar></TabBar>
       <Modal
         ref={modal}
         onCancel={() => {

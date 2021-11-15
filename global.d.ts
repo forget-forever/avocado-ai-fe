@@ -106,3 +106,17 @@ declare namespace wx {
     type navigateTo = typeof Taro.navigateTo
   }
 }
+
+declare type ITabBar = {
+  color: string;
+  selectedColor: string;
+  backgroundColor: string;
+  list: {
+    selectedIconPath: string;
+    selectedIconUrl: string;
+    iconPath: string;
+    iconUrl: string;
+    pagePath: string;
+    text: string;
+  }[];
+}

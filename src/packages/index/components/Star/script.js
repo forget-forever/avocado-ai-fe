@@ -8,7 +8,8 @@ camera,
 sphereBg,
 nucleus,
 stars = [],
-controls;
+controls,
+container;
 
 const getAvatarUrl = () => {
     return `https://oss.aiquyin.com/ContactMe/Images/Headers/circle/pic${getRandom(0, 470)}.png?x-oss-process=style/thumb64x64`
@@ -26,7 +27,7 @@ export const touchEnd = function(e) {
 
 
 export function init(dom) {
-    const container = THREE.global.registerCanvas(dom)
+    container = THREE.global.registerCanvas(dom)
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.01, 1000)
@@ -38,7 +39,7 @@ export function init(dom) {
 
     renderer = new THREE.WebGLRenderer({
         antialias: true,
-        // alpha: true,
+        alpha: true,
     });
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -184,5 +185,5 @@ export function animate() {
     })
     
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+    container.requestAnimationFrame(animate);
 }

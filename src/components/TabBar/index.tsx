@@ -1,7 +1,10 @@
-import { Component } from '@tarojs/taro';
+import { Component } from 'react';
 import { AtTabBar }  from 'taro-ui';
 import { TabItem } from 'taro-ui/types/tab-bar';
-import app from '../../app.config'
+import styles from './index.module.scss';
+
+// eslint-disable-next-line import/no-commonjs
+const { tabBar } = require('../../config');
 
 interface TabBar {
   state: {
@@ -10,18 +13,18 @@ interface TabBar {
   }
 }
 class TabBar extends Component {
-  constructor () {
-    super(...arguments)
+  constructor (props: {}) {
+    super(props)
     this.state = {
       current: 0,
-      tabList: app.tabBar.list.map((item) => ({
+      tabList: (tabBar as ITabBar).list.map((item) => ({
         title: item.text,
-        image: `/${item.iconPath}`,
-        selectedImage: `/${item.selectedIconPath}`
+        image: item.iconUrl,
+        selectedImage: item.selectedIconUrl
       }))
     }
   }
-  handleClick (index: number) {
+  handleClick = (index: number) => {
     this.setState({
       current: index
     })
@@ -30,8 +33,9 @@ class TabBar extends Component {
     const { tabList } = this.state;
     return (
       <AtTabBar
+        className={styles.tabbarContainer}
         tabList={tabList}
-        onClick={this.handleClick.bind(this)}
+        onClick={this.handleClick}
         current={this.state.current}
         fixed
       />

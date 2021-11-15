@@ -1,7 +1,6 @@
 import { Canvas } from "@tarojs/components"
 import { createSelectorQuery } from "@tarojs/taro"
 import React, { useEffect, useMemo } from "react"
-import { PageContainer } from ".."
 import { animate, init, touchEnd, touchMove, touchStart } from "./script"
 
 const Star: React.FC = () => {
@@ -28,7 +27,7 @@ const Star: React.FC = () => {
     return { offsetX: x, offsetY: y };
   }, [])
 
-  return <PageContainer hideNavigate>
+  return <>
     <Canvas
       onTouchStart={touchStart}
       onTouchMove={touchMove}
@@ -41,9 +40,8 @@ const Star: React.FC = () => {
         position: 'relative',
         bottom: `${offsetY}px`,
         right: `${offsetX / 2}px`,
-
       }}
     />
-  </PageContainer>
+  </>
 }
 export default Star

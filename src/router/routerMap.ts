@@ -1,6 +1,15 @@
 import app from '../app.config';
 
-export type IPageList = ValueOf<(typeof app)['pages']>
+declare type NumberList = 0 | 1
+
+type SubPackages = typeof app['subPackages']
+// type SubPackageItem = SubPackages[number];
+// type SubPackagesVal = `${SubPackageItem['root']}/${ValueOf<SubPackageItem['pages']>}`;
+type SubPackagesList = {
+  [K in NumberList]: `${SubPackages[K]['root']}/${ValueOf<SubPackages[K]['pages']>}`
+}
+
+export type IPageList = ValueOf<(typeof app)['pages']> | ValueOf<SubPackagesList>
 
 export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 
@@ -17,7 +26,7 @@ export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'planetary
 export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPageList}`> = {
   my: (_type) => '/pages/my/index',
   index: (_type) => '/pages/index/index',
-  postMsg: (_type) => "/pages/index/post/index",
-  bindPhoneNumber: (_type) => '/pages/my/bindPhone/index',
+  postMsg: (_type) => '/packages/index/pages/post/index',
+  bindPhoneNumber: (_type) => '/packages/my/pages/bindPhone/index',
   planetary: (_type) => '/pages/planetary/index'
 }

@@ -16,6 +16,10 @@ export default class Infinite<P, T> {
   private loading: boolean;
   private finish: boolean;
   private status: 'pedding' | 'destory';
+  /**
+   * 是否要开启加载警告，比如说到底了会出弹窗警告
+   * @default true
+   */
   showLoadingWarn: boolean;
   private watLoad?: (arg: boolean) => void;
 
@@ -28,7 +32,7 @@ export default class Infinite<P, T> {
    */
   constructor(
     params: P,
-    request: (reParams: P) => Promise<IPageList<T>>,
+    request: (reParams: P & IParams) => Promise<IPageList<T>>,
     watchLoad?: (arg: boolean) => void,
     pageSize: number = 20,
   ) {

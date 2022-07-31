@@ -1,77 +1,110 @@
-/* eslint-disable no-shadow */
 export enum GenderEnum {
+  /** 男 */
   male = 1,
+  /** 女 */
   female,
-  unknown
+  /** 保密 */
+  secret
 }
 export enum PlatformType {
-  WxMiniProgram = 1, //	微信小程序
-  QQMiniProgram, //	QQ小程序
-  WxPublicAccount, //	微信公众号
-  Website, //	网页
-  AndroidApp, //	安卓app
-  IosApp, //	Ios App
+  /** 微信小程序 */
+  WxMiniProgram = 1,
+  /** QQ小程序 */
+  QQMiniProgram,
+  /** 微信公众号 */
+  WxPublicAccount,
+  /** 网页 */
+  Website,
+  /** 安卓app */
+  AndroidApp,
+  /** Ios App */
+  IosApp,
 }
 export enum ContentType {
-  contactInfo = 1, //	联系方式
-  moment = 2, //	动态
+  /** 联系方式 */
+  contactInfo = 1,
+  /** 动态 */
+  moment = 2,
 }
-// 账号类型
+/** 账号类型 */
 export enum UserType {
   normal = 1,
   admin = 2
 }
-// 账号状态
+/** 账号状态 */
 export enum UserStatus {
-  normal = 1, // 正常， 审核通过就是这个状态
-  banned, // 封禁
-  checking, // 审核中
-  checkFailed // 审核失败
+  /** 正常， 审核通过就是这个状态 */
+  normal = 1,
+  /** 封禁 */
+  banned,
+  /** 审核中 */
+  checking,
+  /**  审核失败 */
+  checkFailed
 }
-// 绑定状态
+/** 绑定状态 */
 export enum BindStatus {
   binding = 1,
   unbind
 }
 export enum DomainType {
-  phone = 1, //	手机号
-  wechat,	// 微信
-  qq, //	QQ
-  weibo, //	微博
-  tiktok, //	抖音
-  email, //	邮箱
-  other, //	其他
+  /** 手机号 */
+  phone = 1,
+  /** 微信 */
+  wechat,
+  /** QQ */
+  qq,
+  /** 微博 */
+  weibo,
+  /** 抖音 */
+  tiktok,
+  /** 邮箱 */
+  email,
+  /** 其他 */
+  other,
 }
 
-// 投放的盲盒状态
+/** 投放的盲盒状态 */
 export enum BlindBox {
-  checking = 1,	//审核中
-  checkFailed, //	审核失败
-  waitingGet, //	等待被抽取
-  beGot, //已经被抽取
+  /** 审核中 */
+  checking = 1,
+  /** 审核失败 */
+  checkFailed,
+  /** 等待被抽取 */
+  waitingGet,
+  /** 已经被抽取 */
+  beGot,
 }
 
-// 剩余次数的类型
+/** 剩余次数的类型 */
 export enum ChanceType {
-  get = 1, // 抽取
-  post = 2 // 投送
+  /** 抽取 */
+  get = 1,
+  /** 投送 */
+  post = 2
 }
 
-// 改变的机会类型
+/** 改变的机会类型 */
 export enum ChangeChanceType {
-  cost = 1, // 消耗次数
-  get // 的到次数
+  /** 消耗次数 */
+  cost = 1,
+  /** 得到次数 */
+  get
 }
 
-// 为什么回改变拥有的机会 
+/** 为什么回改变拥有的机会 */
 export enum ChangeReasonEnum {
-  userUseGet = 1, //	用户消费(获取),可能是签到或者说活动中获取的
-  userUsePost, //	用户消费(发布)，发布一些内容获取的
-  purchase, // 购买
-  advertisement, //	观看广告
+  /** 用户消费(获取),可能是签到或者说活动中获取的 */
+  userUseGet = 1,
+  /** 用户消费(发布)，发布一些内容获取的 */
+  userUsePost,
+  /** 购买 */
+  purchase,
+  /** 观看广告 */
+  advertisement,
 }
 
-// 发送验证码的场景
+/**  发送验证码的场景 */
 export enum SmsCodeUseType {
   wxBind = 1
 }

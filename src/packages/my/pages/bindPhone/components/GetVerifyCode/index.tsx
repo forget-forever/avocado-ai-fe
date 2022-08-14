@@ -7,7 +7,7 @@ import { AtInput } from "taro-ui"
 
 type IProps = {
   msg: IRequest.VerifyCodeBindParams
-  setMsg: (msg: IRequest.VerifyCodeBindParams) => void
+  setMsg?: (msg: IRequest.VerifyCodeBindParams) => void
   className?: string;
 }
 const GetVerifyCode: React.FC<IProps> = (props) => {
@@ -45,7 +45,7 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
     maxlength={4}
     placeholder='验证码'
     value={msg.smsCode}
-    onChange={(val) => setMsg({ ...msg, smsCode: `${val}` })}
+    onChange={(val) => setMsg?.({ ...msg, smsCode: `${val}` })}
     name='smsCode'
     className={className}
   >

@@ -1,8 +1,8 @@
 {
-  "name": "affection-fe",
+  "name": "avocado-ai-fe",
   "version": "1.0.0",
   "private": true,
-  "description": "情意盲盒小程序前端代码",
+  "description": "avocado ai project",
   "templateInfo": {
     "name": "default",
     "typescript": true,

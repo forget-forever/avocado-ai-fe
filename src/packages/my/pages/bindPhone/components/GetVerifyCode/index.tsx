@@ -6,8 +6,8 @@ import { useState, useCallback, useMemo } from "react"
 import { AtInput } from "taro-ui"
 
 type IProps = {
-  msg: IRequest.VerifyCodeBindParams
-  setMsg?: (msg: IRequest.VerifyCodeBindParams) => void
+  msg: API.VerifyCodeBindParams
+  setMsg?: (msg: API.VerifyCodeBindParams) => void
   className?: string;
 }
 const GetVerifyCode: React.FC<IProps> = (props) => {

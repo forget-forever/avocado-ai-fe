@@ -63,7 +63,7 @@ npm run build:h5、npm run build:weapp
 - 全局的路由都使用src/router/index.ts中的navigate进行跳转，按照函数的类型提示使用即可
 - 所有的页面都需要包裹在 PageContainer 组件中，内部封装了自定义的NavigeteBar，根据类型提示使用即可
 - Modal的弹出框都是使用actions.modalOption方法，根据类型提示即可
-- 所有的请求方法都放在src/serves中，类型写在src/serves/types中，放在IRequest的命名空间下
+- 所有的请求方法都放在src/serves中，类型写在src/serves/types中，放在API的命名空间下
 - 缓存使用src/utils/utils中的setLocalStorage和getLocalStorage方法，需要在IStorage中加类型，达到最好的开发体验
 - scss文件需要.module.scss结尾，小驼峰形式的选择器字符串会被编译成横杠形式的命名（例如 containerItem 会被编译成 container-item）
 - 推荐下载CSS Module插件，style就可以有智能提示了

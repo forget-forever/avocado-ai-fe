@@ -16,7 +16,7 @@ import styles from './index.module.scss';
 
 const BindPhone: React.FC = () => {
   const { openId } = useData((state) => state.common)
-  const [ msg, setMsg ] = useState<IRequest.VerifyCodeBindParams>({
+  const [ msg, setMsg ] = useState<API.VerifyCodeBindParams>({
     phone: '',
     smsCode: '',
     openId: openId!

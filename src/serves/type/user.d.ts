@@ -1,7 +1,7 @@
 import { SmsCodeUseType } from "@/utils/enum"
 
 declare global {
-  declare namespace IRequest {
+  declare namespace API {
     type SendVerifyCodeParams = {
       phone: string;
       userType: SmsCodeUseType;

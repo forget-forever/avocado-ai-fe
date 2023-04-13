@@ -1,5 +1,5 @@
 import { hideLoading } from '@utils/common'
-import { DELETE, GET, POST, PUT } from './axios'
+import { request } from "@/utils/request";
 /**
  * 创建对话
  * @returns

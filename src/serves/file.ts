@@ -1,4 +1,4 @@
-import { DELETE, GET, POST, PUT } from './axios'
+import { request } from "@/utils/request";
 
 /**
  * 上传完需要调用这个方法

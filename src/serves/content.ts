@@ -1,4 +1,4 @@
-import { DELETE, GET, POST, PUT } from './axios'
+import { request } from "@/utils/request";
 /**
  * 获取平台数据
  * @returns

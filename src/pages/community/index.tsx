@@ -2,8 +2,8 @@ import { PageContainer } from "@/components"
 
 const Planetary: React.FC = () => {
   return (
-    <PageContainer title='星球圈' hideBack>
-
+    <PageContainer title='牛油果AI' hideBack>
+      社区
     </PageContainer>
   )
 }

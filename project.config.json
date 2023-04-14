@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "affection-fe",
-  "description": "情意盲盒小程序前端代码",
+  "projectname": "avocado-ai-fe",
+  "description": "牛油果ai前端代码",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,

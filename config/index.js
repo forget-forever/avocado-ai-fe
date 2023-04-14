@@ -1,8 +1,8 @@
 import path from 'path';
 
 const config = {
-  projectName: 'affection-fe',
-  date: '2021-10-15',
+  projectName: 'avocado-ai-fe',
+  date: '2023-04-15',
   designWidth: 750,
   deviceRatio: {
     640: 2.34 / 2,
@@ -20,8 +20,7 @@ const config = {
     '@/serves': path.resolve(__dirname, '..', 'src/serves')
   },
   plugins: [],
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
     patterns: [
     ],

@@ -16,8 +16,6 @@ class App extends Component {
   componentDidMount () {}
 
   onLaunch () {
-
-    console.log('aaa')
     if (process.env.TARO_ENV !== 'h5') {
       const { token } = store.getState().common;
       if (+dayjs().unix() - (token?.time || 0) >  60 * 60 * 3) {

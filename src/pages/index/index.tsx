@@ -20,7 +20,7 @@ const Index: React.FC = () => {
   }, [])
   
   return (
-    <PageContainer>
+    <PageContainer hideBack>
       主页
     </PageContainer>
   )

@@ -42,7 +42,7 @@ export default {
     navigationStyle: "custom",
     backgroundTextStyle: 'dark',
     navigationBarBackgroundColor: '#333',
-    navigationBarTitleText: '情意盲盒',
+    navigationBarTitleText: '牛油果AI',
     navigationBarTextStyle: 'white'
   },
   tabBar: tabBar,

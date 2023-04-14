@@ -33,7 +33,7 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
       try {
         navigateBack()
       } catch (error) {
-        navigate('index', {type: 'reLaunch'});
+        navigate('index', {type: 'reLaunch',});
       }
       
     }
@@ -57,7 +57,7 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
           onClickLeftIcon={handleClick}
           color='#fff'
           customStyle={{background: themeColor}}
-          title={title || '情谊盲盒'}
+          title={title || '牛油果AI'}
           leftIconType={!hideBack ? 'chevron-left' : undefined}
           leftText={!hideBack ? '返回' : undefined}
           border={false}

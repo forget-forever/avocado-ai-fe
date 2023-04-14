@@ -8,7 +8,7 @@ import { useRouter, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import React, { createRef, useEffect } from 'react';
 import { Modal } from '..';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
-import TabBar from '../TabBar';
+// import TabBar from '../TabBar';
 
 type IProps = NavigateProps & {
   hideNavigate?: boolean;
@@ -75,7 +75,7 @@ const PageContainer: React.FC<IProps> = (props) => {
       >
         {children}
       </View>
-      <TabBar></TabBar>
+      {/* <TabBar></TabBar> */}
       <Modal
         ref={modal}
         onCancel={() => {

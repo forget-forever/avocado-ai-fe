@@ -17,7 +17,7 @@ let tabBar = {
       // selectedIconUrl: getOssUrl('UI/home/planetary_on.png'),
       // iconUrl: getOssUrl('UI/home/planetary.png'),
       pagePath: 'pages/planetary/index',
-      text: '星球圈',
+      text: '社区',
     },
     {
       iconPath: 'assets/images/person.png',

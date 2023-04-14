@@ -7,7 +7,7 @@ export const defineConstants = {};
 export const mini = {};
 export const h5 = {
   devServer: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 10086,
     proxy: {
       '/': {

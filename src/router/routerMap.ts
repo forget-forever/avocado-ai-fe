@@ -15,11 +15,11 @@ export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 
 // 暂时以Record<string, string>的形式传参,因为参数是要拼接在path后面
 export type IRouterMap = {
-  my: never;
-  index: never;
-  postMsg: never;
+  my?: never;
+  index?: never;
+  postMsg?: never;
   bindPhoneNumber?: { needWxBind?: string};
-  community: never;
+  community?: never;
 }
 // 可以不用登陆就能进的页面
 export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'community', 'bindPhoneNumber']

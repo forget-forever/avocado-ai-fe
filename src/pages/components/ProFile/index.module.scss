@@ -3,6 +3,7 @@
   padding: 32px;
   background-color: var(--yellow);
 }
+
 .login-button-container {
   display: flex;
   align-items: center;
@@ -13,12 +14,20 @@
     color: var(--defaultColor);
     background-color: transparent;
     display: flex;
-    margin-left: 16px;
+    margin-left: 32px;
+    .name {
+      display: flex;
+      align-items: center;
+    }
     form {
       display: none;
     }
     .tiny-name {
-      font-size: 28px;
+      font-size: 24px;
+    }
+    .text-view {
+      display: inline-block;
+      max-width: 8em;
     }
   }
   .extra-node {

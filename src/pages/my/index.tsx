@@ -1,18 +1,9 @@
-import { PageContainer } from "@/components/index"
-import { useEffect } from "react"
-import { AtAvatar } from "taro-ui"
-import ListItem from "./components/ListItem"
+import { PageContainer } from "@/components"
+import { ProFile } from '@/pages/components'
 
 export default () => {
  
-  useEffect(() => {
-    // setTimeout(() => {
-    //   showModal({title: 'test', content: 'data.openId' })
-    // }, 2000);
-  })
   return <PageContainer title='个人中心' hideBack>
-    <AtAvatar>
-    </AtAvatar>
-    <ListItem />
+    <ProFile />
   </PageContainer>
 }

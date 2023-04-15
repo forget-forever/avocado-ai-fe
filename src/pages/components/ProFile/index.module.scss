@@ -1,0 +1,27 @@
+.pro-file {
+  width: 100%;
+  padding: 32px;
+  background-color: var(--yellow);
+}
+.login-button-container {
+  display: flex;
+  align-items: center;
+  .avatar {
+    display: flex;
+  }
+  .login-button {
+    color: var(--defaultColor);
+    background-color: transparent;
+    display: flex;
+    margin-left: 16px;
+    form {
+      display: none;
+    }
+    .tiny-name {
+      font-size: 28px;
+    }
+  }
+  .extra-node {
+    display: flex;
+  }
+}

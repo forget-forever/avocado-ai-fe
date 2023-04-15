@@ -16,6 +16,8 @@ page, html {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  background-color: var(--defaultBackGround);
+  --defaultBackGround: rgb(245, 247, 250);
   --defaultFillColor: rgb(255, 255, 255);
   --defaultColor: #333;
   --defaultButtonFillColor: var(--blue);

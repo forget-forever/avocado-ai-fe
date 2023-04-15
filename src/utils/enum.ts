@@ -26,22 +26,6 @@ export enum ContentType {
   /** 动态 */
   moment = 2,
 }
-/** 账号类型 */
-export enum UserType {
-  normal = 1,
-  admin = 2
-}
-/** 账号状态 */
-export enum UserStatus {
-  /** 正常， 审核通过就是这个状态 */
-  normal = 1,
-  /** 封禁 */
-  banned,
-  /** 审核中 */
-  checking,
-  /**  审核失败 */
-  checkFailed
-}
 /** 绑定状态 */
 export enum BindStatus {
   binding = 1,
@@ -76,14 +60,6 @@ export enum BlindBox {
   beGot,
 }
 
-/** 剩余次数的类型 */
-export enum ChanceType {
-  /** 抽取 */
-  get = 1,
-  /** 投送 */
-  post = 2
-}
-
 /** 改变的机会类型 */
 export enum ChangeChanceType {
   /** 消耗次数 */
@@ -107,4 +83,20 @@ export enum ChangeReasonEnum {
 /**  发送验证码的场景 */
 export enum SmsCodeUseType {
   wxBind = 1
+}
+
+export enum UserTypeEnum {
+  /** 普通 */
+  general = 1,
+}
+
+export enum UserStatusEnum {
+    /** 正常， 审核通过就是这个状态 */
+    normal = 1,
+    /** 封禁 */
+    banned,
+    /** 审核中 */
+    checking,
+    /**  审核失败 */
+    checkFailed
 }

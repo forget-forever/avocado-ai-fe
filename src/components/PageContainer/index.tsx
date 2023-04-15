@@ -10,13 +10,6 @@ import NaviagteBar, { NavigateProps } from '../NavigateBar';
 // import TabBar from '../TabBar';
 
 
-let statusHeigit = 0
-
-if (process.env.TARO_ENV === 'h5') {
-  statusHeigit = 55
-}
-
-
 type IProps = NavigateProps & {
   hideNavigate?: boolean;
   share?: {
@@ -70,7 +63,13 @@ const PageContainer: React.FC<IProps> = (props) => {
     return {...share, query: JSON.stringify(share?.query || {})}
   })
 
-  const wholeHeight = system.screenHeight - statusHeigit
+  let statusHeigit = 5
+
+  if (process.env.TARO_ENV === 'h5') {
+    statusHeigit = 60
+  }
+
+  const wholeHeight = system.windowHeight - statusHeigit
 
   const containerStyle = useMemo<CSSProperties>(() => ({
     height: hideNavigate ? `${wholeHeight}px` : `${wholeHeight - (hideNavigate ? 0 : system.customHeight)}px`,
@@ -78,8 +77,8 @@ const PageContainer: React.FC<IProps> = (props) => {
     overflowX: 'hidden',
     overflowY: 'auto',
     fontSize: '16px',
-    background,
-  }), [background, hideNavigate, wholeHeight])
+    background: 'var(--defaultBackGround)',
+  }), [hideNavigate, wholeHeight])
 
   const cancelHandle = useMemoizedFn(() => {
     if (modalMsg) {

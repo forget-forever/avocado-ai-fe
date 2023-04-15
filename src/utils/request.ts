@@ -38,18 +38,18 @@ const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unkn
 // @ts-ignore
 const errorHandlerSelf = (err: ISmallCamel<Taro.request.SuccessCallbackResult<IResponseData<unknown>>['data']>) => {
   switch (+err.code) {
-    case 10000:
-      showMaskToast('未登录')
-      return Promise.reject(new Error('未登录'));
     case 10001:
-    showMaskToast('访问频繁')
-      return Promise.reject(new Error('访问频繁'));
-    case 10002:
+      showMaskToast(err.message)
+      return Promise.reject(new Error('未登录'));
+    // case 10001:
+    // showMaskToast(err.message)
+    //   return Promise.reject(new Error('访问频繁'));
+    // case 10002:
+    default:
     showMaskToast(err.message)
       return Promise.reject(new Error(err.message));
-    default:
   }
-  return Promise.reject(err);
+  // return Promise.reject(err);
 }
 
 // type ICamelType = 'big' | 'small'
@@ -61,10 +61,11 @@ type IResponseData<T = any> = {
   message: string;
   code: number;
   data: T
+  result: T
 };
 type IOptions = {
   method?: keyof Taro.request.method;
-  data?: IValue
+  data?: IValue;
   header?: any;
   paramsToBigCamel?: boolean
 }
@@ -87,14 +88,14 @@ export const request = async <T extends IValue = any, E = {}>(url: string, optio
       header: filterNull({
         ...options?.header,
         Token: token?.val,
-        Cookie: `p_token=${token?.val}`
+        Cookie: token?.val
       }),
     });
     const {data, statusCode} = res;
     const resData = toSmallCamel(data);
     if(+statusCode <= 300 || +statusCode === 304) {
       if (resData.isSuccess || +resData.code === 0) {
-        return resData
+        return resData.result
       } else {
         return errorHandlerSelf(resData)
       }

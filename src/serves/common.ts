@@ -12,3 +12,7 @@ export const bindWxPhone = (params: API.BindPhoneParams) => {
     paramsToBigCamel: false,
   })
 }
+
+export const getUserInfo = () => {
+  return request<API.UserInfo>('/api/User/userInfo', { method: 'GET' })
+}

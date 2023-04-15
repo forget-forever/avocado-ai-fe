@@ -22,7 +22,7 @@ const Index: React.FC = () => {
   }, [])
   
   return (
-    <PageContainer hideBack background='rgb(245, 247, 250)'>
+    <PageContainer hideBack>
       <Card title='AI助手' margin='16px 0'>
         <AtList>
           <AtListItem

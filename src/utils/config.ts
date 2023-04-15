@@ -12,11 +12,18 @@ const getCustomHeight = () => {
 let screenHeightCnf = screenHeight;
 const statusBarHeightCnf = +statusBarHeight
 
+const getClilentHeight = () => {
+  const heightClient = document?.body?.clientHeight
 
-const heightClient = document?.body?.clientHeight
+  if (heightClient) {
+    return heightClient - statusBarHeightCnf;
+  }
+  return 0
+}
+const heightClient = getClilentHeight()
 
 if (heightClient) {
-  screenHeightCnf = heightClient - statusBarHeightCnf;
+  screenHeightCnf = heightClient;
 }
 
 export const system = {
@@ -32,6 +39,15 @@ export const system = {
   ossUrl: 'https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com',
   /** 可使用的区域大小 */
   windowHeight
+}
+
+if (typeof window?.addEventListener === 'function') {
+  window.addEventListener('resize', (e) => {
+    const heightClient = getClilentHeight()
+    if (heightClient) {
+      system.screenHeight = heightClient;
+    }
+  })
 }
 
 export const getOssUrl = (url: string) => `${system.ossUrl}/${url.replace(/^\//, '')}`

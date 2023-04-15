@@ -16,7 +16,7 @@ let tabBar = {
       selectedIconPath: 'assets/images/community-on.png',
       // selectedIconUrl: getOssUrl('UI/home/planetary_on.png'),
       // iconUrl: getOssUrl('UI/home/planetary.png'),
-      pagePath: 'pages/planetary/index',
+      pagePath: 'pages/community/index',
       text: '社区',
     },
     {

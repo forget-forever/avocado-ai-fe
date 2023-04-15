@@ -1,7 +1,7 @@
 import { MyRadio, PageContainer } from "@/components/index";
 import GetPhone from "@/components/GetPhone";
 import { actions } from "@/store";
-import useData from "@/utils/hooks/useData";
+import { useData }from '@/hooks';
 import { useEffect } from "react";
 import { GenderEnum } from "@/utils/enum";
 import { View } from "@tarojs/components";

@@ -3,7 +3,6 @@ import { AtTabBar }  from 'taro-ui';
 import { TabItem } from 'taro-ui/types/tab-bar';
 import styles from './index.module.scss';
 
-// eslint-disable-next-line import/no-commonjs
 const { tabBar } = require('../../config');
 
 interface TabBar {

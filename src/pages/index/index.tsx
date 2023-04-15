@@ -1,19 +1,12 @@
-// import { PageContainer } from '@/components'
-import useData from '@/utils/hooks/useData'
-import { WebView } from '@tarojs/components'
+import { Card, PageContainer, TitleDesc } from '@/components';
+import { getOssUrl } from '@/utils';
+import {useData} from '@/hooks'
 import React, { useEffect, useMemo } from 'react'
-// import { Filter, Join, Star } from './components'
+import { AtCard, AtList, AtListItem } from 'taro-ui';
+import style from './index.module.scss'
 
 const Index: React.FC = () => {
   const token =  useData((state) => state.common.token);
-  
-  const src = useMemo(() => {
-    if (token?.val) {
-      return `http://192.168.0.101:10086/#/pages/h5pages/index/index?token=${token.val}&time=${token.time}`;
-    } else {
-      return 'http://192.168.0.101:10086/#/pages/h5pages/index/index';
-    }
-  }, [token])
 
 
   useEffect(() => {
@@ -29,12 +22,26 @@ const Index: React.FC = () => {
   }, [])
   
   return (
-    // <PageContainer hideNavigate>
-    //   {/* <Star /> */}
-    //   <Filter />
-    //   <Join />
-    // </PageContainer>
-    <WebView onMessage={(e) => {console.log(e)}} src={src} ></WebView>
+    <PageContainer hideBack background='rgb(245, 247, 250)'>
+      <Card title='AI助手' margin='16px 0'>
+        <AtList>
+          <AtListItem
+            className={style.listItem}
+            title='ChatGPT助手'
+            note='基于OpenAI的ChatGPT技术，实现的多功能AI助手。'
+            arrow='right'
+            thumb={getOssUrl('/ChatGPT/chatgpt.png?x-oss-process=style/jmms')}
+          />
+          <AtListItem
+            className={style.listItem}
+            title='AI抠图'
+            note='一键去除背景，AI智能抠图，抠出人物，物品，服装等内容。'
+            arrow='right'
+            thumb='https://avocado-ai.oss-cn-shenzhen.aliyuncs.com/Images/icon/rmbg.png'
+          />
+        </AtList>
+      </Card>
+    </PageContainer>
   )
 }
 export default Index

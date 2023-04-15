@@ -1,5 +1,5 @@
 import { store } from "@/store";
-import { General, request as taroRequest } from "@tarojs/taro";
+import { request as taroRequest } from "@tarojs/taro";
 import { rootBase } from "../../config/proxy";
 import { filterNull, showMaskToast, toBigCamel, toSmallCamel } from "./utils";
 
@@ -65,7 +65,7 @@ type IResponseData<T = any> = {
 type IOptions = {
   method?: keyof Taro.request.method;
   data?: IValue
-  header?: General.IAnyObject;
+  header?: any;
   paramsToBigCamel?: boolean
 }
 /**

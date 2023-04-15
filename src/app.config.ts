@@ -1,22 +1,29 @@
-// eslint-disable-next-line import/no-commonjs
 const { tabBar } = require('./config')
 
+
 const uniquePages = {
-  h5: [ 'pages/h5pages/index/index'] as const,
-  miniapp: [
-    'pages/index/index',
-    'pages/planetary/index'
-  ] as const
+  h5: ['pages/my/index'] as const,
+  miniapp: ['pages/my/index'] as const
 };
-const generalPages = [ 'pages/my/index' ] as const
-const pages = (() => {
-  switch(process.env.TARO_ENV) {
+
+
+const generalPages = [
+  'pages/index/index',
+  'pages/my/index',
+  'pages/community/index',
+] as const
+
+
+const pagesSource =[...generalPages, ...(() => {
+  switch (process.env.TARO_ENV) {
     case 'h5':
       return uniquePages.h5;
     default:
-      return [...uniquePages.miniapp, ...generalPages];
+      return uniquePages.miniapp;
   }
-})()
+})()]
+
+const pages = [...new Set(pagesSource)]
 
 
 export default {
@@ -33,9 +40,9 @@ export default {
   ] as const,
   window: {
     navigationStyle: "custom",
-    backgroundTextStyle: 'dark',
-    navigationBarBackgroundColor: '#333',
-    navigationBarTitleText: '情意盲盒',
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: '牛油果AI',
     navigationBarTextStyle: 'white'
   },
   tabBar: tabBar,

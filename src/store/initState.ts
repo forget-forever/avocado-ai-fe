@@ -10,7 +10,7 @@ const initState: GlobalState = {
     userInfo: info?.userInfo,
     openId: info?.openId || openId,
     token: info?.token,
-    themeColor: '#333'
+    themeColor: 'var(--defaultFillColor)'
   },
   global: {
     modalMsg: undefined

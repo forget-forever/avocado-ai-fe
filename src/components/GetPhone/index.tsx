@@ -1,8 +1,7 @@
 import { navigate } from "@/router";
 import { bindWxPhone } from "@/serves/common";
-import useData from "@/utils/hooks/useData";
-import { initLogin } from "@/utils/init";
-import { showMaskToast } from "@/utils/utils";
+import {useData} from "@/hooks";
+import { initLogin, showMaskToast } from "@/utils";
 import { BaseEventOrig, ButtonProps } from "@tarojs/components";
 import { CSSProperties } from "react";
 import { AtButton } from "taro-ui";

@@ -1,6 +1,6 @@
-import { request } from "@/utils/request";
+import { request } from "@/utils";
 
-export const sendVerifyCodeByOpenId = (data: IRequest.SendVerifyCodeParams) => request<{}>(
+export const sendVerifyCodeByOpenId = (data: API.SendVerifyCodeParams) => request<{}>(
   '/User/Account/SendSmsCodeByOpenId',
   {
     method: 'POST',
@@ -8,7 +8,7 @@ export const sendVerifyCodeByOpenId = (data: IRequest.SendVerifyCodeParams) => r
   }
 );
 
-export const bindwxProgramByPhone = (data: IRequest.VerifyCodeBindParams) => request<{}, {result: IRequest.BindPhoneRes}>(
+export const bindwxProgramByPhone = (data: API.VerifyCodeBindParams) => request<{}, {result: API.BindPhoneRes}>(
   '/User/Account/BindWxMiniProgramByPhone',
   {
     method: 'POST',

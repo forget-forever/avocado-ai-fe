@@ -1,13 +1,13 @@
 import { MyButton } from "@/components/index"
 import { sendVerifyCodeByOpenId } from "@/serves/user"
 import { SmsCodeUseType } from "@/utils/enum"
-import { isPhone } from "@/utils/tool"
+import { isPhone } from "@/utils"
 import { useState, useCallback, useMemo } from "react"
 import { AtInput } from "taro-ui"
 
 type IProps = {
-  msg: IRequest.VerifyCodeBindParams
-  setMsg?: (msg: IRequest.VerifyCodeBindParams) => void
+  msg: API.VerifyCodeBindParams
+  setMsg?: (msg: API.VerifyCodeBindParams) => void
   className?: string;
 }
 const GetVerifyCode: React.FC<IProps> = (props) => {

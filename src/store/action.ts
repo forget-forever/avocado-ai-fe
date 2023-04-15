@@ -1,4 +1,4 @@
-import { setLocalStorage } from "@/utils/utils"
+import { setLocalStorage } from "@/utils"
 import dayjs from "dayjs";
 import { setState } from "."
 

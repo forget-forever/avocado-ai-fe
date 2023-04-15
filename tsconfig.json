@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "es2017",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
@@ -27,15 +26,16 @@
       "@/router": ["./src/router"],
       "@/router/*": ["./src/router/*"],
       "@/assets/*": ["./src/assets/*"],
-      "@/utils/*": ["./src/utils/*"],
+      "@/utils": ["./src/utils"],
+      "@/utils/enum": ["./src/utils/enum"],
       "@/store": ["./src/store"],
       "@/components": ["./src/components"],
       "@/components/*": ["./src/components/*"],
-      "@/serves/*": ["./src/serves/*"]
+      "@/serves/*": ["./src/serves/*"],
+      "@/hooks": ["./src/hooks"],
       // "@/request/*": ["./src/lib/request/*"],
       // "@/api": ["./src/api"],
     }
   },
-  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"],
-  "compileOnSave": false
+  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]  
 }

@@ -1,4 +1,4 @@
-$color-brand: #333333;
+$color-brand: rgb(255, 255, 255);
 @import '~taro-ui/dist/style/components/indexes.scss';
 @import '~taro-ui/dist/style/components/list.scss';
 @import '~taro-ui/dist/style/components/icon.scss';
@@ -7,7 +7,40 @@ $color-brand: #333333;
 @import '~taro-ui/dist/style/components/avatar.scss';
 @import '~taro-ui/dist/style/components/tab-bar.scss';
 @import '~taro-ui/dist/style/components/badge.scss';
+@import "~taro-ui/dist/style/components/card.scss";
 @import './utils/sass/iconfonts.css';
+
+
+page, html {
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  --defaultFillColor: rgb(255, 255, 255);
+  --defaultColor: #333;
+  --defaultButtonFillColor: var(--blue);
+  --red: #e54d42;
+  --orange: #f37b1d;
+  --yellow: #fbbd08;
+  --olive: #8dc63f;
+  --green: #39b54a;
+  --cyan: #1cbbb4;
+  --blue: #0081ff;
+  --purple: #6739b6;
+  --mauve: #9c26b0;
+  --pink: #e03997;
+  --brown: #a5673f;
+  --grey: #8799a3;
+  --gray: #aaa;
+  --black: #333;
+  --white: #fff;
+  --gradualRed: linear-gradient(45deg, #f43f3b, #ec008c);
+  --gradualOrange: linear-gradient(45deg, #ff9700, #ed1c24);
+  --gradualGreen: linear-gradient(45deg, #39b54a, #8dc63f);
+  --gradualPurple: linear-gradient(45deg, #9000ff, #5e00ff);
+  --gradualPink: linear-gradient(45deg, #ec008c, #6739b6);
+  --gradualBlue: linear-gradient(45deg, #0081ff, #1cbbb4);
+}
 
 div,
 view,
@@ -23,14 +56,11 @@ scroll-view {
 .at-modal__container {
   top: 45%;
 }
-.at-nav-bar__title {
-  color: #fff;
-}
 button[type=primary], taro-button-core[type=primary], .button-hover[type=primary], button[loading][type=primary]  {
-  background-color: $color-brand !important;
+  background-color: var(--defaultButtonFillColor) !important;
 }
 button[disabled][type=primary], taro-button-core[disabled][type=primary] {
-  background-color: $color-brand !important;
+  background-color: var(--defaultButtonFillColor) !important;
   opacity: 0.6;
 }
 button[loading][type=primary], taro-button-core[loading][type=primary] {
@@ -51,6 +81,6 @@ view, form, page {
   box-sizing: border-box;
 }
 
-.iconfont {
-  font-size: 32px;
-}
+// page, html .hydrated {
+//   font-size: 16px;
+// }

@@ -36,12 +36,15 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
+    "@tarojs/cli": "3.1.4",
     "@tarojs/components": "3.1.4",
     "@tarojs/react": "3.1.4",
     "@tarojs/runtime": "3.1.4",
     "@tarojs/taro": "3.1.4",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
+    "free-utils": "^1.2.0",
+    "lodash": "^4.17.21",
     "path": "^0.12.7",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -49,7 +52,8 @@
     "redux": "^4.1.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "taro-ui": "^2.3.4"
+    "taro-hooks": "^1.5.10",
+    "taro-ui": "3.0.0-alpha.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",

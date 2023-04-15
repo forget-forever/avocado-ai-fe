@@ -1,5 +1,5 @@
 const proxyList = {
-  test: 'https://tstapi1.aiquyin.com',
+  test: 'https://api.chatgpt996.com',
   online: ''
 }
 

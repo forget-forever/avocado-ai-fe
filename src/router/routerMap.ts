@@ -15,18 +15,19 @@ export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 
 // 暂时以Record<string, string>的形式传参,因为参数是要拼接在path后面
 export type IRouterMap = {
-  my: never;
-  index: never;
-  postMsg: never;
+  my?: never;
+  index?: never;
+  postMsg?: never;
   bindPhoneNumber?: { needWxBind?: string};
-  planetary: never;
+  community?: never;
 }
 // 可以不用登陆就能进的页面
-export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'planetary', 'bindPhoneNumber']
+export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'community', 'bindPhoneNumber']
+
 export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPageList}`> = {
   my: (_type) => '/pages/my/index',
   index: (_type) => '/pages/index/index',
   postMsg: (_type) => '/packages/index/pages/post/index',
   bindPhoneNumber: (_type) => '/packages/my/pages/bindPhone/index',
-  planetary: (_type) => '/pages/planetary/index'
+  community: (_type) => '/pages/community/index'
 }

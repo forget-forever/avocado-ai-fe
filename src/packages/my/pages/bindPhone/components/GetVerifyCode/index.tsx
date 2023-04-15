@@ -1,7 +1,7 @@
 import { MyButton } from "@/components/index"
 import { sendVerifyCodeByOpenId } from "@/serves/user"
 import { SmsCodeUseType } from "@/utils/enum"
-import { isPhone } from "@/utils/tool"
+import { isPhone } from "@/utils"
 import { useState, useCallback, useMemo } from "react"
 import { AtInput } from "taro-ui"
 

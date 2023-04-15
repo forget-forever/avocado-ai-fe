@@ -52,6 +52,7 @@
     "redux": "^4.1.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "taro-hooks": "^1.5.10",
     "taro-ui": "3.0.0-alpha.1"
   },
   "devDependencies": {

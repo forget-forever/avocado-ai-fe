@@ -1,4 +1,4 @@
-import { request } from "@/utils/request";
+import { request } from "@/utils";
 /**
  * 创建订单
  * @returns

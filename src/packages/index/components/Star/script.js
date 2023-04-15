@@ -1,4 +1,4 @@
-import { getRandom } from '@/utils/utils'
+import { getRandom } from '@/utils'
 import * as THREE from './three.min_mini'
 import './OrbitControls';
 

@@ -1,7 +1,8 @@
 import { navigate, navigateBack } from "@/router"
-import { system } from "@/utils/config"
-import useData from "@/utils/hooks/useData"
+import { system } from "@/utils"
+import { useData} from "@/hooks"
 import { View } from "@tarojs/components"
+import { CSSProperties, useMemo } from "react"
 import { AtNavBar } from "taro-ui"
 
 export type NavigateProps = {
@@ -40,30 +41,35 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
   }
   const themeColor = useData((state) => state.common.themeColor);
 
+  const {containerStyle, headStyle} = useMemo<Record<'containerStyle' | 'headStyle', CSSProperties>>(() => ({
+    containerStyle: {
+      width: '100vw',
+      paddingTop: `${system.statusBarHeight}px`,
+      background: background || themeColor,
+      top: 0,
+      boxSizing: 'border-box',
+      zIndex: 10,
+      borderBottom: 'solid 1px rgb(245, 245, 245)'
+    },
+    headStyle: {width: '100vw', height: `${system.customHeight}px`}
+  }), [background, themeColor])
+
+  
+
   return (
     <>
       <View
         className='fixed'
-        style={{
-          width: '100vw',
-          paddingTop: `${system.statusBarHeight}px`,
-          background: background || themeColor,
-          top: 0,
-          boxSizing: 'border-box',
-          zIndex: 10,
-        }}
+        style={containerStyle}
       >
         <AtNavBar
           onClickLeftIcon={handleClick}
-          color='#fff'
-          customStyle={{background: themeColor}}
           title={title || '牛油果AI'}
           leftIconType={!hideBack ? 'chevron-left' : undefined}
           leftText={!hideBack ? '返回' : undefined}
-          border={false}
         />
       </View>
-      <View style={{width: '100vw', height: `${system.customHeight}px`}} /> 
+      <View style={headStyle} /> 
     </>
   )
 }

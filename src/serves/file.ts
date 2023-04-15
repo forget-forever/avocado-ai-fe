@@ -1,4 +1,4 @@
-import { request } from "@/utils/request";
+import { request } from "@/utils";
 
 /**
  * 上传完需要调用这个方法

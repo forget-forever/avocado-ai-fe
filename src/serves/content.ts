@@ -1,4 +1,4 @@
-import { request } from "@/utils/request";
+import { request } from "@/utils";
 /**
  * 获取平台数据
  * @returns

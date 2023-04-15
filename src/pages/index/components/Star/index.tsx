@@ -1,4 +1,4 @@
-import { system } from "@/utils/config"
+import { system } from "@/utils"
 import { Canvas } from "@tarojs/components"
 import { createSelectorQuery } from "@tarojs/taro"
 import React, { useEffect, useMemo } from "react"

@@ -40,8 +40,8 @@ export default {
   ] as const,
   window: {
     navigationStyle: "custom",
-    backgroundTextStyle: 'dark',
-    navigationBarBackgroundColor: '#333',
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: '牛油果AI',
     navigationBarTextStyle: 'white'
   },

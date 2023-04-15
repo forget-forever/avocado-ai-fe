@@ -1139,7 +1139,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.7.2":
+"@babel/runtime@^7.14.6", "@babel/runtime@^7.7.2":
   version "7.21.0"
   resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.21.0.tgz#5b55c9d394e5fcf304909a8b00c07dc217b56673"
   integrity sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==
@@ -3309,6 +3309,11 @@ bluebird@^3.5.5:
   resolved "https://registry.nlark.com/bluebird/download/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha1-nyKcFb4nJFT/qXOs4NvueaGww28=
 
+blueimp-canvas-to-blob-global@^3.29.1:
+  version "3.29.1"
+  resolved "https://registry.npmmirror.com/blueimp-canvas-to-blob-global/-/blueimp-canvas-to-blob-global-3.29.1.tgz#d447c5ce994b2549d6335d41c3ab5087b96fd5e8"
+  integrity sha512-7iiAoFX7nEdm8H8ErlewkvUvNZTMH47jro1sVOuvzCn3xcfNGsYBItmE/N/tcjADgOvCW9juiU/LFJjHUKw5fw==
+
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.11.9:
   version "4.12.0"
   resolved "https://registry.npm.taobao.org/bn.js/download/bn.js-4.12.0.tgz#775b3f278efbb9718eec7361f483fb36fbbfea88"
@@ -4252,6 +4257,14 @@ compression@^1.7.4:
     on-headers "~1.0.2"
     safe-buffer "5.1.2"
     vary "~1.1.2"
+
+compressorjs-global@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmmirror.com/compressorjs-global/-/compressorjs-global-1.1.2.tgz#d88b387af0619426b4658633e7051ab274a55b6b"
+  integrity sha512-f1p8JE5GcCHvq+WgKOKg8ER2dUU0ziOkS4adeBZhEOJdDk9u4VwI01zuL+Bpgk0CPwVTMOomPDeGfJUcyU4V3A==
+  dependencies:
+    blueimp-canvas-to-blob-global "^3.29.1"
+    is-blob "^2.1.0"
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -8070,6 +8083,11 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
+is-blob@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmmirror.com/is-blob/-/is-blob-2.1.0.tgz#e36cd82c90653f1e1b930f11baf9c64216a05385"
+  integrity sha512-SZ/fTft5eUhQM6oF/ZaASFDEdbFVe89Imltn9uZr03wdKMcWNVYSMjQPFtg05QuNkt5l5c135ElvXEQG0rk4tw==
+
 is-boolean-object@^1.1.0:
   version "1.1.2"
   resolved "https://registry.nlark.com/is-boolean-object/download/is-boolean-object-1.1.2.tgz#5c6dc200246dd9321ae4b885a114bb1f75f63719"
@@ -9091,6 +9109,11 @@ lodash-es@4.17.15:
   resolved "https://registry.npm.taobao.org/lodash-es/download/lodash-es-4.17.15.tgz?cache=0&sync_timestamp=1613836185353&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash-es%2Fdownload%2Flodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
   integrity sha1-Ib2Wg5NUQS8j16EDQOXqxu5FXXg=
 
+lodash-wechat@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/lodash-wechat/-/lodash-wechat-1.0.0.tgz#d273d6654a85063cd4af13189987885b8cc44764"
+  integrity sha512-QoUc/QbEXNu1PsoWXRehZnfSZf5VznHRth5iUteq4qdM9myuKlhGIxSrFl9vhtDfqyUVuprPxXFbUGZ3oGM0JQ==
+
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npm.taobao.org/lodash.clonedeep/download/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
@@ -9105,6 +9128,11 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.npm.taobao.org/lodash.sortby/download/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
+
+lodash.uniq@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npmmirror.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
+  integrity sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==
 
 lodash@4.17.20:
   version "4.17.20"
@@ -11536,7 +11564,7 @@ querystring@0.2.0:
   resolved "https://registry.nlark.com/querystring/download/querystring-0.2.0.tgz?cache=0&sync_timestamp=1626179435543&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fquerystring%2Fdownload%2Fquerystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
 
-querystring@^0.2.0:
+querystring@^0.2.0, querystring@^0.2.1:
   version "0.2.1"
   resolved "https://registry.nlark.com/querystring/download/querystring-0.2.1.tgz?cache=0&sync_timestamp=1626179435543&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fquerystring%2Fdownload%2Fquerystring-0.2.1.tgz#40d77615bb09d16902a85c3e38aa8b5ed761c2dd"
   integrity sha1-QNd2FbsJ0WkCqFw+OKqLXtdhwt0=
@@ -13702,6 +13730,17 @@ taro-css-to-react-native@^2.0.4:
     css-color-keywords "^1.0.0"
     css-mediaquery "^0.1.2"
     postcss-value-parser "^3.3.0"
+
+taro-hooks@^1.5.10:
+  version "1.5.10"
+  resolved "https://registry.npmmirror.com/taro-hooks/-/taro-hooks-1.5.10.tgz#203c09addf5a255aa016dd8770a31bc894fdfc68"
+  integrity sha512-5k61cduhr5WS2Albue57NGl0e+GbpONwWbMfB9S7abHcB+Az4OQOba/jr+TNF5GBJBX1w+b8T/FR66F8ryBG7w==
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+    compressorjs-global "^1.1.2"
+    lodash-wechat "^1.0.0"
+    lodash.uniq "^4.5.0"
+    querystring "^0.2.1"
 
 taro-ui@3.0.0-alpha.1:
   version "3.0.0-alpha.1"

@@ -1,5 +1,5 @@
 import { hideLoading } from '@utils/common'
-import { request } from "@/utils/request";
+import { request } from "@/utils";
 /**
  * 创建对话
  * @returns

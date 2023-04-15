@@ -1,4 +1,4 @@
-import { request } from "@/utils/request";
+import { request } from "@/utils";
 
 export const loginServe = (params: API.ILoginParams) => request<API.ILoginRes>('/User/Account/WxMiniProgramLogin', {
   data: params,

@@ -1,7 +1,7 @@
 let tabBar = {
   color: '#999',
   selectedColor: '#aaa',
-  backgroundColor: '#333',
+  backgroundColor: '#fff',
   list: [
     {
       selectedIconPath: 'assets/images/home-on.png',

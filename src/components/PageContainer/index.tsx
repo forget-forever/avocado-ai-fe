@@ -1,14 +1,21 @@
 import { IPageList } from '@/router/routerMap';
 import { actions } from '@/store';
-import { system } from '@/utils/config';
-import useData from '@/utils/hooks/useData';
-import { serializeParams } from '@/utils/utils';
+import { system, serializeParams } from '@/utils';
+import { useData, useMemoizedFn }from '@/hooks';
 import { View } from '@tarojs/components';
 import { useRouter, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { createRef, useEffect } from 'react';
+import React, { createRef, CSSProperties, useEffect, useMemo } from 'react';
 import { Modal } from '..';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
 // import TabBar from '../TabBar';
+
+
+let statusHeigit = 0
+
+if (process.env.TARO_ENV === 'h5') {
+  statusHeigit = 55
+}
+
 
 type IProps = NavigateProps & {
   hideNavigate?: boolean;
@@ -24,7 +31,7 @@ type IProps = NavigateProps & {
   };
 }
 const PageContainer: React.FC<IProps> = (props) => {
-  const { children, hideNavigate, share } = props;
+  const { children, hideNavigate, share, background, ...resetProps} = props;
   const modal = createRef<Modal>();
 
   const router = useRouter();
@@ -63,26 +70,33 @@ const PageContainer: React.FC<IProps> = (props) => {
     return {...share, query: JSON.stringify(share?.query || {})}
   })
 
+  const wholeHeight = system.screenHeight - statusHeigit
+
+  const containerStyle = useMemo<CSSProperties>(() => ({
+    height: hideNavigate ? `${wholeHeight}px` : `${wholeHeight - (hideNavigate ? 0 : system.customHeight)}px`,
+    width: '100vw',
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    fontSize: '16px',
+    background,
+  }), [background, hideNavigate, wholeHeight])
+
+  const cancelHandle = useMemoizedFn(() => {
+    if (modalMsg) {
+      actions.modalOption(undefined)
+    }
+  })
+
   return (
     <>
-      {!hideNavigate && <NaviagteBar {...props} />}
-      <View style={{
-          height: hideNavigate ? '100vh' : `calc(100vh - ${hideNavigate ? 0 : system.customHeight}px)`,
-          width: '100vw',
-          overflowX: 'hidden',
-          overflowY: 'auto'
-        }}
-      >
+      {!hideNavigate && <NaviagteBar {...resetProps} />}
+      <View style={containerStyle}>
         {children}
       </View>
       {/* <TabBar></TabBar> */}
       <Modal
         ref={modal}
-        onCancel={() => {
-          if (modalMsg) {
-            actions.modalOption(undefined)
-          }
-        }}
+        onCancel={cancelHandle}
       />
     </>
   );

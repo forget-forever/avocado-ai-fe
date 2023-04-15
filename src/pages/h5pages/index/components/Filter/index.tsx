@@ -1,6 +1,6 @@
 import { Modal, MyButton, RadioButton } from "@/components";
 import { h5Navigate } from "@/router";
-import useData from "@/utils/hooks/useData";
+import { useData }from '@/hooks';
 import { View } from "@tarojs/components";
 import { createRef } from "react";
 import OperateButton from "../OperateButton";

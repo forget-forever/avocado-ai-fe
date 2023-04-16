@@ -1,6 +1,8 @@
 import { getSystemInfoSync } from "@tarojs/taro";
 
-const { statusBarHeight, screenWidth, screenHeight, windowHeight } = getSystemInfoSync()
+/** 获取一些静态参数 */
+const useStatus = () => {
+  const { statusBarHeight, screenWidth, screenHeight, windowHeight } = getSystemInfoSync()
 const getCustomHeight = () => {
   if (statusBarHeight >= 30) {
     return statusBarHeight * 2
@@ -26,7 +28,7 @@ if (heightClient) {
   screenHeightCnf = heightClient;
 }
 
-export const system = {
+const system = {
   /** 静态栏Bar的高度 */
   statusBarHeight: statusBarHeightCnf,
   /** 屏幕的宽度 */
@@ -35,10 +37,10 @@ export const system = {
   screenHeight: screenHeightCnf,
   /** navigate的高度 */
   customHeight: +getCustomHeight() || 48,
-  /** 对象存储的路径 */
-  ossUrl: '',
   /** 可使用的区域大小 */
   windowHeight
 }
+return system
+}
 
-export const getOssUrl = (url: string) => `https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/${url.replace(/^\//, '')}`
+export default useStatus;

@@ -18,7 +18,8 @@ const config = {
     '@/store': path.resolve(__dirname, '..', 'src/store'),
     '@/components': path.resolve(__dirname, '..', 'src/components'),
     '@/serves': path.resolve(__dirname, '..', 'src/serves'),
-    '@/hooks': path.resolve(__dirname, '..', 'src/hooks')
+    '@/hooks': path.resolve(__dirname, '..', 'src/hooks'),
+    '@/pages': path.resolve(__dirname, '..', 'src/pages')
   },
   plugins: [],
   defineConstants: {},

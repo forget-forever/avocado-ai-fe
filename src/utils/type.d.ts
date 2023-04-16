@@ -2,11 +2,11 @@
 
 // declare global {
   declare type IStorage = Partial<{
+    /** 用户的登录的信息，有openid和token */
     info: {
       openId: GlobalState['common']['openId']
-      userInfo: GlobalState['common']['userInfo']
       token: GlobalState['common']['token'];
     }
-    openId: GlobalState['common']['openId']
+    userInfo: GlobalState['common']['userInfo']
   }>
 // }

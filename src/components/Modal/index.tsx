@@ -46,15 +46,12 @@ class Modal extends Component {
       this.setState({
         msg,
         positiveButton: <MyButton
-          style={{ margin: '5px' }}
-          type='primary'
           onClick={() => this.hideShow(() => resolve?.())}
+          style={{ color: 'var(--defaultButtonFillColor)' }}
         >
           {msg.positiveIcon}{msg.positiveText || '确定' }
         </MyButton>,
         passiveButton: <MyButton
-          style={{ margin: '5px' }}
-          type='primary'
           onClick={() => this.hideShow(() => reject?.())}
         >
           {msg.passiveIcon}{msg.passiveText || '取消' }

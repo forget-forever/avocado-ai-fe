@@ -1,14 +1,13 @@
-import { getLocalStorage } from "@/utils/utils";
+import { getLocalStorage } from "@/utils";
 
 const info = getLocalStorage('info');
-let openId: string | undefined = ''
-if (info?.openId) {
-  openId = getLocalStorage('openId');
-}
+const userInfo = getLocalStorage('userInfo')
+
 const initState: GlobalState = {
   common: {
-    userInfo: info?.userInfo,
-    openId: info?.openId || openId,
+    userInfo,
+    avoSettings: undefined,
+    openId: info?.openId,
     token: info?.token,
     themeColor: 'var(--defaultFillColor)'
   },

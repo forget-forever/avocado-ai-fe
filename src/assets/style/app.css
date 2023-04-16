@@ -1,6 +1,9 @@
 .border-box {
     box-sizing: border-box;
 }
+.radius {
+  border-radius: 3px;
+}
 
 /* ==================
           背景
@@ -491,7 +494,11 @@
 }
 
 .margin-top{
-  margin-top: 15px;
+  margin-top: 32px;
+}
+
+.width-100 {
+  width: 100%;
 }
 
 .width-95{
@@ -563,6 +570,8 @@ input, textarea{
 
 .sticky {
   position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .relative {

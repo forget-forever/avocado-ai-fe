@@ -2740,6 +2740,11 @@ async-limiter@~1.0.0:
   resolved "https://registry.nlark.com/async-limiter/download/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha1-3TeelPDbgxCwgpH51kwyCXZmF/0=
 
+async-validator@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmmirror.com/async-validator/-/async-validator-2.0.1.tgz#2ab03b1062b5bc727de9229aeeba4dc43f36de24"
+  integrity sha512-sQkJ7Vjgvu9pGCRtDw9CIPuMFstOPtMiMoHqDI3m5xUQhHnHrn/YPBp583IYUaLZi9jW8icGjLlodH0BHSkzeg==
+
 async@^2.5.0, async@^2.6.2:
   version "2.6.3"
   resolved "https://registry.nlark.com/async/download/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
@@ -11634,6 +11639,14 @@ raw-body@2.4.0:
     http-errors "1.7.2"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+rc-form-hooks@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/rc-form-hooks/-/rc-form-hooks-1.0.1.tgz#0f788278b87e136a2c8dbf2dd7b4e7434aadfec5"
+  integrity sha512-zjyckv0wmJqI3PjVLJS6HkTjd83h91OZTQLu6QcXg+PS2yrAnSBEL0FHE3Sl+jNz6r6/ghzNRZIY/S/Bfe+lqQ==
+  dependencies:
+    async-validator "^2.0.1"
+    lodash "^4.17.15"
 
 rc@1.2.8, rc@^1.0.1, rc@^1.1.6, rc@^1.2.8:
   version "1.2.8"

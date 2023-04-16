@@ -8,6 +8,10 @@ $color-brand: rgb(255, 255, 255);
 @import '~taro-ui/dist/style/components/tab-bar.scss';
 @import '~taro-ui/dist/style/components/badge.scss';
 @import "~taro-ui/dist/style/components/card.scss";
+@import "~taro-ui/dist/style/components/modal.scss";
+@import "~taro-ui/dist/style/components/noticebar.scss";
+@import "~taro-ui/dist/style/components/message.scss";
+@import "~taro-ui/dist/style/components/article.scss";
 @import './utils/sass/iconfonts.css';
 
 
@@ -16,8 +20,11 @@ page, html {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  background-color: var(--defaultBackGround);
+  --defaultBackGround: rgb(245, 247, 250);
   --defaultFillColor: rgb(255, 255, 255);
   --defaultColor: #333;
+  --secondaryTextColor: #666;
   --defaultButtonFillColor: var(--blue);
   --red: #e54d42;
   --orange: #f37b1d;
@@ -72,6 +79,7 @@ button[loading][type=primary], taro-button-core[loading][type=primary] {
 
 .at-nav-bar__left-view {
   background-color: $color-brand !important;
+  color: var(--defaultColor);
 }
 .at-modal__content {
   min-height: 10px;
@@ -81,6 +89,10 @@ view, form, page {
   box-sizing: border-box;
 }
 
-// page, html .hydrated {
-//   font-size: 16px;
-// }
+.text-secondary {
+  color: var(--secondaryTextColor);
+}
+
+page .at-noticebar--weapp .at-noticebar__content-inner {
+  animation: marquee 6s linear infinite both;
+}

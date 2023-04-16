@@ -11,14 +11,14 @@ let tabBar = {
       pagePath: 'pages/index/index',
       text: '首页',
     },
-    {
-      iconPath: 'assets/images/community.png',
-      selectedIconPath: 'assets/images/community-on.png',
-      // selectedIconUrl: getOssUrl('UI/home/planetary_on.png'),
-      // iconUrl: getOssUrl('UI/home/planetary.png'),
-      pagePath: 'pages/planetary/index',
-      text: '社区',
-    },
+    // {
+    //   iconPath: 'assets/images/community.png',
+    //   selectedIconPath: 'assets/images/community-on.png',
+    //   // selectedIconUrl: getOssUrl('UI/home/planetary_on.png'),
+    //   // iconUrl: getOssUrl('UI/home/planetary.png'),
+    //   pagePath: 'pages/community/index',
+    //   text: '社区',
+    // },
     {
       iconPath: 'assets/images/person.png',
       selectedIconPath: 'assets/images/person-on.png',

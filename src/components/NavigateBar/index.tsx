@@ -1,6 +1,5 @@
 import { navigate, navigateBack } from "@/router"
-import { system } from "@/utils"
-import { useData} from "@/hooks"
+import { useData, useStatus} from "@/hooks"
 import { View } from "@tarojs/components"
 import { CSSProperties, useMemo } from "react"
 import { AtNavBar } from "taro-ui"
@@ -25,6 +24,7 @@ export type NavigateProps = {
 }
 const NaviagteBar: React.FC<NavigateProps> = (props) => {
   const { title, hideBack, backHandle, background } = props;
+  const system = useStatus()
 
   const handleClick = async () => {
     if (hideBack) return;
@@ -52,7 +52,7 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
       borderBottom: 'solid 1px rgb(245, 245, 245)'
     },
     headStyle: {width: '100vw', height: `${system.customHeight}px`}
-  }), [background, themeColor])
+  }), [background, system.customHeight, system.statusBarHeight, themeColor])
 
   
 

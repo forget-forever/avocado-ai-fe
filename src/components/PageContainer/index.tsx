@@ -5,7 +5,7 @@ import { serializeParams } from '@/utils';
 import { useStatus }from '@/hooks';
 import { View } from '@tarojs/components';
 import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { createRef, CSSProperties, useMemo } from 'react';
+import React, { createRef, CSSProperties, useMemo, Fragment } from 'react';
 import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
 
@@ -84,17 +84,15 @@ const PageContainer: React.FC<IProps> = (props) => {
   }), [hideNavigate, system.customHeight, wholeHeight])
 
   return (
-    <>
+    <Fragment>
       <AtMessage />
       {!hideNavigate && <NaviagteBar {...resetProps} />}
-      {
-        useContainer ? children : <View style={containerStyle} className={className}>
-          {children}
-        </View>
-      }
+      <View style={useContainer ? undefined : containerStyle} className={className}>
+        {children}
+      </View>
       {/* <TabBar></TabBar> */}
       <Modal ref={modal} />
-    </>
+    </Fragment>
   );
 }
 export default PageContainer

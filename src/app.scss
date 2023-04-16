@@ -97,3 +97,7 @@ view, form, page {
 page .at-noticebar--weapp .at-noticebar__content-inner {
   animation: marquee 6s linear infinite both;
 }
+
+html taro-button-core {
+  display: none;
+}

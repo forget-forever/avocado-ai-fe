@@ -91,12 +91,28 @@ export enum UserTypeEnum {
 }
 
 export enum UserStatusEnum {
-    /** 正常， 审核通过就是这个状态 */
-    normal = 1,
-    /** 封禁 */
-    banned,
-    /** 审核中 */
-    checking,
-    /**  审核失败 */
-    checkFailed
+  /** 正常， 审核通过就是这个状态 */
+  normal = 1,
+  /** 封禁 */
+  banned,
+  /** 审核中 */
+  checking,
+  /**  审核失败 */
+  checkFailed
+}
+
+export const getSourceTypeText = (sourceType: number) => {
+  if (sourceType >= 1 && sourceType <= 10) {
+    return '对话提醒'
+  }
+  if (sourceType >= 20 && sourceType <= 30) {
+    return '订单提醒'
+  }
+  if (sourceType >= 61 && sourceType <= 80) {
+    return '话题提醒'
+  }
+  if (sourceType === 41) {
+    return '登录提醒'
+  }
+  return '通用提醒'
 }

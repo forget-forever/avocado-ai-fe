@@ -4,6 +4,7 @@ import { initLogin, showMaskToast } from "@/utils";
 import { BaseEventOrig, ButtonProps } from "@tarojs/components";
 import { CSSProperties } from "react";
 import { AtButton } from "taro-ui";
+import styles from './index.module.scss'
 
 type IProps = {
   onSubmit?: (res: 'ok' | 'fail', data: BaseEventOrig<ButtonProps.onGetPhoneNumberEventDetail>) => void;
@@ -38,8 +39,9 @@ const GetPhone: React.FC<IProps> = (props) => {
     {describe}
     <AtButton
       type='primary'
-      customStyle={{marginTop: '12px', ...style}}
+      customStyle={style}
       size={size}
+      className={styles.button}
       /** @TODO 以后再说吧 */
       // openType='getPhoneNumber'
       // onGetPhoneNumber={async (res) => {

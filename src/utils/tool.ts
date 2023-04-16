@@ -48,3 +48,5 @@ export const delay = (t = 0) => {
     }, t)
   })
 }
+
+export const invalidFunc = () => undefined

@@ -35,7 +35,11 @@ export default {
     },
     {
       root: 'packages/my',
-      pages: ['pages/bindPhone/index',]
+      pages: [
+        'pages/bindPhone/index',
+        'pages/signIn/index',
+        'pages/message/index'
+      ]
     }
   ] as const,
   window: {

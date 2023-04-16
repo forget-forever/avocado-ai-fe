@@ -109,6 +109,11 @@ export const showMaskToast = (title: string, icon: Taro.showToast.Option['icon']
     }, duration);
   });
 
+
+export const showLoading = Taro.showLoading
+
+export const hideLoading = Taro.hideLoading
+
 /**
  * 对象大驼峰命名转小驼峰命名
  * @param data 需要转的对象

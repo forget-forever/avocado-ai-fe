@@ -88,7 +88,9 @@ export const request = async <T extends IValue = any, E = {}>(url: string, optio
       header: filterNull({
         ...options?.header,
         Token: token?.val,
-        Cookie: token?.val
+        Cookie: token?.val,
+        'Content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'X-Requested-With': 'XMLHttpRequest'
       }),
     });
     const {data, statusCode} = res;

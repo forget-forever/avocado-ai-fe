@@ -1,17 +1,21 @@
 import { IPageList } from '@/router/routerMap';
+import { AtMessage } from 'taro-ui';
 import { actions } from '@/store';
-import { system, serializeParams } from '@/utils';
-import { useData, useMemoizedFn }from '@/hooks';
+import { serializeParams } from '@/utils';
+import { useStatus }from '@/hooks';
 import { View } from '@tarojs/components';
-import { useRouter, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { createRef, CSSProperties, useEffect, useMemo } from 'react';
-import { Modal } from '..';
+import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
+import React, { createRef, CSSProperties, useMemo } from 'react';
+import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
+
+
 // import TabBar from '../TabBar';
 
 
 type IProps = NavigateProps & {
   hideNavigate?: boolean;
+  className?: string;
   share?: {
     /** 分享的卡片的标题 */
     title?: string;
@@ -22,31 +26,30 @@ type IProps = NavigateProps & {
     /** 分享的图片链接，可以本地也可以网络图片 */
     imageUrl?: string;
   };
+  /** 使用自带的容器 */
+  useContainer?: boolean;
 }
 const PageContainer: React.FC<IProps> = (props) => {
-  const { children, hideNavigate, share, background, ...resetProps} = props;
+  const { children, hideNavigate, share, background, className, useContainer, ...resetProps} = props;
   const modal = createRef<Modal>();
+  
+  const system = useStatus()
 
-  const router = useRouter();
-
-  const modalMsg = useData((state) => state.global.modalMsg);
-
-  useEffect(() => {
-    if (modalMsg && `/${router?.onShow}`?.includes(router.path)) {
-      if (modal.current?.showModal) {
-        const { success, cancel, complete } = modalMsg;
-        (async () => {
-          try {
-            await modal.current?.showModal(modalMsg)
-            success?.()
-          } catch (error) {
-            cancel?.()
-          }
-          complete?.()
-        })()
+  useDidShow(() => {
+    actions.setOpenModalFunc(async (modalMsg?: GlobalState['global']['modalMsg']) => {
+      if (!modalMsg) {
+        return;
       }
-    }
-  }, [modal, modalMsg, router?.onShow, router.path])
+      const { success, cancel, complete } = modalMsg;
+      try {
+        await modal.current?.showModal(modalMsg)
+        success?.()
+      } catch (error) {
+        cancel?.()
+      }
+      complete?.()
+    })
+  })
 
   useShareAppMessage(() => {
     // if (res.from === 'button') {
@@ -78,25 +81,25 @@ const PageContainer: React.FC<IProps> = (props) => {
     overflowY: 'auto',
     fontSize: '16px',
     background: 'var(--defaultBackGround)',
-  }), [hideNavigate, wholeHeight])
+  }), [hideNavigate, system.customHeight, wholeHeight])
 
-  const cancelHandle = useMemoizedFn(() => {
-    if (modalMsg) {
-      actions.modalOption(undefined)
-    }
-  })
+  // const cancelHandle = useMemoizedFn(() => {
+  //   if (modalMsg) {
+  //     actions.modalOption(undefined)
+  //   }
+  // })
 
   return (
     <>
+      <AtMessage />
       {!hideNavigate && <NaviagteBar {...resetProps} />}
-      <View style={containerStyle}>
-        {children}
-      </View>
+      {
+        useContainer ? children : <View style={containerStyle} className={className}>
+          {children}
+        </View>
+      }
       {/* <TabBar></TabBar> */}
-      <Modal
-        ref={modal}
-        onCancel={cancelHandle}
-      />
+      <Modal ref={modal} />
     </>
   );
 }

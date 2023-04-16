@@ -20,7 +20,10 @@ export type IRouterMap = {
   postMsg?: never;
   bindPhoneNumber?: { needWxBind?: string};
   community?: never;
+  signIn?: never;
+  messageNotice?: never;
 }
+
 // 可以不用登陆就能进的页面
 export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'community', 'bindPhoneNumber']
 
@@ -29,5 +32,7 @@ export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPag
   index: (_type) => '/pages/index/index',
   postMsg: (_type) => '/packages/index/pages/post/index',
   bindPhoneNumber: (_type) => '/packages/my/pages/bindPhone/index',
-  community: (_type) => '/pages/community/index'
+  community: (_type) => '/pages/community/index',
+  signIn: (_) => '/packages/my/pages/signIn/index',
+  messageNotice: () => '/packages/my/pages/message/index',
 }

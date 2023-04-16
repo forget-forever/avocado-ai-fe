@@ -1,13 +1,12 @@
 import { showMaskToast } from "./utils";
 
 type IParams = {
-  current: number;
-  pageSize: number;
+  page: number;
+  limit: number;
 };
 
-type IPageBaseMsg = Record<'current' | 'pageSize' | 'total' | 'totalPage', number>;
 // 列表页的类型
-export interface IPageList<T extends any> extends IPageBaseMsg {
+export type IPageList<T extends any> = {
   list: T[];
 }
 export default class Infinite<P, T> {
@@ -31,13 +30,13 @@ export default class Infinite<P, T> {
    * @param pageSize 一页的条数，默认是一页20条
    */
   constructor(
-    params: P,
+    params: Partial<P>,
     request: (reParams: P & IParams) => Promise<IPageList<T>>,
     watchLoad?: (arg: boolean) => void,
     pageSize: number = 20,
   ) {
     this.request = request;
-    this.params = { ...params, current: 1, pageSize };
+    this.params = { ...params as Required<P>, page: 1, limit: pageSize };
     this.showLoadingWarn = true;
     this.loading = false;
     this.finish = false;
@@ -50,15 +49,15 @@ export default class Infinite<P, T> {
    * @param refresh 是否是重新初始化，置为true之后请求的页数会变成1，相当于重新加载
    * @returns 获取到的数据，如果是error，则message有可能有loading、finished、onTop、destroyed四种状态，以及接口的报错
    */
-   next(params?: P, refresh?: boolean) {
-    let { current } = this.params;
-    if (current > 1 && this.finish) {
+  next(params?: P, refresh?: boolean) {
+    let { page } = this.params;
+    if (page >= 1 && this.finish) {
       if (this.showLoadingWarn) showMaskToast('已加载完');
-      return Promise.reject(new Error('finished'));
+      return { list: [] };
     }
-    current += 1;
-    if (refresh) current = 1;
-    return this.getData({...this.params, ...params, current});
+    page += 1;
+    if (refresh) page = 1;
+    return this.getData({...this.params, ...params, page});
   }
   /**
    * 获取上一页的数据
@@ -67,14 +66,14 @@ export default class Infinite<P, T> {
    * @returns 获取到的数据, 如果是error，则message有可能有loading、finished、onTop、destroyed四种状态，以及接口的报错
    */
   pre(params?: P, refresh?: boolean) {
-    let { current } = this.params;
-    if (current === 1) {
+    let { page } = this.params;
+    if (page === 1) {
       if (this.showLoadingWarn) showMaskToast('已到头部');
       return Promise.reject(new Error('onTop'));
     }
-    current -= 1;
-    if (refresh) current = 1;
-    return this.getData({...this.params, ...params, current});
+    page -= 1;
+    if (refresh) page = 1;
+    return this.getData({...this.params, ...params, page});
   }
   /**
    * 重新加载
@@ -115,16 +114,16 @@ export default class Infinite<P, T> {
     }
     this.setLoading(true);
     try {
-      const { pageSize, current } = this.params;
-      const res = await this.request({ ...params, current, pageSize });
+      const { limit, page } = this.params;
+      const res = await this.request({ ...params, page, limit });
       this.setLoading(false);
-      if (res.list.length < pageSize) {
+      if (res.list.length < limit) {
         this.finish = true;
       } else {
         this.finish = false;
       }
       if (this.status === 'destory') return Promise.reject(new Error('destroyed'));
-      this.params = { ...params, current, pageSize };
+      this.params = { ...params, page, limit };
       return res;
     } catch (error) {
       this.setLoading(false);

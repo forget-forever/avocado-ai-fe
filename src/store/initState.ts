@@ -6,6 +6,7 @@ const userInfo = getLocalStorage('userInfo')
 const initState: GlobalState = {
   common: {
     userInfo,
+    avoSettings: undefined,
     openId: info?.openId,
     token: info?.token,
     themeColor: 'var(--defaultFillColor)'

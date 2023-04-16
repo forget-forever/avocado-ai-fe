@@ -14,9 +14,7 @@ const message: React.FC = () => {
       listData.map((item) => <View key={item.notificationId}>
         <View>标题： {item.title}</View>
         <View>创建时间: {item.createTime}</View>
-        <RichText nodes={item.content}>
-
-        </RichText>
+        <RichText nodes={item.content} />
       </View>)
     }
   </PageContainer>

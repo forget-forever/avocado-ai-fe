@@ -83,12 +83,6 @@ const PageContainer: React.FC<IProps> = (props) => {
     background: 'var(--defaultBackGround)',
   }), [hideNavigate, system.customHeight, wholeHeight])
 
-  // const cancelHandle = useMemoizedFn(() => {
-  //   if (modalMsg) {
-  //     actions.modalOption(undefined)
-  //   }
-  // })
-
   return (
     <>
       <AtMessage />

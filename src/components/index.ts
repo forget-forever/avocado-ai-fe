@@ -1,6 +1,7 @@
 import ButtonAsync from './ButtonAsync';
 import Card from './Card';
 import Logo from './Logo';
+import Tag from './Tag';
 import TitleDesc from './TitleDesc';
 
 export { default as GetPhone } from './GetPhone';
@@ -12,4 +13,4 @@ export { default as MyRadio } from './MyRadio';
 export { default as MyButton } from './MyButton';
 export { default as  RadioButton} from './RadioButton'
 
-export { ButtonAsync, TitleDesc, Card, Logo }
+export { ButtonAsync, TitleDesc, Card, Logo, Tag }

@@ -13,27 +13,25 @@ class App extends Component {
     super(props)
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  onLaunch () {
-    if (process.env.TARO_ENV !== 'h5') {
-      const { token } = store.getState().common;
-      if (+dayjs().unix() - (token?.time || 0) >  60 * 60 * 24 * 300) {
-        console.log('init login')
-        // initLogin()
-      } else {
-        actions.getUserInfo()
-      }
+  onLaunch() {
+    const { token } = store.getState().common;
+    if (+dayjs().unix() - (token?.time || 0) > 60 * 60 * 24 * 300) {
+      console.log('init login')
+      // initLogin()
+    } else {
+      actions.getUserInfo()
     }
   }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
-  render () {
+  render() {
     return <Provider store={store}>
       {this.props.children}
     </Provider>

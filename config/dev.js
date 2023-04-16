@@ -10,7 +10,7 @@ export const h5 = {
     host: '0.0.0.0',
     port: 10086,
     proxy: {
-      '/': {
+      '/api': {
         target: rootBase, // 服务端地址
         changeOrigin: true,
       },

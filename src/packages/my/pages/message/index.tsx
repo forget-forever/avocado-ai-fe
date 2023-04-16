@@ -1,6 +1,7 @@
-import { PageContainer } from "@/components"
+import { PageContainer, Tag } from "@/components"
 import { useListData } from "@/hooks";
 import { getNotificationList } from "@/serves";
+import { getSourceTypeText } from "@/utils/enum";
 import { RichText, View } from "@tarojs/components";
 import { usePullDownRefresh, useReachBottom } from "@tarojs/taro";
 
@@ -17,6 +18,9 @@ const message: React.FC = () => {
         key={item.notificationId}
         className={styles.itemCard}
       >
+        <Tag type='primary' bgColor='var(--red)' >
+          {getSourceTypeText(item.sourceType)}
+        </Tag>
         <View>标题： {item.title}</View>
         <View>创建时间: {item.createTime}</View>
         <RichText nodes={item.content} />

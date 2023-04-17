@@ -114,8 +114,8 @@ export default class Infinite<P, T> {
     }
     this.setLoading(true);
     try {
-      const { limit, page } = this.params;
-      const res = await this.request({ ...params, page, limit });
+      const { limit, page } = params;
+      const res = await this.request({ ...params });
       this.setLoading(false);
       if (res.list.length < limit) {
         this.finish = true;

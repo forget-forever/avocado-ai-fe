@@ -117,7 +117,7 @@ export const getSourceTypeText = (sourceType: number) => {
   return '通用提醒'
 }
 
-export const getSourceTypeBgColor = (sourceType: string) => {
+export const getSourceTypeBgColor = (sourceType: ReturnType<typeof getSourceTypeText>) => {
   switch (sourceType) {
     case '对话提醒':
       return 'var(--red)';

@@ -1,7 +1,7 @@
 import { PageContainer, Tag } from "@/components"
 import { useListData } from "@/hooks";
 import { getNotificationList } from "@/serves";
-import { getSourceTypeText } from "@/utils/enum";
+import { getSourceTypeText, getSourceTypeBgColor } from "@/utils/enum";
 import { RichText, View } from "@tarojs/components";
 import { usePullDownRefresh, useReachBottom } from "@tarojs/taro";
 
@@ -18,12 +18,14 @@ const message: React.FC = () => {
         key={item.notificationId}
         className={styles.itemCard}
       >
-        <Tag type='primary' bgColor='var(--red)' >
-          {getSourceTypeText(item.sourceType)}
-        </Tag>
-        <View>标题： {item.title}</View>
-        <View>创建时间: {item.createTime}</View>
-        <RichText nodes={item.content} />
+        <View className={styles.information}>
+          <Tag type='primary' bgColor={getSourceTypeBgColor(getSourceTypeText(item.sourceType))}>
+            {getSourceTypeText(item.sourceType)}
+          </Tag>
+          <View className={styles.createTime}>{item.createTime}</View>
+        </View>
+        <View className={styles.title}>{item.title}</View>
+        <RichText className={styles.content} nodes={item.content} />
       </View>)
     }
   </PageContainer>

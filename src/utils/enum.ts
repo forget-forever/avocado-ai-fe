@@ -116,3 +116,18 @@ export const getSourceTypeText = (sourceType: number) => {
   }
   return '通用提醒'
 }
+
+export const getSourceTypeBgColor = (sourceType: string) => {
+  switch (sourceType) {
+    case '对话提醒':
+      return 'var(--red)';
+    case '订单提醒':
+      return 'var(--blue)';
+    case '话题提醒':
+      return 'var(--green)';
+    case '登录提醒':
+      return 'var(--orange)';
+    default:
+      return 'var(--black)';
+  }
+}

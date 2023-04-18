@@ -98,7 +98,10 @@ export const navigateBack = (num = 1, config: IConfig = {}) => {
   taroNavigateBack({
     delta: num,
     success,
-    fail,
+    fail: (...args) => {
+      navigate('index', {type: 'reLaunch'})
+      return fail?.(...args)
+    },
     complete
   });
 }

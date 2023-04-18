@@ -31,10 +31,21 @@ export function signToday(signInfo: API.SignVM) {
  * @returns
  */
 export function getNotificationList(
-  query: API.NotificationQuery,
+  query: ISmallCamel<API.NotificationQuery>,
 ) {
   return request<API.NotificationInfoVM[]>(
     '/api/user/notification/list',
     { method: 'GET', data: query },
   )
+}
+
+/**
+ * 通知已读
+ * @param notificationId
+ * @returns
+ */
+export function readNotification(notificationId: string) {
+  return request<number>('/api/user/notification/read/' + notificationId, {
+    method: 'PUT'
+  })
 }

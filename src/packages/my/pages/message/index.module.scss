@@ -1,3 +1,7 @@
+.message-container {
+  
+}
+
 .item-card {
   background: var(--defaultFillColor);
   margin: 32px;
@@ -21,4 +25,11 @@
 }
 .content{
   color: grey;
+}
+
+.read-button-view {
+  justify-content: flex-end;
+  .button {
+    margin: 0 0 0 auto;
+  }
 }

@@ -1,5 +1,5 @@
 import { hideLoading, Infinite, showLoading } from "@/utils"
-import { stopPullDownRefresh } from "@tarojs/taro"
+import { stopPullDownRefresh, usePullDownRefresh, useReachBottom } from "@tarojs/taro"
 import { useRef, useState, useEffect } from "react"
 import useMemoizedFn from "./useMemoizedFn"
 
@@ -66,7 +66,7 @@ const useListData = <P, R>(
   /**
    * 改变某一行的数据
    */
-  const changeRowData = useMemoizedFn((index, row: Partial<R>) => {
+  const changeRowData = useMemoizedFn((index: number, row: Partial<R>) => {
     const newList = [...listData]
     newList[index] = { ...newList[index], ...row }
     setListData(newList)
@@ -75,6 +75,9 @@ const useListData = <P, R>(
   useEffect(() => {
     refreshList()
   }, [refreshList])
+
+  usePullDownRefresh(refreshList)
+  useReachBottom(getNext)
 
   return { getNext, getPre, refreshList, setParams: infinite.setParams.bind(infinite), listData, setListData, changeRowData, loading }
 }

@@ -57,7 +57,7 @@ type IValue = IKey | boolean | object | undefined | null | object
 /**
  * 对象的通用类型
  */
-declare type IDataObject = Record<IKey, IValue>
+declare type IDataObject = Record<IKey, any>
 
 /**
  * 转小驼峰

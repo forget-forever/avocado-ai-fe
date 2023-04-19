@@ -2,6 +2,7 @@ import { navigate } from "@/router";
 import { bindWxPhone } from "@/serves";
 import { initLogin, showMaskToast } from "@/utils";
 import { BaseEventOrig, ButtonProps } from "@tarojs/components";
+import classNames from "classnames";
 import { CSSProperties } from "react";
 import { AtButton } from "taro-ui";
 import styles from './index.module.scss'
@@ -24,6 +25,7 @@ type IProps = {
    * @default 尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。
    */
   describe?: React.ReactNode;
+  className?: string;
 }
 const GetPhone: React.FC<IProps> = (props) => {
   const {
@@ -32,7 +34,8 @@ const GetPhone: React.FC<IProps> = (props) => {
     size = 'small',
     children,
     redirectBindPhone = true,
-    describe = '尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。'
+    describe = '尚未绑定个人信息，没有绑定个人信息的时，无法使用小程序的全部功能。',
+    className,
   } = props;
   return (
     <>
@@ -41,7 +44,7 @@ const GetPhone: React.FC<IProps> = (props) => {
       type='primary'
       customStyle={style}
       size={size}
-      className={styles.button}
+      className={classNames(styles.button, className)}
       /** @TODO 以后再说吧 */
       // openType='getPhoneNumber'
       // onGetPhoneNumber={async (res) => {
@@ -67,7 +70,7 @@ const GetPhone: React.FC<IProps> = (props) => {
       //   }
       //   onSubmit?.(resData ,res)
       // }}
-      onClick={() => navigate('bindPhoneNumber', { type: 'redirect' })}
+      onClick={() => navigate('bindPhoneNumber', { type: 'navigate' })}
     >
       {children || '授权登陆'}
     </AtButton>

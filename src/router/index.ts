@@ -31,6 +31,7 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
     if (!token?.val) {
       actions.modalOption({
         title: '绑定提醒',
+        showClose: true,
         content: bindTipNode(() => {
           setTimeout(() => {
             navigate(url, config, true)

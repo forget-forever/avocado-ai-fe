@@ -41,6 +41,7 @@
     "@tarojs/react": "3.1.4",
     "@tarojs/runtime": "3.1.4",
     "@tarojs/taro": "3.1.4",
+    "await-to-js": "^3.0.0",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "free-utils": "^1.2.0",

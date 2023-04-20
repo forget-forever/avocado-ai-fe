@@ -1,4 +1,4 @@
-import { showMaskToast } from "./utils";
+import { showToast } from "./utils";
 
 type IParams = {
   page: number;
@@ -52,7 +52,7 @@ export default class Infinite<P, T> {
   next(params?: P, refresh?: boolean) {
     let { page } = this.params;
     if (page >= 1 && this.finish) {
-      if (this.showLoadingWarn) showMaskToast('已加载完');
+      if (this.showLoadingWarn) showToast('已加载完');
       return { list: [] };
     }
     page += 1;
@@ -68,7 +68,7 @@ export default class Infinite<P, T> {
   pre(params?: P, refresh?: boolean) {
     let { page } = this.params;
     if (page === 1) {
-      if (this.showLoadingWarn) showMaskToast('已到头部');
+      if (this.showLoadingWarn) showToast('已到头部');
       return Promise.reject(new Error('onTop'));
     }
     page -= 1;
@@ -109,7 +109,7 @@ export default class Infinite<P, T> {
 
   private async getData(params: P & IParams) {
     if (this.loading) {
-      if (this.showLoadingWarn) showMaskToast('加载中');
+      if (this.showLoadingWarn) showToast('加载中');
       return Promise.reject(new Error('loading'));
     }
     this.setLoading(true);

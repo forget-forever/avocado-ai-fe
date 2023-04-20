@@ -7,6 +7,11 @@
       openId: GlobalState['common']['openId']
       token: GlobalState['common']['token'];
     }
-    userInfo: GlobalState['common']['userInfo']
-  }>
+    userInfo: GlobalState['common']['userInfo'];
+  } & InviteCodeType>
+
+  declare type InviteCodeType = {
+    /** 邀请人的邀请码 */
+    inviteCode?: string
+  }
 // }

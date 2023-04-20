@@ -1,11 +1,11 @@
 import { IPageList } from '@/router/routerMap';
 import { AtMessage } from 'taro-ui';
-import { actions } from '@/store';
-import { serializeParams } from '@/utils';
-import { useStatus }from '@/hooks';
+import { actions, store } from '@/store';
+import { serializeParams, setLocalStorage } from '@/utils';
+import { useRouterParams, useStatus }from '@/hooks';
 import { View } from '@tarojs/components';
 import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { createRef, CSSProperties, useMemo, Fragment } from 'react';
+import React, { createRef, CSSProperties, useMemo, Fragment, useLayoutEffect } from 'react';
 import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
 
@@ -35,6 +35,12 @@ const PageContainer: React.FC<IProps> = (props) => {
   
   const system = useStatus()
 
+  const { inviteCode } = useRouterParams('index');
+
+  useLayoutEffect(() => {
+    setLocalStorage('inviteCode', inviteCode)
+  }, [inviteCode])
+
   useDidShow(() => {
     actions.setOpenModalFunc(async (modalMsg?: GlobalState['global']['modalMsg']) => {
       if (!modalMsg) {
@@ -51,6 +57,12 @@ const PageContainer: React.FC<IProps> = (props) => {
     })
   })
 
+  const getShareParams = () => {
+    /** 节约点性能，需要的时候主动获取 */
+    const shareParams = { inviteCode: store.getState().common.userInfo?.inviteCode }
+    return shareParams
+  }
+
   useShareAppMessage(() => {
     // if (res.from === 'button') {
     //   // 来自页面内转发按钮
@@ -58,12 +70,12 @@ const PageContainer: React.FC<IProps> = (props) => {
     // }
     const res = { ...share };
     if (res.query){
-      res.path += `?${serializeParams(res.query)}`
+      res.path += `?${serializeParams({...res.query, ...getShareParams()})}`
     }
     return res;
   })
   useShareTimeline(() => {
-    return {...share, query: JSON.stringify(share?.query || {})}
+    return {...share, query: JSON.stringify({...share?.query, ...getShareParams()})}
   })
 
   let statusHeigit = 5

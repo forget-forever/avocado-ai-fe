@@ -1,7 +1,7 @@
-import { Card, PageContainer } from "@/components"
+import { Card, ListItem, PageContainer } from "@/components"
 import { ProFile } from '@/pages/components'
 import { navigate } from "@/router"
-import { AtList, AtListItem } from "taro-ui"
+import { AtButton, AtList, AtListItem } from "taro-ui"
 
 export default () => {
  
@@ -17,11 +17,9 @@ export default () => {
           arrow='right'
           onClick={() => navigate('messageNotice')}
         />
-        <AtListItem
-          iconInfo={{ value: 'none', className: 'iconfont icon-liwu1'}}
-          title='邀请用户'
-          arrow='right'
-        />
+        <AtButton openType='share'>
+          <ListItem icon='icon-liwu1'>邀请用户</ListItem>
+        </AtButton>
         <AtListItem
           iconInfo={{ value: 'none', className: 'iconfont icon-changyongxinxi'}}
           title='我的信息'

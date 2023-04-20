@@ -12,11 +12,12 @@ export const getPageQuery = () => parse(window.location.href.split('?')[1]);
  * @param  {[object]} obj [params object]
  * @return {[string]}     [string]
  */
-export function serializeParams(obj?: Record<string, string>) {
+export function serializeParams(obj?: Record<string, string | undefined>) {
   let str = '';
-  // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of Object.entries(obj || {})) {
-    str += `&${key}=${value}`;
+    if (value !== undefined && value !== null) {
+      str += `&${key}=${value}`;
+    }
   }
   return str;
 }
@@ -108,6 +109,19 @@ export const showMaskToast = (title: string, icon: Taro.showToast.Option['icon']
       resolve();
     }, duration);
   });
+
+  /** 展示全局的 toast 提示 */
+export const showToast = (title: string, icon: Taro.showToast.Option['icon'] = 'none', duration = 1500) =>
+new Promise<void>((resolve) => {
+  Taro.showToast({
+    title,
+    icon,
+    duration,
+  });
+  setTimeout(() => {
+    resolve();
+  }, duration);
+});
 
 
 export const showLoading = Taro.showLoading

@@ -21,9 +21,9 @@ declare global {
       PhoneStatus: boolean;
       /** 绑定了邮箱 */
       EmailStatus: boolean;
-      /** 用户的手机号，加敏 */
+      /** 用户的手机号，脱敏 */
       PhoneMask: string;
-      /** 邮箱，加敏 */
+      /** 邮箱，脱敏 */
       EmailMask: string;
       /** 最后登陆时间 */
       LastLogin: string;

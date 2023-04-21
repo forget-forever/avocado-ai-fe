@@ -24,6 +24,7 @@ export default () => {
           iconInfo={{ value: 'none', className: 'iconfont icon-changyongxinxi'}}
           title='我的信息'
           arrow='right'
+          onClick={() => navigate('userinfo')}
         />
         <AtListItem
           iconInfo={{ value: 'none', className: 'iconfont icon-quanxian'}}

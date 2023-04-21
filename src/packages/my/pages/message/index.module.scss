@@ -1,5 +1,11 @@
 .message-container {
-  
+  [class~='at-tabs__header'] {
+    position: fixed;
+    z-index: 2;
+  }
+  [class~='at-tabs__body'] {
+    margin-top: 76px;
+  }
 }
 
 .item-card {

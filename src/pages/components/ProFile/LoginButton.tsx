@@ -10,7 +10,7 @@ const LoginButton: React.FC<{
 }> = (props) => {
   const { avatar, nickName, useName, children } = props
   return <View className={styles.loginButtonContainer}>
-    <AtAvatar image={avatar} circle className={classNames('styles.avatar', 'animation-ripple')} />
+    <AtAvatar image={avatar} circle className='animation-ripple' />
     <AtButton openType='getUserInfo' className={styles.loginButton}>
       <View className={styles.name}>
         <View className={classNames(styles.textView, 'text-cut')}>

@@ -22,6 +22,7 @@ export type IRouterMap = {
   community?: never;
   signIn?: never;
   messageNotice?: never;
+  userinfo?: never
 }
 
 // 可以不用登陆就能进的页面
@@ -35,4 +36,5 @@ export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPag
   community: (_type) => '/pages/community/index',
   signIn: (_) => '/packages/my/pages/signIn/index',
   messageNotice: () => '/packages/my/pages/message/index',
+  userinfo: () => '/packages/my/pages/userinfo/index'
 }

@@ -1,5 +1,6 @@
 import ButtonAsync from './ButtonAsync';
 import Card from './Card';
+import CopyIcon from './CopyIcon';
 import ListItem from './ListItem';
 import Logo from './Logo';
 import Tag from './Tag';
@@ -14,4 +15,4 @@ export { default as MyRadio } from './MyRadio';
 export { default as MyButton } from './MyButton';
 export { default as  RadioButton} from './RadioButton'
 
-export { ButtonAsync, TitleDesc, Card, Logo, Tag, ListItem }
+export { ButtonAsync, TitleDesc, Card, Logo, Tag, ListItem, CopyIcon }

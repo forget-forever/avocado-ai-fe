@@ -38,7 +38,8 @@ export default {
       pages: [
         'pages/bindPhone/index',
         'pages/signIn/index',
-        'pages/message/index'
+        'pages/message/index',
+        'pages/userinfo/index'
       ]
     }
   ] as const,

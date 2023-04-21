@@ -4,6 +4,7 @@ import { getNotificationList } from "@/serves";
 import { useState, useMemo } from "react";
 import { AtTabs, AtTabsPane } from "taro-ui";
 import MessageList from "./MessageList";
+import styles from './index.module.scss';
 
 const tabList = [
   { title: '全部' },
@@ -32,7 +33,7 @@ const message: React.FC = () => {
   })
 
   return <PageContainer useContainer>
-    <AtTabs current={current} tabList={tabList} onClick={tabChangeHandle}>
+    <AtTabs current={current} tabList={tabList} onClick={tabChangeHandle} className={styles.messageContainer}>
       <AtTabsPane current={current} index={0}>
         {messageDom}
       </AtTabsPane>

@@ -1,4 +1,4 @@
-import { Card, CopyIcon, ListItem, Logo, PageContainer } from "@/components"
+import { Card, CopyIcon, ListItem, Logo, PageContainer, TimeShow } from "@/components"
 import { useData } from "@/hooks";
 import { AtAvatar, AtList } from "taro-ui";
 import styles from './index.module.scss'
@@ -44,7 +44,7 @@ const UserInfo: React.FC = () => {
           未绑定
         </ListItem>
         <ListItem iconNode='最后登陆' arrowIcon='' icon={styles.itemIcon} hasBorder={false}>
-          {lastLogin}
+          <TimeShow value={lastLogin} />
         </ListItem>
       </AtList>
     </Card>

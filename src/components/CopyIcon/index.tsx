@@ -18,7 +18,9 @@ const copy = throttle((str: string) => {
 const CopyIcon: React.FC<{
   /** 复制的内容, 如果没有内容则不复制 */
   text?: string;
-}> = (props) => {
+}> & {
+  copyText: typeof copy
+} = (props) => {
   const { children, text } = props
 
   const copyHandle = useMemoizedFn(() => {
@@ -33,5 +35,7 @@ const CopyIcon: React.FC<{
     { children || <Text className={classNames('iconfont icon-fuzhi', styles.itemFont)} /> }
   </Text>
 }
+
+CopyIcon.copyText = copy;
 
 export default CopyIcon;

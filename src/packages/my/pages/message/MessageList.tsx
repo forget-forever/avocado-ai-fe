@@ -1,4 +1,4 @@
-import { ButtonAsync, Tag } from '@/components'
+import { ButtonAsync, Tag, TimeShow } from '@/components'
 import { useListData } from '@/hooks'
 import { readNotification } from '@/serves'
 import { showMaskToast } from '@/utils'
@@ -23,7 +23,9 @@ const MessageList: React.FC<{
         <Tag type='primary' bgColor={getSourceTypeBgColor(getSourceTypeText(item.sourceType))}>
           {getSourceTypeText(item.sourceType)}
         </Tag>
-        <View className={styles.createTime}>{item.createTime}</View>
+        <View className={styles.createTime}>
+          <TimeShow value={item.createTime} />
+        </View>
       </View>
       <View className={styles.title}>{item.title}</View>
       <RichText className={styles.content} nodes={item.content} />

@@ -49,7 +49,6 @@ const NaviagteBar: React.FC<NavigateProps> = (props) => {
       top: 0,
       boxSizing: 'border-box',
       zIndex: 10,
-      borderBottom: 'solid 1px rgb(245, 245, 245)'
     },
     headStyle: {width: '100vw', height: `${system.customHeight}px`}
   }), [background, system.customHeight, system.statusBarHeight, themeColor])

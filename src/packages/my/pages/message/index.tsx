@@ -7,8 +7,8 @@ import MessageList from "./MessageList";
 import styles from './index.module.scss';
 
 const tabList = [
-  { title: '全部' },
-  { title: '未读' }
+  { title: '全部', isRead: undefined },
+  { title: '未读', isRead: false }
 ]
 
 const message: React.FC = () => {
@@ -21,12 +21,7 @@ const message: React.FC = () => {
   }, [changeRowData, listData])
 
   const tabChangeHandle = useMemoizedFn((index: number) => {
-    /** 坐标1是未读 */
-    if (index === 1) {
-      setParams({isRead: false})
-    } else {
-      setParams({isRead: undefined})
-    }
+    setParams({isRead: tabList[index].isRead})
     
     refreshList()
     setCurrent(index)

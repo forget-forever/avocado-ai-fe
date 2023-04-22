@@ -5,7 +5,7 @@ import { serializeParams, setLocalStorage } from '@/utils';
 import { useRouterParams, useStatus }from '@/hooks';
 import { View } from '@tarojs/components';
 import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { createRef, CSSProperties, useMemo, Fragment, useLayoutEffect } from 'react';
+import React, { CSSProperties, useMemo, Fragment, useLayoutEffect, useRef } from 'react';
 import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
 
@@ -31,7 +31,7 @@ type IProps = NavigateProps & {
 }
 const PageContainer: React.FC<IProps> = (props) => {
   const { children, hideNavigate, share, background, className, useContainer, ...resetProps} = props;
-  const modal = createRef<Modal>();
+  const modal = useRef<Modal>(null);
   
   const system = useStatus()
 

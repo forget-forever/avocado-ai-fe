@@ -31,7 +31,10 @@ export default {
   subPackages: [
     {
       root: 'packages/index',
-      pages: ['pages/post/index']
+      pages: [
+        'pages/chat/index',
+        'pages/createCommunication/index'
+      ]
     },
     {
       root: 'packages/my',
@@ -39,7 +42,10 @@ export default {
         'pages/bindPhone/index',
         'pages/signIn/index',
         'pages/message/index',
-        'pages/userinfo/index'
+        'pages/userinfo/index',
+        'pages/onwerShip/index',
+        'pages/helpCenter/index',
+        'pages/privacy/index'
       ]
     }
   ] as const,

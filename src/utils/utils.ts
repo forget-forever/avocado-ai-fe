@@ -97,8 +97,11 @@ export const dataFilter = (vals: string[], source: string) => {
 };
 
 /** 展示全局的 toast 提示 */
-export const showMaskToast = (title: string, icon: Taro.showToast.Option['icon'] = 'none', duration = 1500) =>
-  new Promise<void>((resolve) => {
+export const showMaskToast = (title: string = '', icon: Taro.showToast.Option['icon'] = 'none', duration = 1500) => {
+  if (!title) {
+    return
+  }
+  return new Promise<void>((resolve) => {
     Taro.showToast({
       title,
       icon,
@@ -109,24 +112,30 @@ export const showMaskToast = (title: string, icon: Taro.showToast.Option['icon']
       resolve();
     }, duration);
   });
+}
+  
 
   /** 展示全局的 toast 提示 */
-export const showToast = (title: string, icon: Taro.showToast.Option['icon'] = 'none', duration = 1500) =>
-new Promise<void>((resolve) => {
-  Taro.showToast({
-    title,
-    icon,
-    duration,
+export const showToast = (title: string = '', icon: Taro.showToast.Option['icon'] = 'none', duration = 1500) => {
+  if (!title) {
+    return
+  }
+  return new Promise<void>((resolve) => {
+    Taro.showToast({
+      title,
+      icon,
+      duration,
+    });
+    setTimeout(() => {
+      resolve();
+    }, duration);
   });
-  setTimeout(() => {
-    resolve();
-  }, duration);
-});
+}
 
 
 export const showLoading = Taro.showLoading
 
-export const hideLoading = Taro.hideLoading
+export const hideLoading = Taro.hideLoading;
 
 /**
  * 对象大驼峰命名转小驼峰命名

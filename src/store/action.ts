@@ -31,5 +31,25 @@ export const actions = {
     setState('common', { userInfo: res, avoSettings: avoRes });
     setLocalStorage('userInfo', res)
     return res
+  },
+  /**
+   * 错误提示
+   */
+  showErrorToast: <T extends {message?: string}>(err?: null | T | T[]) => {
+    let tipMsg = ''
+    if (Array.isArray(err)) {
+      tipMsg = err[0]?.message || ''
+    } else {
+      tipMsg = err?.message || ''
+    }
+    if (!tipMsg) {
+      return
+    }
+    actions.modalOption?.({
+      title: '提示',
+      content: tipMsg,
+      hidePassiveButton: true,
+      positiveText: '我知道了'
+    })
   }
 }

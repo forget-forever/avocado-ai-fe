@@ -17,12 +17,16 @@ export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 export type IRouterMap = {
   my?: never;
   index?: never;
-  postMsg?: never;
+  chat: { chatCode: string };
   bindPhoneNumber?: { needWxBind?: string};
   community?: never;
   signIn?: never;
   messageNotice?: never;
-  userinfo?: never
+  userinfo?: never;
+  onwerShip?: never;
+  helpCenter?: never;
+  privacy?: never;
+  createCommunication?: never;
 }
 
 // 可以不用登陆就能进的页面
@@ -31,10 +35,14 @@ export const loginExcludeList: (keyof IRouterMap)[] = ['index', 'my', 'community
 export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPageList}`> = {
   my: (_type) => '/pages/my/index',
   index: (_type) => '/pages/index/index',
-  postMsg: (_type) => '/packages/index/pages/post/index',
   bindPhoneNumber: (_type) => '/packages/my/pages/bindPhone/index',
   community: (_type) => '/pages/community/index',
   signIn: (_) => '/packages/my/pages/signIn/index',
   messageNotice: () => '/packages/my/pages/message/index',
-  userinfo: () => '/packages/my/pages/userinfo/index'
+  userinfo: () => '/packages/my/pages/userinfo/index',
+  onwerShip: () => '/packages/my/pages/onwerShip/index',
+  helpCenter: () => '/packages/my/pages/helpCenter/index',
+  privacy: () => '/packages/my/pages/privacy/index',
+  chat: () => '/packages/index/pages/chat/index',
+  createCommunication: () => '/packages/index/pages/createCommunication/index',
 }

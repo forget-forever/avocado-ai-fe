@@ -3,14 +3,14 @@ import { useMemo } from 'react'
 import { Text } from '@tarojs/components'
 
 type TimeTextType = {
-  value?: dayjs.Dayjs | string | number | Date | ISmallCamel<Date>;
+  value?: dayjs.Dayjs | string | number | Date;
   valueFormat?: string;
   showFormat?: string;
 }
 
 const getTimeText = (options: TimeTextType) => {
   const { value, valueFormat, showFormat } = options
-  const valDayjs = dayjs(value as Date, valueFormat)
+  const valDayjs = dayjs(value, valueFormat)
   const now = +dayjs().unix()
   const sym = (+valDayjs.unix() - now > 0) ? '后' : '前'
   const abs = Math.abs(+valDayjs.unix() - now)

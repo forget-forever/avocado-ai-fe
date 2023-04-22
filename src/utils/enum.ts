@@ -131,3 +131,30 @@ export const getSourceTypeBgColor = (sourceType: ReturnType<typeof getSourceType
       return 'var(--black)';
   }
 }
+
+export const enum ConversationCheckStatus {
+  Checking = 0,
+  Failed = 1,
+  Successful = 2,
+}
+
+export const enum ConversationType {
+  /** 聊天模式 */
+  Chat = 1,
+  /** 社区 */
+  Public = 2,
+  /** AI绘图 */
+  AiDrawing = 3,
+}
+export const enum ConversationStatus {
+  /** 目前无执行中的任务，可以执行操作 */
+  NoAction = 1,
+  /** 等待执行 */
+  Waiting = 2,
+  /** 执行中 */
+  Running = 3,
+  /** 执行成功 */
+  RunningSuccess = 4,
+  /** 执行失败 */
+  RunningFailed = 5,
+}

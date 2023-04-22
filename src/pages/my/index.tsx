@@ -30,6 +30,7 @@ export default () => {
           iconInfo={{ value: 'none', className: 'iconfont icon-quanxian'}}
           title='获得的授权'
           arrow='right'
+          onClick={() => navigate('onwerShip')}
           hasBorder={false}
         />
       </AtList>
@@ -40,17 +41,17 @@ export default () => {
           iconInfo={{ value: 'none', className: 'iconfont icon-niuyouguo'}}
           title='牛油果帮助'
           arrow='right'
+          onClick={() => navigate('helpCenter')}
         />
-        <AtListItem
-          iconInfo={{ value: 'none', className: 'iconfont icon-31wentifankui'}}
-          title='反馈bug/改进建议'
-          arrow='right'
-        />
+        <AtButton openType='feedback'>
+          <ListItem icon='icon-31wentifankui'>反馈bug/改进建议</ListItem>
+        </AtButton>
         <AtListItem
           iconInfo={{ value: 'none', className: 'iconfont icon-qianshuxieyi'}}
           title='服务条款与隐私协议'
           arrow='right'
           hasBorder={false}
+          onClick={() => navigate('privacy')}
         />
       </AtList>
     </Card>

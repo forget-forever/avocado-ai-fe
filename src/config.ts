@@ -9,7 +9,7 @@ let tabBar = {
       // iconUrl: getOssUrl('UI/home/home.png'),
       iconPath: 'assets/images/home.png',
       pagePath: 'pages/index/index',
-      text: '首页',
+      text: 'AI工具',
     },
     // {
     //   iconPath: 'assets/images/community.png',

@@ -21,7 +21,9 @@ const config = {
     '@/hooks': path.resolve(__dirname, '..', 'src/hooks'),
     '@/pages': path.resolve(__dirname, '..', 'src/pages')
   },
-  plugins: [],
+  plugins: [
+    path.resolve(__dirname, 'minifyMainPackage.js'),
+  ],
   defineConstants: {},
   copy: {
     patterns: [
@@ -58,6 +60,9 @@ const config = {
     cssLoaderOption: {
       localsConvention: 'camelCase',
     },
+    optimizeMainPackage: {
+      enable: true
+    }
   },
   h5: {
     publicPath: '/',

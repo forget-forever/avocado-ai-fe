@@ -9,7 +9,9 @@ import styles from './index.module.scss'
 
 
 enum RoleEnum {
+  /** 自己 */
   USER = 'user',
+  /** 对方 */
   ASSISTANT = 'assistant',
 }
 

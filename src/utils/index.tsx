@@ -1,4 +1,5 @@
 import { GetPhone } from "@/components";
+import Infinite from "./Infinite";
 import { request } from "./request";
 
 export const bindTipNode = (success: () => void) => <GetPhone
@@ -17,4 +18,4 @@ export * from './init'
 
 export * from './utils'
 
-export { request }
+export { request, Infinite }

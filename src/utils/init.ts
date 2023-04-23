@@ -2,21 +2,16 @@ import { login } from '@tarojs/taro'
 import { loginServe } from '@/serves/common';
 import { actions } from '@/store';
 // import { showModal } from '@/components/Modal/options';
-import { projectType } from './utils';
 
-type IRes = PromiseReturn<typeof loginServe>
 export const initLogin = async () => {
   const loginMsg = await login();
   try {
-    const {data} = await loginServe({code: loginMsg.code});
-    const { userInfo, openId, token } = data;
-    actions.setToken({userInfo, openId, token});
+    const res = await loginServe({code: loginMsg.code});
+    const { openId, token } = res;
+    actions.setToken({ openId, token});
     // res.data.
   } catch (err) {
-    if (projectType<IRes>(err, (e) => !!(e as IRes)?.data.openId)) {
-      const { data } = err;
-      actions.setOpenId(data.openId)
-    }
+    console.error('登录失败了', err)
   }
 }
 

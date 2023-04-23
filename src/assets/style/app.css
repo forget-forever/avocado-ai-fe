@@ -1,6 +1,12 @@
 .border-box {
     box-sizing: border-box;
 }
+.radius {
+  border-radius: 3px;
+}
+.no-border {
+  border: none;
+}
 
 /* ==================
           背景
@@ -491,47 +497,59 @@
 }
 
 .margin-top{
-  margin-top: 15px;
+  margin-top: 32px;
+}
+
+.width-100 {
+  width: 100%;
 }
 
 .width-95{
   width: 95%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-85{
   width: 85%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-75{
   width: 75%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-65{
   width: 65%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-9{
   width: 90%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-8{
   width: 80%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-7{
   width: 70%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .width-6{
   width: 60%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .float-left{
@@ -563,6 +581,8 @@ input, textarea{
 
 .sticky {
   position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .relative {

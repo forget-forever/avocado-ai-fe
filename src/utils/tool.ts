@@ -36,3 +36,17 @@ export const isPhone = (val: string) => {
   }
 }
 
+/**
+ * 一个延时的函数
+ * @param t 要延时多久，默认0ms
+ * @returns 
+ */
+export const delay = (t = 0) => {
+  return new Promise<undefined>((resolve) => {
+    setTimeout(() => {
+      resolve(undefined)
+    }, t)
+  })
+}
+
+export const invalidFunc = () => undefined

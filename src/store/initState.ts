@@ -1,14 +1,16 @@
-import { getLocalStorage } from "@/utils/utils";
+import { getLocalStorage } from "@/utils";
 
+// import dayjs from "dayjs";
+
+// setLocalStorage('info', {openId: 'xxx', token: {val: 'avocadoAi_pToken=c95467d3437644da9eead35baddb2ad8', time: +dayjs().unix()}})
 const info = getLocalStorage('info');
-let openId: string | undefined = ''
-if (info?.openId) {
-  openId = getLocalStorage('openId');
-}
+const userInfo = getLocalStorage('userInfo')
+
 const initState: GlobalState = {
   common: {
-    userInfo: info?.userInfo,
-    openId: info?.openId || openId,
+    userInfo,
+    avoSettings: undefined,
+    openId: info?.openId,
     token: info?.token,
     themeColor: 'var(--defaultFillColor)'
   },

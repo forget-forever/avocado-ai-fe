@@ -1,13 +1,14 @@
-import { GetPhone, MyButton, PageContainer } from '@/components/index';
+import { ButtonAsync, GetPhone, PageContainer } from '@/components';
 import { View, Text } from '@tarojs/components';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { AtForm, AtInput } from 'taro-ui';
 import classNames from 'classnames';
-import { useData, useRouterParams } from '@/hooks';
+import { useData, useMemoizedFn, useRouterParams } from '@/hooks';
 import { bindwxProgramByPhone } from '@/serves/user';
-import { showMaskToast, initLogin } from '@/utils';
+import { showMaskToast, initLogin, showLoading, hideLoading } from '@/utils';
 import { navigateBack } from '@/router';
 import { actions } from '@/store';
+import { to } from 'await-to-js';
 import GetVerifyCode from './components/GetVerifyCode';
 import { canSubmit } from './util';
 import styles from './index.module.scss';
@@ -19,40 +20,40 @@ const BindPhone: React.FC = () => {
     smsCode: '',
     openId: openId!
   });
-  const [ loading, setLoading ] = useState(false);
   const isOk = useMemo(() => canSubmit(msg), [msg]);
-  const params = useRouterParams('bindPhoneNumber');
 
-  useEffect(() => {
-    if (params?.needWxBind) {
-      actions.modalOption({
-        title: '绑定提醒',
-        content: <>
-          <GetPhone
-            redirectBindPhone={false}
-            onSubmit={(res) => {
-              if (res === 'ok') navigateBack();
-            }}
-          >授权登陆</GetPhone>
-        </>,
-        hideButton: true,
-        showClose: true,
-      });
+  /** 现在不支持微信登陆不做了 */
+  // const params = useRouterParams('bindPhoneNumber');
+
+  // useEffect(() => {
+  //   if (params?.needWxBind) {
+  //     actions.modalOption({
+  //       title: '绑定提醒',
+  //       content: <>
+  //         <GetPhone
+  //           redirectBindPhone={false}
+  //           onSubmit={(res) => {
+  //             if (res === 'ok') navigateBack();
+  //           }}
+  //         >授权登陆</GetPhone>
+  //       </>,
+  //       hideButton: true,
+  //       showClose: true,
+  //     });
+  //   }
+  // }, [params?.needWxBind])
+
+  const submit = useMemoizedFn(async () => {
+    await bindwxProgramByPhone(msg);
+    showMaskToast('绑定成功');
+    showLoading({ title: '开始重新登陆' })
+    const [err,] = await to(initLogin())
+    if (!err) {
+      showMaskToast('登陆成功')
     }
-  }, [params?.needWxBind])
-
-  const submit = useCallback(async () => {
-    try {
-      setLoading(true);
-      await bindwxProgramByPhone(msg);
-      showMaskToast('绑定成功');
-      setTimeout(async () => {
-        await initLogin()
-      }, 50)
-      navigateBack()
-    } catch (error) {}
-    setLoading(false);
-  }, [msg])
+    hideLoading()
+    navigateBack()
+  })
 
   return (
     <PageContainer title='绑定手机'>
@@ -68,18 +69,17 @@ const BindPhone: React.FC = () => {
           onChange={(val) => setMsg({...msg, phone: `${val}`})}
         />
         <GetVerifyCode className={styles.inputItem} msg={msg} setMsg={(val) => setMsg(val)} />
-        <MyButton
+        <ButtonAsync
           type='primary'
           className={classNames('width-8', styles.submit)}
           disabled={!isOk}
           onClick={submit}
-          loading={loading}
         >
           确定
-        </MyButton>
-        <View className={styles.wxLogin}>
+        </ButtonAsync>
+        {/* <View className={styles.wxLogin}>
           <GetPhone
-            style={{ width: '60%', background: '#fff', height: '40px', lineHeight: '37px', borderRadius: '20px' }}
+            className={styles.getPhone}
             redirectBindPhone={false}
             onSubmit={(res) => {
               if (res === 'ok') {
@@ -91,7 +91,7 @@ const BindPhone: React.FC = () => {
             <Text style={{ color: '#24dc5a', fontSize: '24px' }} className='iconfont icon-weixin'></Text>
             &nbsp;&nbsp;<Text className={styles.wxLoginButton}>微信登陆</Text>
           </GetPhone>
-        </View>
+        </View> */}
       </AtForm>
     </PageContainer>
   )

@@ -8,6 +8,16 @@ $color-brand: rgb(255, 255, 255);
 @import '~taro-ui/dist/style/components/tab-bar.scss';
 @import '~taro-ui/dist/style/components/badge.scss';
 @import "~taro-ui/dist/style/components/card.scss";
+@import "~taro-ui/dist/style/components/modal.scss";
+@import "~taro-ui/dist/style/components/noticebar.scss";
+@import "~taro-ui/dist/style/components/message.scss";
+@import "~taro-ui/dist/style/components/article.scss";
+@import "~taro-ui/dist/style/components/tag.scss";
+@import "~taro-ui/dist/style/components/tabs.scss";
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/textarea.scss";
+@import "~taro-ui/dist/style/components/form.scss";
+@import "~taro-ui/dist/style/components/divider.scss";
 @import './utils/sass/iconfonts.css';
 
 
@@ -16,8 +26,11 @@ page, html {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  background-color: var(--defaultBackGround);
+  --defaultBackGround: rgb(245, 247, 250);
   --defaultFillColor: rgb(255, 255, 255);
   --defaultColor: #333;
+  --secondaryTextColor: #666;
   --defaultButtonFillColor: var(--blue);
   --red: #e54d42;
   --orange: #f37b1d;
@@ -40,6 +53,11 @@ page, html {
   --gradualPurple: linear-gradient(45deg, #9000ff, #5e00ff);
   --gradualPink: linear-gradient(45deg, #ec008c, #6739b6);
   --gradualBlue: linear-gradient(45deg, #0081ff, #1cbbb4);
+}
+
+.link-button {
+  color: var(--defaultButtonFillColor);
+  background: transparent
 }
 
 div,
@@ -72,6 +90,7 @@ button[loading][type=primary], taro-button-core[loading][type=primary] {
 
 .at-nav-bar__left-view {
   background-color: $color-brand !important;
+  color: var(--defaultColor);
 }
 .at-modal__content {
   min-height: 10px;
@@ -81,6 +100,18 @@ view, form, page {
   box-sizing: border-box;
 }
 
-// page, html .hydrated {
-//   font-size: 16px;
-// }
+.text-secondary {
+  color: var(--secondaryTextColor);
+}
+
+page .at-noticebar--weapp .at-noticebar__content-inner {
+  animation: marquee 6s linear infinite both;
+}
+
+html taro-button-core {
+  display: none;
+}
+
+.at-tabs__item--active {
+  color: var(--defaultButtonFillColor) !important;
+}

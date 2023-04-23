@@ -12,11 +12,18 @@ const getCustomHeight = () => {
 let screenHeightCnf = screenHeight;
 const statusBarHeightCnf = +statusBarHeight
 
+const getClilentHeight = () => {
+  const heightClient = document?.body?.clientHeight
 
-const heightClient = document?.body?.clientHeight
+  if (heightClient) {
+    return heightClient - statusBarHeightCnf;
+  }
+  return 0
+}
+const heightClient = getClilentHeight()
 
 if (heightClient) {
-  screenHeightCnf = heightClient - statusBarHeightCnf;
+  screenHeightCnf = heightClient;
 }
 
 export const system = {
@@ -29,9 +36,9 @@ export const system = {
   /** navigate的高度 */
   customHeight: +getCustomHeight() || 48,
   /** 对象存储的路径 */
-  ossUrl: 'https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com',
+  ossUrl: '',
   /** 可使用的区域大小 */
   windowHeight
 }
 
-export const getOssUrl = (url: string) => `${system.ossUrl}/${url.replace(/^\//, '')}`
+export const getOssUrl = (url: string) => `https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/${url.replace(/^\//, '')}`

@@ -26,22 +26,6 @@ export enum ContentType {
   /** 动态 */
   moment = 2,
 }
-/** 账号类型 */
-export enum UserType {
-  normal = 1,
-  admin = 2
-}
-/** 账号状态 */
-export enum UserStatus {
-  /** 正常， 审核通过就是这个状态 */
-  normal = 1,
-  /** 封禁 */
-  banned,
-  /** 审核中 */
-  checking,
-  /**  审核失败 */
-  checkFailed
-}
 /** 绑定状态 */
 export enum BindStatus {
   binding = 1,
@@ -76,14 +60,6 @@ export enum BlindBox {
   beGot,
 }
 
-/** 剩余次数的类型 */
-export enum ChanceType {
-  /** 抽取 */
-  get = 1,
-  /** 投送 */
-  post = 2
-}
-
 /** 改变的机会类型 */
 export enum ChangeChanceType {
   /** 消耗次数 */
@@ -107,4 +83,78 @@ export enum ChangeReasonEnum {
 /**  发送验证码的场景 */
 export enum SmsCodeUseType {
   wxBind = 1
+}
+
+export enum UserTypeEnum {
+  /** 普通 */
+  general = 1,
+}
+
+export enum UserStatusEnum {
+  /** 正常， 审核通过就是这个状态 */
+  normal = 1,
+  /** 封禁 */
+  banned,
+  /** 审核中 */
+  checking,
+  /**  审核失败 */
+  checkFailed
+}
+
+export const getSourceTypeText = (sourceType: number) => {
+  if (sourceType >= 1 && sourceType <= 10) {
+    return '对话提醒'
+  }
+  if (sourceType >= 20 && sourceType <= 30) {
+    return '订单提醒'
+  }
+  if (sourceType >= 61 && sourceType <= 80) {
+    return '话题提醒'
+  }
+  if (sourceType === 41) {
+    return '登录提醒'
+  }
+  return '通用提醒'
+}
+
+export const getSourceTypeBgColor = (sourceType: ReturnType<typeof getSourceTypeText>) => {
+  switch (sourceType) {
+    case '对话提醒':
+      return 'var(--red)';
+    case '订单提醒':
+      return 'var(--blue)';
+    case '话题提醒':
+      return 'var(--green)';
+    case '登录提醒':
+      return 'var(--orange)';
+    default:
+      return 'var(--black)';
+  }
+}
+
+export const enum ConversationCheckStatus {
+  Checking = 0,
+  Failed = 1,
+  Successful = 2,
+}
+
+export const enum ConversationType {
+  /** 聊天模式 */
+  Chat = 1,
+  /** 社区 */
+  Public = 2,
+  /** AI绘图 */
+  AiDrawing = 3,
+}
+export const enum ConversationStatus {
+  /** 目前无执行中的任务，可以执行操作 */
+  NoAction = 1,
+  /** 等待执行 */
+  Waiting = 2,
+  /** 执行中 */
+  Running = 3,
+  /** 执行成功 */
+  RunningSuccess = 4,
+  /** 执行失败 */
+  RunningFailed = 5,
 }

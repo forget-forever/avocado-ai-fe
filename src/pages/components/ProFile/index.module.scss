@@ -1,0 +1,59 @@
+.pro-file {
+  width: 100%;
+  padding: 32px;
+  background-color: var(--yellow);
+  color: var(--secondaryTextColor);
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  .login-button {
+    color: var(--defaultColor);
+    background-color: transparent;
+    display: flex;
+    margin-left: 32px;
+    .name {
+      display: flex;
+      align-items: center;
+    }
+    form {
+      display: none;
+    }
+    .tiny-name {
+      font-size: 24px;
+    }
+    .text-view {
+      display: inline-block;
+      max-width: 8em;
+    }
+  }
+  .extra-node {
+    display: flex;
+    flex: 1;
+  }
+}
+
+.sign-in {
+  margin-left: auto;
+  text-align: center;
+  position: relative;
+  bottom: 28px;
+  .text {
+    font-size: 20px;
+  }
+  [class~="iconfont"] {
+    font-size: 52px;
+  }
+}
+
+.count-info {
+  .info-item {
+    flex: 1;
+    .title {
+      font-size: 28px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

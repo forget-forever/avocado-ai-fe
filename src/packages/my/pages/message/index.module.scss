@@ -1,0 +1,41 @@
+.message-container {
+  [class~='at-tabs__header'] {
+    position: fixed;
+    z-index: 2;
+  }
+  [class~='at-tabs__body'] {
+    margin-top: 76px;
+  }
+}
+
+.item-card {
+  background: var(--defaultFillColor);
+  margin: 32px;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow:0 10px 10px 0 rgba(0,0,0,0.2);
+}
+.information {
+  display: flex;
+  justify-content: space-between;
+}
+.createTime{
+  color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title{
+  margin: 6px 0;
+  font-weight: 600;
+}
+.content{
+  color: grey;
+}
+
+.read-button-view {
+  justify-content: flex-end;
+  .button {
+    margin: 0 0 0 auto;
+  }
+}

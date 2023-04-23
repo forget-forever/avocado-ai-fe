@@ -4,8 +4,7 @@ declare module '*.jpg';
 declare module '*.jpeg';
 declare module '*.svg';
 declare module '*.css';
-declare module '*.less';
-declare module '*.scss';
+declare module '*.module.scss';
 declare module '*.sass';
 declare module '*.styl';
 
@@ -58,13 +57,13 @@ type IValue = IKey | boolean | object | undefined | null | object
 /**
  * 对象的通用类型
  */
-declare type IDataObject = Record<IKey, IValue>
+declare type IDataObject = Record<IKey, any>
 
 /**
  * 转小驼峰
  */
 declare type ISmallCamel<T extends IDataObject> = {
-  [K in keyof T as Uncapitalize<K>]: T[K] extends object ? ISmallCamel<T[K]> : T[K]
+  [K in keyof T as Uncapitalize<K>]: T[K] extends object ? T[K] extends Array<unknown> ? Array<ISmallCamel<T[K][number]>> : ISmallCamel<T[K]> : T[K]
 }
 
 /**

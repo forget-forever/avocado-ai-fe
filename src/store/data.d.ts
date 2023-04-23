@@ -3,7 +3,9 @@ import Modal from "@/components/Modal";
 declare global {
   declare type GlobalState = {
     common: {
-      userInfo: ISmallCamel<API.ILoginRes['UserInfo']> | undefined,
+      userInfo: ISmallCamel<API.UserInfo> | undefined,
+      /** 牛油果的设置和消耗信息 */
+      avoSettings: ISmallCamel<API.AvocadoInfoVM> | undefined,
       openId: string | undefined,
       token: {
         val: string;

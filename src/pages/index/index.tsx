@@ -1,8 +1,9 @@
-import { Card, PageContainer, TitleDesc } from '@/components';
+import { Card, PageContainer } from '@/components';
 import { getOssUrl } from '@/utils';
 import {useData} from '@/hooks'
-import React, { useEffect, useMemo } from 'react'
-import { AtCard, AtList, AtListItem } from 'taro-ui';
+import React, { useEffect } from 'react'
+import { AtList, AtListItem } from 'taro-ui';
+import { navigate } from '@/router';
 import style from './index.module.scss'
 
 const Index: React.FC = () => {
@@ -10,27 +11,22 @@ const Index: React.FC = () => {
 
 
   useEffect(() => {
-    // getUserInfo({
-    //   success: (res) => {
-    //     console.log(res)
-    //   }
-    // })
-    // setTimeout(() => {
-    //   console.log('aaaaa')
-    //   setShow(true)
-    // }, 8000)
   }, [])
   
   return (
-    <PageContainer hideBack background='rgb(245, 247, 250)'>
+    <PageContainer hideBack>
+      {/* <AtNoticebar icon='volume-plus' marquee>
+        这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+      </AtNoticebar> */}
       <Card title='AI助手' margin='16px 0'>
-        <AtList>
+        <AtList hasBorder={false}>
           <AtListItem
             className={style.listItem}
             title='ChatGPT助手'
             note='基于OpenAI的ChatGPT技术，实现的多功能AI助手。'
             arrow='right'
             thumb={getOssUrl('/ChatGPT/chatgpt.png?x-oss-process=style/jmms')}
+            onClick={() => navigate('createCommunication')}
           />
           <AtListItem
             className={style.listItem}
@@ -38,6 +34,7 @@ const Index: React.FC = () => {
             note='一键去除背景，AI智能抠图，抠出人物，物品，服装等内容。'
             arrow='right'
             thumb='https://avocado-ai.oss-cn-shenzhen.aliyuncs.com/Images/icon/rmbg.png'
+            hasBorder={false}
           />
         </AtList>
       </Card>

@@ -26,11 +26,12 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
   },
   straight: boolean = false
 ) => {
-  if (!straight && process.env.TARO_ENV !== 'h5' && !loginExcludeList.includes(url)) {
+  if (!straight && !loginExcludeList.includes(url)) {
     const { token } = store.getState().common;
     if (!token?.val) {
       actions.modalOption({
         title: '绑定提醒',
+        showClose: true,
         content: bindTipNode(() => {
           setTimeout(() => {
             navigate(url, config, true)
@@ -88,12 +89,20 @@ export const h5Navigate = <U extends keyof IRouterMap>(urlKey: U, config?: IConf
   })
 }
 
+/**
+ * 返回事件
+ * @param num 返回的层数，默认是 1
+ * @param config 
+ */
 export const navigateBack = (num = 1, config: IConfig = {}) => {
   const { success, fail, complete } = config;
   taroNavigateBack({
     delta: num,
     success,
-    fail,
+    fail: (...args) => {
+      navigate('index', {type: 'reLaunch'})
+      return fail?.(...args)
+    },
     complete
   });
 }

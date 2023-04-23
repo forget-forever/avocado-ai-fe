@@ -10,9 +10,17 @@
   position: absolute;
   bottom: 0;
   margin-bottom: 400px;
+  display: flex;
+  justify-content: center;
 }
 .wx-login-button {
   color: $color-brand;
   font-size: 24PX;
   font-weight: 300 
+}
+
+.get-phone {
+  width: 50%;
+  background: transparent;
+  border-radius: 20px
 }

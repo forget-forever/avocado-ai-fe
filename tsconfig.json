@@ -31,10 +31,10 @@
       "@/store": ["./src/store"],
       "@/components": ["./src/components"],
       "@/components/*": ["./src/components/*"],
+      "@/serves": ["./src/serves"],
       "@/serves/*": ["./src/serves/*"],
       "@/hooks": ["./src/hooks"],
-      // "@/request/*": ["./src/lib/request/*"],
-      // "@/api": ["./src/api"],
+      "@/pages/*": ["./src/pages/*"]
     }
   },
   "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]  

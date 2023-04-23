@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import './app.scss'
 import './assets/style/app.css';
 import './assets/style/animation.css';
-import { store } from './store'
+import { actions, store } from './store'
 import { initLogin } from './utils/init';
 
 class App extends Component {
@@ -13,26 +13,25 @@ class App extends Component {
     super(props)
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  onLaunch () {
-    if (process.env.TARO_ENV !== 'h5') {
-      const { token } = store.getState().common;
-      if (+dayjs().unix() - (token?.time || 0) >  60 * 60 * 3) {
-        console.log('init login')
-        // initLogin()
-      }
+  onLaunch() {
+    const { token } = store.getState().common;
+    if (+dayjs().unix() - (token?.time || 0) > 60 * 60 * 24 * 300) {
+      console.log('init login')
+      // initLogin()
+    } else {
+      actions.getUserInfo()
     }
   }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
-  // this.props.children 是将要会渲染的页面
-  render () {
+  render() {
     return <Provider store={store}>
       {this.props.children}
     </Provider>

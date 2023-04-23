@@ -1,6 +1,5 @@
 import { applyMiddleware, createStore } from 'redux'
 import ReduxThunk from 'redux-thunk';
-// import actions from './action';
 import initState from './initState';
 import reducers, { IReducers } from './reducers';
 

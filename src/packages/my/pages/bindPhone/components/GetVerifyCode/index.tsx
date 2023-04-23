@@ -1,9 +1,12 @@
-import { MyButton } from "@/components/index"
+import { ButtonAsync } from "@/components"
 import { sendVerifyCodeByOpenId } from "@/serves/user"
 import { SmsCodeUseType } from "@/utils/enum"
 import { isPhone } from "@/utils"
-import { useState, useCallback, useMemo } from "react"
+import { useState, useMemo, CSSProperties } from "react"
 import { AtInput } from "taro-ui"
+import { useMemoizedFn } from "@/hooks"
+
+const tipStyle: CSSProperties = {borderRadius: 0, width: '110px', padding: 0, height: '36px', lineHeight: '36px' }
 
 type IProps = {
   msg: API.VerifyCodeBindParams
@@ -13,9 +16,8 @@ type IProps = {
 const GetVerifyCode: React.FC<IProps> = (props) => {
   const { msg, setMsg, className } = props;
   const [tip, setTip] = useState('发送验证码');
-  const [ loading, setLoading ] = useState(false)
 
-  const countDown = useCallback((num: number) => {
+  const countDown = useMemoizedFn((num: number) => {
     try {
       if (num > 0 && setMsg) {
         setTip(`${num}s后重试`);
@@ -24,19 +26,15 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
         setTip('重新发送')
       }
     } catch (error) {}
-  },[setMsg]);
+  });
 
   const canSendVerifyCode = useMemo(() => !isPhone(msg.phone) || (tip !== '发送验证码' && tip !== '重新发送'), [msg.phone, tip])
 
-  const sendVerifyCode = useCallback(async () => {
+  const sendVerifyCode = useMemoizedFn(async () => {
     const { phone, openId } = msg;
-    setLoading(true)
-    try {
-      await sendVerifyCodeByOpenId({ phone, openId, userType: SmsCodeUseType.wxBind });
-      countDown(60);
-    } catch (error) {}
-    setLoading(false);
-  }, [countDown, msg])
+    await sendVerifyCodeByOpenId({ phone, openId, userType: SmsCodeUseType.wxBind });
+    countDown(60);
+  })
 
   return <AtInput
     clear
@@ -49,15 +47,14 @@ const GetVerifyCode: React.FC<IProps> = (props) => {
     name='smsCode'
     className={className}
   >
-    <MyButton
+    <ButtonAsync
       type='primary'
       disabled={canSendVerifyCode}
       onClick={sendVerifyCode}
-      style={{borderRadius: 0, width: '110px', padding: 0, height: '36px', lineHeight: '36px' }}
-      loading={loading}
+      style={tipStyle}
     >
       {tip}
-    </MyButton>
+    </ButtonAsync>
   </AtInput>
 }
 export default GetVerifyCode;

@@ -1,0 +1,10 @@
+.userinfo-list {
+  .item-icon {
+    font-size: 32px !important;
+    font-weight: 400;
+    width: 4em;
+  }
+  [class~='at-list__item-container'] {
+    line-height: 1;
+  }
+}

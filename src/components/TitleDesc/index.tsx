@@ -1,16 +1,11 @@
 import { View } from "@tarojs/components"
-import { CSSProperties } from "react"
+import classNames from "classnames"
 
+import styles from './index.module.scss'
 
-const style: CSSProperties = {
-  padding: '10px',
-  color: 'rgb(153, 153, 153)',
-  fontSize: '12px',
-}
-
-const TitleDesc: React.FC = (props) => {
-  const { children } = props
-  return <View style={style}>
+const TitleDesc: React.FC<GetIProps<typeof View>> = (props) => {
+  const { children, className, ...resetProps } = props
+  return <View className={classNames(className, styles.container)} {...resetProps} >
     {children}
   </View>
 }

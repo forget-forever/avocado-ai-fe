@@ -17,7 +17,7 @@ export type RouterType = 'switchTab' | 'navigate' | 'reLaunch' | 'redirect'
 export type IRouterMap = {
   my?: never;
   index?: never;
-  chat: { chatCode: string };
+  chat: { shortCode: string };
   bindPhoneNumber?: { needWxBind?: string};
   community?: never;
   signIn?: never;

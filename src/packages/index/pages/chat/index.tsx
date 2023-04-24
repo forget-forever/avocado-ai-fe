@@ -1,11 +1,13 @@
-import { CSSProperties, FC, useMemo, useState } from 'react'
+import { CSSProperties, FC, useMemo, useRef, useState } from 'react'
 import { View, ScrollView, Text, Textarea } from '@tarojs/components'
 import Taro from '@tarojs/taro';
-import { useMemoizedFn } from '@/hooks';
+import { useMemoizedFn, useRouterParams } from '@/hooks';
 import classNames from 'classnames';
 import { PageContainer } from '@/components';
 
 import styles from './index.module.scss'
+import { useRequest } from 'taro-hooks';
+import { getConversationInfoVM } from '@/serves';
 
 
 enum RoleEnum {
@@ -21,11 +23,19 @@ export type Message = {
 };
 
 const Chat: FC = () => {
+  const { current: temp } = useRef<{ conversationId?: string }>({})
 
-  const [messages, setMessages] = useState<Message[]>([
-    { role: RoleEnum.ASSISTANT, content: 'haha' },
-    { role: RoleEnum.USER, content: 'hehe' }
-  ]);
+  const { shortCode } = useRouterParams('chat')
+
+  const { data: messages = [] } = useRequest(async () => {
+    if (!temp.conversationId) {
+      const { conversationId } = await getConversationInfoVM(shortCode)
+      temp.conversationId = conversationId
+    }
+    return []
+  }, {
+    
+  })
 
   const [content, setContent] = useState<{
     value: string;

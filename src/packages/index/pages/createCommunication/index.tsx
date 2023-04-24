@@ -25,7 +25,7 @@ const CreateCommunication: React.FC = () => {
     } else {
       const chatCode = await createConversation(val!)
       navigate('chat', {
-        params: {chatCode}
+        params: {shortCode: chatCode}
       })
     }
   })

@@ -9,6 +9,49 @@ export async function createConversation(
   return request<string>('/api/chat/conversation', { method: 'POST', data })
 }
 
+/**
+ * 获取对话状态
+ * @param coversationId
+ * @returns
+ */
+export function getConversationStatusVM(
+  coversationId: string,
+) {
+  return request<ConversationStatusVM>(
+    '/api/chat/conversation/status/' + coversationId,
+    {},
+  )
+}
+
+/**
+ * 获取对话信息
+ * @param coversationId
+ * @returns
+ */
+export function getConversationInfoVM(
+  coversationId: string,
+) {
+  return request<ConversationInfoVM>(
+    '/api/chat/conversation/' + coversationId,
+    {},
+  )
+}
+
+/**
+ * 获取评论列表
+ * @param query
+ * @param isHideLoading
+ * @returns
+ */
+export function getMessageInfoVMList(
+  query: MessageInfoQuery,
+) {
+  return request<MessageInfoVM[]>(
+    '/api/chat/conversation/message/list',
+    { method:'GET', data: query },
+  )
+}
+
 // /**
 //  * 获取对话信息
 //  * @param coversationId

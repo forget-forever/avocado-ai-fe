@@ -24,7 +24,7 @@ const MessageList: React.FC<{
           {getSourceTypeText(item.sourceType)}
         </Tag>
         <View className={styles.createTime}>
-          <TimeShow value={item.createTime as Date} />
+          <TimeShow value={item.createTime} />
         </View>
       </View>
       <View className={styles.title}>{item.title}</View>

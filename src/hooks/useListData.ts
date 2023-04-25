@@ -3,6 +3,17 @@ import { stopPullDownRefresh, usePullDownRefresh, useReachBottom } from "@tarojs
 import { useRef, useState, useEffect } from "react"
 import useMemoizedFn from "./useMemoizedFn"
 
+type useListDataResType<P, R> = {
+  getNext: () => Promise<void>;
+  getPre: () => Promise<void>;
+  refreshList: () => Promise<void>;
+  setParams: (params: Partial<P>) => void;
+  listData: R[];
+  setListData: React.Dispatch<R[]>;
+  changeRowData: (index: number, row: Partial<R>) => void;
+  loading: boolean;
+}
+
 /**
  * 分页列表的管理
  * @param request 获取数据的请求
@@ -14,12 +25,18 @@ import useMemoizedFn from "./useMemoizedFn"
 const useListData = <P, R>(
   request: (p: P) => Promise<R[]>,
   initParms?: Partial<P>,
-  useLoadingState?: boolean,
-  hideLoadingToast?: boolean,
+  options?: {
+    useLoadingState?: boolean,
+    hideLoadingToast?: boolean,
+    refreshHandle?: (res: useListDataResType<P, R> & {infinite: Infinite<P, R>}) => (() => void) | undefined
+    reachBottomHandle?: (res: useListDataResType<P, R> & {infinite: Infinite<P, R>}) => (() => void) | undefined
+  }
 ) => {
   const [listData, setListData] = useState<R[]>([])
-  const [ loading, setLoading ] = useState(false)
-  const {current: infinite} = useRef(new Infinite(initParms || {}, async (params: P) => {
+  const [loading, setLoading] = useState(false)
+
+  const { useLoadingState, hideLoadingToast, refreshHandle, reachBottomHandle } = options || {}
+  const { current: infinite } = useRef(new Infinite(initParms || {}, async (params: P) => {
     const res = await request(params)
     return {
       list: res
@@ -30,7 +47,7 @@ const useListData = <P, R>(
     }
     if (!hideLoadingToast) {
       if (sig) {
-        showLoading({title: '加载中'})
+        showLoading({ title: '加载中' })
       } else {
         hideLoading()
       }
@@ -55,7 +72,7 @@ const useListData = <P, R>(
   })
 
   /**
-   * 熟悉列表
+   * 刷新列表
    */
   const refreshList = useMemoizedFn(async () => {
     const res = await infinite.refresh()
@@ -76,10 +93,21 @@ const useListData = <P, R>(
     refreshList()
   }, [refreshList])
 
-  usePullDownRefresh(refreshList)
-  useReachBottom(getNext)
+  let res: useListDataResType<P, R> = {
+    getNext,
+    getPre,
+    refreshList,
+    setParams: useMemoizedFn(infinite.setParams.bind(infinite)),
+    listData,
+    setListData,
+    changeRowData,
+    loading
+  }
 
-  return { getNext, getPre, refreshList, setParams: infinite.setParams.bind(infinite), listData, setListData, changeRowData, loading }
+  usePullDownRefresh(refreshHandle?.({...res, infinite}) || refreshList)
+  useReachBottom(reachBottomHandle?.({...res, infinite}) || getNext)
+
+  return res
 }
 
 export default useListData

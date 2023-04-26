@@ -17,7 +17,7 @@ export async function createConversation(
 export function getConversationStatusVM(
   coversationId: string,
 ) {
-  return request<ConversationStatusVM>(
+  return request<API.ConversationStatusVM>(
     '/api/chat/conversation/status/' + coversationId,
     {},
   )
@@ -31,7 +31,7 @@ export function getConversationStatusVM(
 export function getConversationInfoVM(
   coversationId: string,
 ) {
-  return request<ConversationInfoVM>(
+  return request<API.ConversationInfoVM>(
     '/api/chat/conversation/' + coversationId,
     {},
   )
@@ -44,9 +44,9 @@ export function getConversationInfoVM(
  * @returns
  */
 export function getMessageInfoVMList(
-  query: MessageInfoQuery,
+  query: API.MessageInfoQuery,
 ) {
-  return request<MessageInfoVM[]>(
+  return request<API.MessageInfoVM[]>(
     '/api/chat/conversation/message/list',
     { method:'GET', data: query },
   )

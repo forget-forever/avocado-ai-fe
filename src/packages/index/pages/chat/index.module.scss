@@ -1,10 +1,11 @@
 .chat {
   font-size: 24px;
-  height: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding-bottom: 120px;
+  overflow-anchor: auto;
+  // height: 100%;
+  // padding: 10px;
+  // box-sizing: border-box;
+  // overflow: hidden;
+  // padding-bottom: 120px;
 
   .chat-list {
     height: 100%;

@@ -5,7 +5,7 @@ import { serializeParams, setLocalStorage } from '@/utils';
 import { useRouterParams, useStatus }from '@/hooks';
 import { View } from '@tarojs/components';
 import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { CSSProperties, useMemo, Fragment, useLayoutEffect, useRef } from 'react';
+import React, { CSSProperties, useMemo, Fragment, useLayoutEffect, useRef, LegacyRef } from 'react';
 import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
 
@@ -28,9 +28,11 @@ type IProps = NavigateProps & {
   };
   /** 使用自带的容器 */
   useContainer?: boolean;
+  containerRef?: LegacyRef<any>;
+  style?: CSSProperties;
 }
 const PageContainer: React.FC<IProps> = (props) => {
-  const { children, hideNavigate, share, background, className, useContainer, ...resetProps} = props;
+  const { children, hideNavigate, share, background, className, useContainer, containerRef, style, ...resetProps} = props;
   const modal = useRef<Modal>(null);
   
   const system = useStatus()
@@ -93,13 +95,14 @@ const PageContainer: React.FC<IProps> = (props) => {
     overflowY: 'auto',
     fontSize: '16px',
     background: 'var(--defaultBackGround)',
-  }), [hideNavigate, system.customHeight, wholeHeight])
+    ...style
+  }), [hideNavigate, style, system.customHeight, wholeHeight])
 
   return (
     <Fragment>
       <AtMessage />
       {!hideNavigate && <NaviagteBar {...resetProps} />}
-      <View style={useContainer ? undefined : containerStyle} className={className}>
+      <View style={useContainer ? style : containerStyle} className={className} ref={containerRef}>
         {children}
       </View>
       {/* <TabBar></TabBar> */}

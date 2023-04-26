@@ -61,6 +61,7 @@ declare global {
     }
 
     interface MessageInfoVM {
+      Id: number;
       Index: number
       UserName: string
       ConversationId: string
@@ -78,6 +79,11 @@ declare global {
       ErrorCode?: number
       ShowCopy?: boolean
       City: string
+    }
+
+    interface SendMessageVM {
+      ConversationId: string | null
+      Content: string
     }
     
   }

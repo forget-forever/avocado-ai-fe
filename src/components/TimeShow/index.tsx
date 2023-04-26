@@ -39,16 +39,16 @@ const getTimeText = (options: TimeTextType) => {
   return valDayjs.format(showFormat)
 }
 
-const TimeShow: React.FC<TimeTextType> & {
+const TimeShow: React.FC<TimeTextType & GetIProps<typeof Text>> & {
   getTimeText: typeof getTimeText;
 } = (props) => {
-  const { value, valueFormat, showFormat = 'YYYY年MM月DD日 HH:mm' } = props
+  const { value, valueFormat, showFormat = 'YYYY年MM月DD日 HH:mm', ...resetProps } = props
   
   const res = useMemo(() => {
     return getTimeText({ value, valueFormat, showFormat })
   }, [showFormat, value, valueFormat])
 
-  return <Text>{res}</Text>
+  return <Text {...resetProps}>{res}</Text>
 }
 
 TimeShow.getTimeText = getTimeText

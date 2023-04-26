@@ -3,11 +3,14 @@ import { AtMessage } from 'taro-ui';
 import { actions, store } from '@/store';
 import { serializeParams, setLocalStorage } from '@/utils';
 import { useRouterParams, useStatus }from '@/hooks';
-import { View } from '@tarojs/components';
+import { ScrollView } from '@tarojs/components';
 import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import React, { CSSProperties, useMemo, Fragment, useLayoutEffect, useRef, LegacyRef } from 'react';
+import classNames from 'classnames';
 import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
+import styels from './index.module.scss';
+
 
 
 // import TabBar from '../TabBar';
@@ -30,9 +33,16 @@ type IProps = NavigateProps & {
   useContainer?: boolean;
   containerRef?: LegacyRef<any>;
   style?: CSSProperties;
+  /**
+   * 高度修正值，容器会减去这个高度
+   * @default 0
+  */
+  heightCheck?: number | ((val: number) => number);
+  /** 滚动位置 */
+  scrollTop?: number;
 }
 const PageContainer: React.FC<IProps> = (props) => {
-  const { children, hideNavigate, share, background, className, useContainer, containerRef, style, ...resetProps} = props;
+  const { children, hideNavigate, share, background, className, useContainer, containerRef, scrollTop, heightCheck = 0, style, ...resetProps} = props;
   const modal = useRef<Modal>(null);
   
   const system = useStatus()
@@ -88,23 +98,38 @@ const PageContainer: React.FC<IProps> = (props) => {
 
   const wholeHeight = system.windowHeight - statusHeigit
 
-  const containerStyle = useMemo<CSSProperties>(() => ({
-    height: hideNavigate ? `${wholeHeight}px` : `${wholeHeight - (hideNavigate ? 0 : system.customHeight)}px`,
-    width: '100vw',
-    overflowX: 'hidden',
-    overflowY: 'auto',
-    fontSize: '16px',
-    background: 'var(--defaultBackGround)',
-    ...style
-  }), [hideNavigate, style, system.customHeight, wholeHeight])
+
+  const containerStyle = useMemo<CSSProperties>(() => {
+    const heightCheckFn = (val: number) => {
+      if (typeof heightCheck === 'function') {
+        return heightCheck(val)
+      }
+      return heightCheck
+    }
+    const resHeight = hideNavigate ? wholeHeight : (wholeHeight - (hideNavigate ? 0 : system.customHeight))
+    return {
+      height: `${resHeight - heightCheckFn(resHeight)}px`,
+      width: '100vw',
+      overflowX: 'hidden',
+      background: 'var(--defaultBackGround)',
+      ...style
+    }
+  }, [heightCheck, hideNavigate, style, system.customHeight, wholeHeight])
 
   return (
     <Fragment>
       <AtMessage />
       {!hideNavigate && <NaviagteBar {...resetProps} />}
-      <View style={useContainer ? style : containerStyle} className={className} ref={containerRef}>
+      <ScrollView
+        scrollY
+        style={useContainer ? style : containerStyle}
+        className={classNames(className, styels.container)}
+        ref={containerRef}
+        scrollTop={scrollTop}
+        scrollWithAnimation
+      >
         {children}
-      </View>
+      </ScrollView>
       {/* <TabBar></TabBar> */}
       <Modal ref={modal} />
     </Fragment>

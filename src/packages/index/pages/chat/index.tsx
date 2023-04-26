@@ -3,10 +3,9 @@ import { View, Text, Textarea, Image } from '@tarojs/components'
 import Taro, { pageScrollTo } from '@tarojs/taro';
 import { useData, useMemoizedFn, useRouterParams } from '@/hooks';
 import classNames from 'classnames';
-import { PageContainer, TimeShow } from '@/components';
+import { ButtonAsync, PageContainer, TimeShow } from '@/components';
 import { getConversationInfoVM, getMessageInfoVMList, sendMessage } from '@/serves';
 import { useRequest } from 'taro-hooks';
-import { hideLoading, showLoading } from '@/utils';
 import { AtAvatar } from 'taro-ui';
 
 import styles from './index.module.scss'
@@ -140,19 +139,13 @@ const Chat: FC = () => {
       .boundingClientRect();
     query.exec((res) => {
       const newTop = +res?.[0]?.height || 0
-      setScrollTop(newTop === scrollTop ? newTop - 0.1 : newTop)
+      setScrollTop(newTop === scrollTop ? newTop + 1 : newTop)
     })
 
   })
 
   const handleSendClick = useMemoizedFn(async () => {
-    showLoading({title: '发送中', mask: true})
-    try {
-      await sendMessage({ conversationId: temp.conversationId!, content: content.value })
-    }finally {
-      hideLoading()
-    }
-    
+    await sendMessage({ conversationId: temp.conversationId!, content: content.value })
   })
 
   const handleConfirm = useMemoizedFn((e) => {
@@ -177,27 +170,24 @@ const Chat: FC = () => {
   return (<PageContainer heightCheck={content.height + 50} scrollTop={scrollTop}>
     <View className={styles.chat}>
       {
-        messages.map((message, index) => {
-          if (!message.isChatGpt) {
-            return <Fragment key={message.id}>
-              <View>ChatGpt <TimeShow className='text-gray' /></View>
-              <View className={classNames(styles.chatListItemRight, styles.chatListItem)}>
-                <Text selectable className={classNames(styles.chatListItemRightText, styles.chatListItemText)}>
+        messages.map((message) => {
+          const classContainer = message.isChatGpt ? styles.chatListItemLeft : styles.chatListItemRight
+          const avatarNode = <AtAvatar
+            circle
+            image={message.header || 'https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/ChatGPT/chatgpt.png?x-oss-process=style/jmms'}
+          />
+          return (
+            <View key={message.id} className={classNames(classContainer, styles.chatListItem)}>
+              {message.isChatGpt && avatarNode}
+              <View>
+                <TimeShow value={message.createTime} className={classNames('text-gray', styles.title)} directFormat='YYYY-MM-DD HH:mm' />
+                <View className={classNames(styles.itemText, styles.chatListItemText)}>
                   {message.content}
-                </Text>
-                <AtAvatar circle image={message.header} />
+                </View>
               </View>
-            </Fragment>
-          } else {
-            return (
-              <View key={index} className={classNames(styles.chatListItemLeft, styles.chatListItem)}>
-                <AtAvatar circle image='https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/ChatGPT/chatgpt.png?x-oss-process=style/jmms' />
-                <Text selectable className={classNames(styles.chatListItemLeftText, styles.chatListItemText)}>
-                  {message.content}
-                </Text>
-              </View>
-            )
-          }
+              {!message.isChatGpt && avatarNode}
+            </View>
+          )
         })
       }
     </View>
@@ -214,7 +204,9 @@ const Chat: FC = () => {
         adjustPosition={false}
       />
       {
-        content.value?.trim() && <View className={styles.chatBottomBtn} onClick={handleSendClick}>发送</View>
+        content.value?.trim() && <ButtonAsync type='primary' className={styles.chatBottomBtn} onClick={handleSendClick}>
+          发送
+        </ButtonAsync>
       }
     </View>
   </PageContainer>)

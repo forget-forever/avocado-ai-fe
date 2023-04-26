@@ -1,10 +1,6 @@
 .chat {
   font-size: 24px;
   overflow-anchor: auto;
-  // height: 100%;
-  // box-sizing: border-box;
-  // overflow: hidden;
-  // padding-bottom: 120px;
 
 
   .chat-list-item {
@@ -12,17 +8,8 @@
     padding: 0 16px;
     display: flex;
     margin-bottom: 25px;
-    &-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: cornflowerblue;
-      color: #fff;
-      line-height: 70px;
-      text-align: center;
-    }
     &-text {
-      background-color: cornflowerblue;
+      background-color: var(--defaultButtonFillColor);
       color: #fff;
       max-width: 550px;
       padding: 18px 20px;
@@ -31,16 +18,20 @@
     }
     &-right {
       justify-content: flex-end;
-      &-text {
+      .title {
+        text-align: end;
+        margin-right: 16px;
+      }
+      .item-text {
         margin-right: 20px;
       }
     }
     &-left {
       justify-content: flex-start;
-      &-avatar {
-        background-color: gray;
+      .title {
+        margin-left: 16px;
       }
-      &-text {
+      .item-text {
         margin-left: 20px;
         background-color: gray;
       }
@@ -84,10 +75,10 @@
     width: 120px;
     text-align: center;
     border-radius: 10px;
-    background-color: cornflowerblue;
-    color: #fff;
-    height: 60px;
     font-size: 28px;
+    height: 60px;
     line-height: 60px;
+    margin-bottom: 4px;
+    padding: 0;
   }
 }

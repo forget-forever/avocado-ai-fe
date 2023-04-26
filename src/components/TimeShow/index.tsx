@@ -6,11 +6,17 @@ type TimeTextType = {
   value?: dayjs.Dayjs | string | number | Date;
   valueFormat?: string;
   showFormat?: string;
+  /** 直接转成的格式，不走与现在时间的判断 */
+  directFormat?: string;
 }
 
 const getTimeText = (options: TimeTextType) => {
-  const { value, valueFormat, showFormat } = options
+  const { value, valueFormat, showFormat = 'YYYY年MM月DD日 HH:mm', directFormat } = options
   const valDayjs = dayjs(value, valueFormat)
+  if (directFormat) {
+    return valDayjs.format(directFormat)
+  }
+
   const now = +dayjs().unix()
   const sym = (+valDayjs.unix() - now > 0) ? '后' : '前'
   const abs = Math.abs(+valDayjs.unix() - now)
@@ -42,11 +48,11 @@ const getTimeText = (options: TimeTextType) => {
 const TimeShow: React.FC<TimeTextType & GetIProps<typeof Text>> & {
   getTimeText: typeof getTimeText;
 } = (props) => {
-  const { value, valueFormat, showFormat = 'YYYY年MM月DD日 HH:mm', ...resetProps } = props
+  const { value, valueFormat, showFormat, directFormat, ...resetProps } = props
   
   const res = useMemo(() => {
-    return getTimeText({ value, valueFormat, showFormat })
-  }, [showFormat, value, valueFormat])
+    return getTimeText({ value, valueFormat, showFormat, directFormat })
+  }, [directFormat, showFormat, value, valueFormat])
 
   return <Text {...resetProps}>{res}</Text>
 }

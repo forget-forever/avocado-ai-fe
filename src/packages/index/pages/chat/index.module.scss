@@ -16,11 +16,14 @@
       box-sizing: border-box;
       border-radius: 10px;
     }
+    .title {
+      padding: 0 20px;
+      display: block;
+    }
     &-right {
       justify-content: flex-end;
       .title {
         text-align: end;
-        margin-right: 16px;
       }
       .item-text {
         margin-right: 20px;
@@ -28,9 +31,6 @@
     }
     &-left {
       justify-content: flex-start;
-      .title {
-        margin-left: 16px;
-      }
       .item-text {
         margin-left: 20px;
         background-color: gray;

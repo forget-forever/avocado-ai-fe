@@ -101,32 +101,14 @@ const Chat: FC = () => {
     }
   ]
 
-  // const { listData: messages } = useListData(async (params: Parameters<typeof getMessageInfoVMList>[0]) => {
-  //   if (!temp.conversationId) {
-  //     const { conversationId } = await getConversationInfoVM(shortCode)
-  //     temp.conversationId = conversationId
-  //   }
-  //   const res = await getMessageInfoVMList({
-  //     ...params,
-  //     UserName: userName!,
-  //     ConversationId: temp.conversationId!,
-  //   })
-  //   return res
-  // }, {}, {
-  //   refreshHandle: ({ setListData, listData, infinite }) => {
-  //     return async () => {
-  //       const res = infinite.next()
-
-  //     }
-  //   }
-  // })
-
   const [content, setContent] = useState<{
     value: string;
-    height: number
+    height: number;
+    inputting: boolean
   }>({
     value: '',
-    height: 0
+    height: 0,
+    inputting: false
   });
 
   const [scrollTop, setScrollTop] = useState(0);
@@ -141,7 +123,6 @@ const Chat: FC = () => {
       const newTop = +res?.[0]?.height || 0
       setScrollTop(newTop === scrollTop ? newTop + 1 : newTop)
     })
-
   })
 
   const handleSendClick = useMemoizedFn(async () => {
@@ -153,11 +134,11 @@ const Chat: FC = () => {
   })
 
   const handleBlur = useMemoizedFn(() => {
-    setContent({...content, height: 0});
+    setContent({...content, height: 0, inputting: false });
   })
 
   const handleFocus = useMemoizedFn((e) => {
-    setContent({...content, height: +e?.detail?.height || 0});
+    setContent({...content, height: +e?.detail?.height || 0, inputting: true });
     handleScrollBottom();
   });
 

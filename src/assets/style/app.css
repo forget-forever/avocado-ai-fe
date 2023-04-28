@@ -500,6 +500,10 @@
   margin-top: 32px;
 }
 
+.padding {
+  padding: 16px;
+}
+
 .width-100 {
   width: 100%;
 }

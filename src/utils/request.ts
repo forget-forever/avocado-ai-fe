@@ -67,13 +67,15 @@ type IOptions = {
   method?: keyof Taro.request.method;
   data?: IValue;
   header?: any;
-  paramsToBigCamel?: boolean
+  paramsToBigCamel?: boolean;
+  /** 成功的时候要不要弹toast显示 */
+  showMsg?: boolean;
 }
 /**
  * 对接口的返回值进行二次的封装
  * */
 export const request = async <T extends IValue = any, E = {}>(url: string, options: IOptions = {}) => {
-  const { paramsToBigCamel = true, data: params } = options;
+  const { paramsToBigCamel = true, data: params, showMsg } = options;
   let requestUrl = url.trim();
   if (!/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-\(\)]*[\w@?^=%&/~+#-\(\)])?$/.test(requestUrl)) {
     requestUrl = `${rootUrl}${requestUrl}`
@@ -97,6 +99,9 @@ export const request = async <T extends IValue = any, E = {}>(url: string, optio
     const resData = toSmallCamel(data);
     if(+statusCode <= 300 || +statusCode === 304) {
       if (resData.isSuccess || +resData.code === 0) {
+        if (showMsg && resData.message && resData.message !== '获取成功') {
+          showMaskToast(resData.message.toString() || '')
+        }
         return resData.result
       } else {
         return errorHandlerSelf(resData)

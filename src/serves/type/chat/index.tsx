@@ -1,4 +1,4 @@
-import { ConversationType } from "@/utils/enum";
+import { ConversationStatus, ConversationType } from "@/utils/enum";
 
 declare global {
   namespace API {
@@ -10,7 +10,7 @@ declare global {
 
     interface ConversationStatusVM {
       ConversationId: string
-      Status: number
+      Status: ConversationStatus
       CheckStatus: number
       UpdateTime: Date
     }
@@ -19,7 +19,7 @@ declare global {
       ConversationId: string
       Title: string
       ConversationType: number
-      Status: number
+      Status: ConversationStatus
       CreateTime: Date
       UpdateTime: Date
       MaxTokenCount: number

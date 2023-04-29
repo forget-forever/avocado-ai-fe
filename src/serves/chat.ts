@@ -60,6 +60,6 @@ export function getMessageInfoVMList(
 export function sendMessage(model: ISmallCamel<API.SendMessageVM>) {
   return request<API.MessageInfoVM>(
     '/api/chat/conversation/message',
-    { data: model, method: 'POST' },
+    { data: model, method: 'POST', showMsg: true },
   )
 }

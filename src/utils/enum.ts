@@ -7,14 +7,14 @@ export enum GenderEnum {
   secret
 }
 export enum PlatformType {
+  /** 网页 */
+  Website = 0,
   /** 微信小程序 */
   WxMiniProgram = 1,
   /** QQ小程序 */
   QQMiniProgram,
   /** 微信公众号 */
   WxPublicAccount,
-  /** 网页 */
-  Website,
   /** 安卓app */
   AndroidApp,
   /** Ios App */

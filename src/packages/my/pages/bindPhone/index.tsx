@@ -1,24 +1,22 @@
-import { ButtonAsync, GetPhone, PageContainer } from '@/components';
-import { View, Text } from '@tarojs/components';
+import { ButtonAsync, PageContainer } from '@/components';
 import React, { useMemo, useState } from 'react';
 import { AtForm, AtInput } from 'taro-ui';
 import classNames from 'classnames';
-import { useData, useMemoizedFn, useRouterParams } from '@/hooks';
+import { useMemoizedFn } from '@/hooks';
 import { bindwxProgramByPhone } from '@/serves/user';
 import { showMaskToast, initLogin, showLoading, hideLoading } from '@/utils';
 import { navigateBack } from '@/router';
-import { actions } from '@/store';
 import { to } from 'await-to-js';
 import GetVerifyCode from './components/GetVerifyCode';
 import { canSubmit } from './util';
 import styles from './index.module.scss';
 
 const BindPhone: React.FC = () => {
-  const { openId } = useData((state) => state.common)
+  // const { openId } = useData((state) => state.common)
   const [ msg, setMsg ] = useState<API.VerifyCodeBindParams>({
     phone: '',
     smsCode: '',
-    openId: openId!
+    // openId: openId!
   });
   const isOk = useMemo(() => canSubmit(msg), [msg]);
 

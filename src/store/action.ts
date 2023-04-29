@@ -6,11 +6,12 @@ import { setState } from "."
 let ModalInstance: undefined | ((msg?: GlobalState['global']['modalMsg']) => void )
 
 export const actions = {
-  setToken: ( msg: {openId: string, token: string}) => {
-    const { openId, token } = msg;
+  setToken: async ( msg: {token: string}) => {
+    const {token } = msg;
     const tokenData = { val: token, time: +dayjs().unix() };
-    setLocalStorage('info', {openId, token: tokenData});
-    // await delay(100)
+    setLocalStorage('info', { token: tokenData });
+    await delay(100)
+    await actions.getUserInfo()
   },
   setOpenModalFunc: (cb: typeof ModalInstance) => {
     ModalInstance = cb

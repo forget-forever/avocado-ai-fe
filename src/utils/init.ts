@@ -1,15 +1,16 @@
 import { login } from '@tarojs/taro'
 import { loginServe } from '@/serves/common';
 import { actions } from '@/store';
+import { getLocalStorage } from '@/utils'
+import { PlatformType } from './enum';
 // import { showModal } from '@/components/Modal/options';
 
 export const initLogin = async () => {
   const loginMsg = await login();
+  const inviteCode = getLocalStorage('inviteCode') || undefined
   try {
-    const res = await loginServe({code: loginMsg.code});
-    const { openId, token } = res;
-    actions.setToken({ openId, token});
-    // res.data.
+    const res = await loginServe({code: loginMsg.code, platformType: PlatformType.WxMiniProgram, referCode: inviteCode});
+    actions.setToken({ token: res });
   } catch (err) {
     console.error('登录失败了', err)
   }

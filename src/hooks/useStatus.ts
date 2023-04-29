@@ -37,8 +37,13 @@ const system = {
   screenHeight: screenHeightCnf,
   /** navigate的高度 */
   customHeight: +getCustomHeight() || 48,
-  /** 可使用的区域大小 */
-  windowHeight
+   /** 可使用的区域大小 */
+  windowHeight,
+  /** 获取可使用的区域大小 */
+  getWindowHeight: () => {
+    const { windowHeight } = getSystemInfoSync()
+    return windowHeight
+  }
 }
 return system
 }

@@ -1,11 +1,11 @@
 import { IPageList } from '@/router/routerMap';
 import { AtMessage } from 'taro-ui';
 import { actions, store } from '@/store';
-import { serializeParams, setLocalStorage } from '@/utils';
-import { useRouterParams, useStatus }from '@/hooks';
+import { serializeParams } from '@/utils';
+import { useStatus }from '@/hooks';
 import { ScrollView } from '@tarojs/components';
 import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
-import React, { CSSProperties, useMemo, Fragment, useLayoutEffect, useRef, LegacyRef } from 'react';
+import React, { CSSProperties, useMemo, Fragment, useRef, LegacyRef } from 'react';
 import classNames from 'classnames';
 import Modal from '../Modal';
 import NaviagteBar, { NavigateProps } from '../NavigateBar';
@@ -40,18 +40,27 @@ type IProps = NavigateProps & {
   heightCheck?: number | ((val: number) => number);
   /** 滚动位置 */
   scrollTop?: number;
+  /** 额外的根节点 */
+  rootNode?: React.ReactNode;
 }
 const PageContainer: React.FC<IProps> = (props) => {
-  const { children, hideNavigate, share, background, className, useContainer, containerRef, scrollTop, heightCheck = 0, style, ...resetProps} = props;
+  const {
+    children,
+    hideNavigate,
+    share,
+    background,
+    className,
+    useContainer,
+    containerRef,
+    scrollTop,
+    heightCheck = 0,
+    style,
+    rootNode,
+    ...resetProps
+  } = props;
   const modal = useRef<Modal>(null);
   
   const system = useStatus()
-
-  const { inviteCode } = useRouterParams('index');
-
-  useLayoutEffect(() => {
-    setLocalStorage('inviteCode', inviteCode)
-  }, [inviteCode])
 
   useDidShow(() => {
     actions.setOpenModalFunc(async (modalMsg?: GlobalState['global']['modalMsg']) => {
@@ -96,8 +105,7 @@ const PageContainer: React.FC<IProps> = (props) => {
     statusHeigit = 60
   }
 
-  const wholeHeight = system.windowHeight - statusHeigit
-
+  const wholeHeight = system.getWindowHeight() - statusHeigit
 
   const containerStyle = useMemo<CSSProperties>(() => {
     const heightCheckFn = (val: number) => {
@@ -120,13 +128,13 @@ const PageContainer: React.FC<IProps> = (props) => {
     <Fragment>
       <AtMessage />
       {!hideNavigate && <NaviagteBar {...resetProps} />}
+      {rootNode}
       <ScrollView
         scrollY
         style={useContainer ? style : containerStyle}
         className={classNames(className, styels.container)}
         ref={containerRef}
         scrollTop={scrollTop}
-        scrollWithAnimation
       >
         {children}
       </ScrollView>

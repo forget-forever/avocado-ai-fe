@@ -34,13 +34,14 @@ declare global {
     };
     
     type ILoginParams = {
-      code: string
+       /** 登陆code */
+       Code: string
+       /** 邀请码 */
+       ReferCode?: string
+       /** 平台 */
+       PlatformType: number
     }
-    type ILoginRes = {
-      Token: string;
-      UserInfo: UserInfo;
-      OpenId: string;
-    }
+    type ILoginRes = string;
     type BindPhoneParams = {
       rawData: {
         encryptedData: string;

@@ -30,7 +30,7 @@ const getTimeText = (options: TimeTextType) => {
     return `${abs}秒${sym}`
   }
   if (abs < 60 * 60) {
-    return `${(abs / 60).toFixed(0)}分${sym}`
+    return `${(abs / 60).toFixed(0)}分钟${sym}`
   }
   if (abs < 60 * 60 * 24) {
     return `${(abs / 60 / 60).toFixed(0)}小时${sym}`

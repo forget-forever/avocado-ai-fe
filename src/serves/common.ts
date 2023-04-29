@@ -1,15 +1,14 @@
 import { request } from "@/utils";
 
-export const loginServe = (params: API.ILoginParams) => request<API.ILoginRes>('/User/Account/WxMiniProgramLogin', {
+export const loginServe = (params: ISmallCamel< API.ILoginParams>) => request<API.ILoginRes>('/api/user/wxMini/login', {
   data: params,
-  paramsToBigCamel: false
+  method: 'POST'
 })
 
 export const bindWxPhone = (params: API.BindPhoneParams) => {
   return request<{}, {result: API.BindPhoneRes}>('/User/Account/BindWxMiniProgram', {
     method: 'POST',
     data: params,
-    paramsToBigCamel: false,
   })
 }
 

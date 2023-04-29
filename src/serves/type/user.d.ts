@@ -5,12 +5,12 @@ declare global {
     type SendVerifyCodeParams = {
       phone: string;
       userType: SmsCodeUseType;
-      openId: string;
+      // openId: string;
     }
     type VerifyCodeBindParams = {
       phone: string,
       smsCode: string,
-      openId: string
+      // openId: string
     }
 
     type SignVM = {

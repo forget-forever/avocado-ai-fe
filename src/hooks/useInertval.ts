@@ -18,11 +18,11 @@ const useInertval = (fn: () => ResType | Promise<ResType>, delay?: number) => {
     }
   }, []);
 
-  const timerCallback = useMemoizedFn(async() => {
+  const timerCallback = useMemoizedFn(async(d?: number) => {
     clear()
     const res = await fn()
     if (res || res === 0 || res === undefined) {
-      const delayNext = typeof res === 'number' ? res : delay
+      const delayNext = typeof res === 'number' ? res : (d || delay)
       timerRef.current = setTimeout(timerCallback, delayNext)
     }
   });
@@ -33,6 +33,7 @@ const useInertval = (fn: () => ResType | Promise<ResType>, delay?: number) => {
     }
     timerRef.current = setTimeout(timerCallback, delay);
     return clear;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { clear, runContinue: timerCallback }

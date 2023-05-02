@@ -1,0 +1,18 @@
+.textarea {
+  padding: 0;
+  border: none;
+  [class~='at-textarea__counter'] {
+    display: none;
+  }
+}
+.text-cage {
+  color: var(--defaultButtonFillColor);
+  margin: 0 12px 0 auto;
+  float: right;
+}
+
+.keywords-tag {
+  padding: 8px 12px;
+  margin: 12px;
+
+}

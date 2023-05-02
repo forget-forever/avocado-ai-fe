@@ -616,3 +616,7 @@ input, textarea{
 .justify-content {
     justify-content: center;
 }
+
+.circle {
+  border: 50%;
+}

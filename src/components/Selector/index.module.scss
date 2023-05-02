@@ -1,0 +1,16 @@
+.tag-item {
+  padding: 8px 16px;
+  margin: 12px 0 0 12px;
+  display: inline-block;
+  border: 1px solid var(--defaultButtonFillColor);
+  border-radius: 3px;
+}
+
+.tag-item-selected {
+  color: var(--defaultFillColor);
+  background-color: var(--defaultButtonFillColor);;
+}
+
+.tag-item-disabled {
+  opacity: .6;
+}

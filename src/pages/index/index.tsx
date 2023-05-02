@@ -1,17 +1,17 @@
 import { Card, PageContainer } from '@/components';
 import { getOssUrl } from '@/utils';
-import {useData} from '@/hooks'
 import React, { useEffect } from 'react'
 import { AtList, AtListItem } from 'taro-ui';
 import { navigate } from '@/router';
+
 import style from './index.module.scss'
 
 const Index: React.FC = () => {
-  const token =  useData((state) => state.common.token);
+  // const token =  useData((state) => state.common.token);
 
 
-  useEffect(() => {
-  }, [])
+  // useEffect(() => {
+  // }, [])
   
   return (
     <PageContainer hideBack>
@@ -35,6 +35,7 @@ const Index: React.FC = () => {
             arrow='right'
             thumb='https://avocado-ai.oss-cn-shenzhen.aliyuncs.com/Images/icon/rmbg.png'
             hasBorder={false}
+            onClick={() => navigate('draw')}
           />
         </AtList>
       </Card>

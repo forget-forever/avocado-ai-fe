@@ -1,0 +1,31 @@
+.grid-height {
+  max-height: 60vh;
+  height: 720px;
+} 
+
+.grid-height-col[class~='at-col'] {
+  white-space: inherit;
+}
+
+.model-item {
+  height: 72px;
+  line-height: 72px;
+  border-bottom: 1px solid var(--defaultBackGround);
+  text-align: center;
+}
+.model-item-selected {
+  color: var(--defaultButtonFillColor);
+}
+
+.sample-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.sample-item-avatar {
+  height: 36px;
+  width: 36px;
+  margin-right: 12px;
+  display: inline-block;
+}

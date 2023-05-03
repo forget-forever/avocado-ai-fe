@@ -21,7 +21,7 @@ const TipInput: React.FC<{
     <ListItem
       describe={<>
         <Text className='iconfont icon-fanyi-full text-xl' />
-        <Text className='text-sm'>中文将被谷歌AI翻译成英文，推荐直接使用英文描述！</Text>
+        <Text className='text-xs'>中文将被谷歌AI翻译成英文，推荐直接使用英文描述！</Text>
         {describeExtra}
       </>}
       arrowIcon=''

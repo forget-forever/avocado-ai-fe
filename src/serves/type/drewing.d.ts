@@ -193,6 +193,24 @@ declare namespace API {
     UsedCount: number
   }>
 
+  type RatioItemType = ISmallCamel<{
+    Id: number
+    Label: string
+    ModelId: string
+    PropertyId: string
+    RatioId: string
+  }>
+
+  type PropertiesType = ISmallCamel<{
+    Id: number
+    Label: string
+    MaxImageCount: number
+    PropertyId: string
+    RatioList: RatioItemType[]
+    Resize: number
+    StepCost: number
+  }>
+
   interface DrawingParamsVM {
     Artists: string[]
     Styles: string[]
@@ -200,7 +218,8 @@ declare namespace API {
     Models: DrawingModelInfoVM[]
     ResizeModes: string[]
     TagCategories: string[]
-    NegativeTagCategories: string[]
+    NegativeTagCategories: string[];
+    Properties: PropertiesType[]
   }
 
   type CreateDrawingVM = ISmallCamel<{

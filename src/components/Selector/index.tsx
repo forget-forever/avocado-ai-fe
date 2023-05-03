@@ -15,9 +15,15 @@ const Selector = <V extends VType, M extends MType = 'select'>(props: {
   value?: ValueType<M, V>
   onChange?: (val?: ValueType<M, V>) => void;
   options?: OptionsType<V>[]
+  /** 是否开启级联 */
   cascader?: boolean;
+  /** 
+   * 切换tab的时候清除value
+   * @default 单选的时候为true
+   */
+  clearName?: boolean;
 }) => {
-  const { children, disabled, mode, value, onChange, cascader, options } = props
+  const { children, disabled, mode = 'select' as M, value, onChange, cascader, options, clearName } = props
   const [ floatOpen, { setFalse: closeFloat, setTrue: openFloat } ] = useBoolean()
 
   const clickHandle = useMemoizedFn(() => {
@@ -29,14 +35,25 @@ const Selector = <V extends VType, M extends MType = 'select'>(props: {
     onClick: clickHandle
   })
 
-  const { selectName, setCurSelectTab } = useSelect(options, value)
+  const { selectName, setCurSelectTab, selected } = useSelect(options, value)
+
+  const changeSelectName = useMemoizedFn((val?: V) => {
+    let clearRes = clearName
+    if (clearName === undefined && mode === 'select' ) {
+      clearRes = true
+    }
+    if (clearRes) {
+      onChange?.(undefined)
+    }
+    setCurSelectTab(val)
+  })
   
   return <>
     {childRes}
     <AtFloatLayout isOpened={floatOpen} onClose={closeFloat} title='请选择'>
       {
-        cascader ? <ColumnView rowKey='value' nameKey='label' tabs={options} value={selectName} onChange={setCurSelectTab} >
-          <TagList value={value} onChange={onChange}  disabled={disabled} />
+        cascader ? <ColumnView rowKey='value' nameKey='label' tabs={options} value={selectName} onChange={changeSelectName} >
+          <TagList value={value} onChange={onChange} mode={mode} disabled={disabled} options={selected?.children} />
         </ColumnView> : <TagList value={value} onChange={onChange} mode={mode} disabled={disabled} options={options} />
       }
     </AtFloatLayout>

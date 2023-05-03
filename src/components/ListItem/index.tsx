@@ -5,6 +5,9 @@ import { CSSProperties } from 'react'
 const iconStyle: CSSProperties = {
   fontSize: '24px'
 }
+const noLeft: CSSProperties = {
+  marginRight: 0,
+}
 
 const ListItem: React.FC<{
   arrowIcon?: string;
@@ -30,7 +33,7 @@ const ListItem: React.FC<{
         {iconNode}
       </Text>
     </View>}
-    <View className='at-list__item-content item-content'>
+    <View className='at-list__item-content item-content' style={arrowIcon ? undefined : noLeft}>
       <View className='item-content__info'>
         <View className='item-content__info-title'>
           {children}

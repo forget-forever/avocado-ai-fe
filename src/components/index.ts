@@ -6,6 +6,7 @@ import Empty from './Empty';
 import ListItem from './ListItem';
 import ListTitle from './ListTitle';
 import Logo from './Logo';
+import RatioView from './RatioView';
 import Selector from './Selector';
 import Tag from './Tag';
 import TimeShow from './TimeShow';
@@ -35,4 +36,6 @@ export {
   ColumnView,
   Selector,
   Empty,
+  RatioView,
+  
 }

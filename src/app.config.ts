@@ -33,7 +33,8 @@ export default {
       root: 'packages/index',
       pages: [
         'pages/chat/index',
-        'pages/createCommunication/index'
+        'pages/createCommunication/index',
+        'pages/draw/index',
       ]
     },
     {

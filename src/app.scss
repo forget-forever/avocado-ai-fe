@@ -1,4 +1,4 @@
-$color-brand: rgb(255, 255, 255);
+$color-brand: #0081ff;
 @import '~taro-ui/dist/style/components/indexes.scss';
 @import '~taro-ui/dist/style/components/list.scss';
 @import '~taro-ui/dist/style/components/icon.scss';
@@ -18,6 +18,13 @@ $color-brand: rgb(255, 255, 255);
 @import "~taro-ui/dist/style/components/textarea.scss";
 @import "~taro-ui/dist/style/components/form.scss";
 @import "~taro-ui/dist/style/components/divider.scss";
+@import "~taro-ui/dist/style/components/float-layout.scss";
+@import "~taro-ui/dist/style/components/flex.scss";
+@import "~taro-ui/dist/style/components/load-more.scss";
+@import "~taro-ui/dist/style/components/activity-indicator.scss";
+@import "~taro-ui/dist/style/components/radio.scss";
+@import "~taro-ui/dist/style/components/input-number.scss";
+@import "~taro-ui/dist/style/components/slider.scss";
 @import './utils/sass/iconfonts.css';
 
 
@@ -31,7 +38,7 @@ page, html {
   --defaultFillColor: rgb(255, 255, 255);
   --defaultColor: #333;
   --secondaryTextColor: #666;
-  --defaultButtonFillColor: var(--blue);
+  --defaultButtonFillColor: $color-brand;
   --red: #e54d42;
   --orange: #f37b1d;
   --yellow: #fbbd08;
@@ -89,7 +96,7 @@ button[loading][type=primary], taro-button-core[loading][type=primary] {
 }
 
 .at-nav-bar__left-view {
-  background-color: $color-brand !important;
+  background-color: transparent;
   color: var(--defaultColor);
 }
 .at-modal__content {

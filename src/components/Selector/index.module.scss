@@ -2,11 +2,11 @@
   padding: 8px 16px;
   margin: 12px 0 0 12px;
   display: inline-block;
-  border: 1px solid var(--defaultButtonFillColor);
+  background-color: rgba(128, 128, 128, 0.2);
   border-radius: 3px;
 }
 
-.tag-item-selected {
+.tag-item.tag-item-selected {
   color: var(--defaultFillColor);
   background-color: var(--defaultButtonFillColor);;
 }

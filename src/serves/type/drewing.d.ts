@@ -250,7 +250,9 @@ declare namespace API {
     /// <summary>
     /// 图片比例，默认1
     /// </summary>
-    Ratio?: number
+    RatioId?: string;
+    
+    PropertyId: string;
     /// <summary>
     /// 生成图片质量
     /// </summary>
@@ -290,5 +292,7 @@ declare namespace API {
     //是否发布到话题
     IsPublic?: boolean;
     NegativePrompt?: string;
+    /** 种子 */
+    Seed: number;
   }>
 }

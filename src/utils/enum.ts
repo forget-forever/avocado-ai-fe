@@ -158,3 +158,14 @@ export const enum ConversationStatus {
   /** 执行失败 */
   RunningFailed = 5,
 }
+
+export const RestroreFacesOptions = [
+  {
+    label: '默认',
+    value: 0,
+  },
+  {
+    label: '细致化脸部',
+    value: 1,
+  },
+]

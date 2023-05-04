@@ -1,5 +1,5 @@
 import { IPageList } from '@/router/routerMap';
-import { AtMessage } from 'taro-ui';
+import { AtMessage, AtNoticebar } from 'taro-ui';
 import { actions, store } from '@/store';
 import { serializeParams } from '@/utils';
 import { useStatus }from '@/hooks';
@@ -42,6 +42,7 @@ type IProps = NavigateProps & {
   scrollTop?: number;
   /** 额外的根节点 */
   rootNode?: React.ReactNode;
+  notice?: React.ReactNode;
 }
 const PageContainer: React.FC<IProps> = (props) => {
   const {
@@ -56,6 +57,7 @@ const PageContainer: React.FC<IProps> = (props) => {
     heightCheck = 0,
     style,
     rootNode,
+    notice,
     ...resetProps
   } = props;
   const modal = useRef<Modal>(null);
@@ -136,6 +138,9 @@ const PageContainer: React.FC<IProps> = (props) => {
         ref={containerRef}
         scrollTop={scrollTop}
       >
+        {notice && <AtNoticebar icon='volume-plus' marquee className='sticky'>
+          {notice}
+        </AtNoticebar>}
         {children}
       </ScrollView>
       {/* <TabBar></TabBar> */}

@@ -30,10 +30,10 @@ const Index: React.FC = () => {
           />
           <AtListItem
             className={style.listItem}
-            title='AI抠图'
-            note='一键去除背景，AI智能抠图，抠出人物，物品，服装等内容。'
+            title='AI绘图'
+            note='描述一幅画面，AI自动生成，每一张图片都是独一无二的。'
             arrow='right'
-            thumb='https://avocado-ai.oss-cn-shenzhen.aliyuncs.com/Images/icon/rmbg.png'
+            thumb='https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/ChatGPT/icons/painting.png?x-oss-process=style/jmms'
             hasBorder={false}
             onClick={() => navigate('draw')}
           />

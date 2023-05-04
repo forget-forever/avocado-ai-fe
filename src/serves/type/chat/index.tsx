@@ -15,7 +15,7 @@ declare global {
       UpdateTime: Date
     }
 
-    interface ConversationInfoVM {
+    type ConversationInfoVM = ISmallCamel<{
       ConversationId: string
       Title: string
       ConversationType: number
@@ -53,7 +53,7 @@ declare global {
       City: string
       Images: string[]
       ImageCount: number
-    }
+    }>
 
     interface MessageInfoQuery extends BasePageQuery {
       UserName?: string

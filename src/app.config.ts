@@ -35,6 +35,7 @@ export default {
         'pages/chat/index',
         'pages/createCommunication/index',
         'pages/draw/index',
+        'pages/picture/index',
       ]
     },
     {

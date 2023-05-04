@@ -27,7 +27,8 @@ export type IRouterMap = {
   helpCenter?: never;
   privacy?: never;
   createCommunication?: never;
-  draw?: never
+  draw?: never;
+  picture: {drawCode: string}
 }
 
 // 可以不用登陆就能进的页面
@@ -47,4 +48,5 @@ export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPag
   chat: () => '/packages/index/pages/chat/index',
   createCommunication: () => '/packages/index/pages/createCommunication/index',
   draw: () => '/packages/index/pages/draw/index',
+  picture: () => '/packages/index/pages/picture/index'
 }

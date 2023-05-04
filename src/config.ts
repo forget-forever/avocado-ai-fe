@@ -2,6 +2,7 @@ let tabBar = {
   color: '#999',
   selectedColor: '#aaa',
   backgroundColor: '#fff',
+  enableShareAppMessage: true,
   list: [
     {
       selectedIconPath: 'assets/images/home-on.png',

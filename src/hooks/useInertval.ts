@@ -7,9 +7,10 @@ type ResType = boolean | number | void
  * 轮询的hook
  * @param fn 轮询的副作用函数, 返回的是数字那就是通知写一次轮询的时间
  * @param delay 间隔的时间
+ * @param immediate 立即运行，初始化的时候有效
  * @returns 
  */
-const useInertval = (fn: () => ResType | Promise<ResType>, delay?: number) => {
+const useInertval = (fn: () => ResType | Promise<ResType>, delay?: number, immediate?: boolean) => {
   const timerRef = useRef<NodeJS.Timer | null>(null);
 
   const clear = useCallback(() => {
@@ -31,7 +32,11 @@ const useInertval = (fn: () => ResType | Promise<ResType>, delay?: number) => {
     if (!(typeof delay === 'number') || delay < 0) {
       return;
     }
-    timerRef.current = setTimeout(timerCallback, delay);
+    if (immediate) {
+      timerCallback()
+    } else {
+      timerRef.current = setTimeout(timerCallback, delay);
+    }
     return clear;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

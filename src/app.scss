@@ -38,7 +38,7 @@ page, html {
   --defaultFillColor: rgb(255, 255, 255);
   --defaultColor: #333;
   --secondaryTextColor: #666;
-  --defaultButtonFillColor: $color-brand;
+  --defaultButtonFillColor: var(--blue);
   --red: #e54d42;
   --orange: #f37b1d;
   --yellow: #fbbd08;
@@ -117,8 +117,4 @@ page .at-noticebar--weapp .at-noticebar__content-inner {
 
 html taro-button-core {
   display: none;
-}
-
-.at-tabs__item--active {
-  color: var(--defaultButtonFillColor) !important;
 }

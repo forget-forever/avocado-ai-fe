@@ -1,7 +1,7 @@
 import { AtIcon, AtModal, AtModalAction, AtModalContent, AtModalHeader } from 'taro-ui';
 import { Component, CSSProperties } from 'react';
-import MyButton from '../MyButton';
 import styles from './index.module.scss';
+import ButtonAsync from '../ButtonAsync';
 // import { useMoalState } from './options';
 
 type ModalMsg = {
@@ -45,17 +45,17 @@ class Modal extends Component {
     return new Promise<void>((resolve, reject) => {
       this.setState({
         msg,
-        positiveButton: <MyButton
+        positiveButton: <ButtonAsync
           onClick={() => this.hideShow(() => resolve?.())}
           style={{ color: 'var(--defaultButtonFillColor)' }}
         >
           {msg.positiveIcon}{msg.positiveText || '确定' }
-        </MyButton>,
-        passiveButton: <MyButton
+        </ButtonAsync>,
+        passiveButton: <ButtonAsync
           onClick={() => this.hideShow(() => reject?.())}
         >
           {msg.passiveIcon}{msg.passiveText || '取消' }
-        </MyButton>
+        </ButtonAsync>
       })
     })
   }

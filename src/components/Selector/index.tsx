@@ -22,8 +22,10 @@ const Selector = <V extends VType, M extends MType = 'select'>(props: {
    * @default 单选的时候为true
    */
   clearName?: boolean;
+  /** 弹出浮层的标题 */
+  floatTitle?: string;
 }) => {
-  const { children, disabled, mode = 'select' as M, value, onChange, cascader, options, clearName } = props
+  const { children, disabled, mode = 'select' as M, value, onChange, cascader, floatTitle = '请选择', options, clearName } = props
   const [ floatOpen, { setFalse: closeFloat, setTrue: openFloat } ] = useBoolean()
 
   const clickHandle = useMemoizedFn(() => {
@@ -50,7 +52,7 @@ const Selector = <V extends VType, M extends MType = 'select'>(props: {
   
   return <>
     {childRes}
-    <AtFloatLayout isOpened={floatOpen} onClose={closeFloat} title='请选择'>
+    <AtFloatLayout isOpened={floatOpen} onClose={closeFloat} title={floatTitle}>
       {
         cascader ? <ColumnView rowKey='value' nameKey='label' tabs={options} value={selectName} onChange={changeSelectName} >
           <TagList value={value} onChange={onChange} mode={mode} disabled={disabled} options={selected?.children} />

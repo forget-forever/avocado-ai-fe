@@ -483,6 +483,10 @@
   display: flex;
 }
 
+.flex-fill {
+  flex: 1;
+}
+
 .flex-center{
   align-items: center;
   justify-content: center;
@@ -498,6 +502,30 @@
 
 .margin-top{
   margin-top: 32px;
+}
+
+.margin-top-xs {
+  margin-top: 4px;
+}
+
+.margin-bottom {
+  margin-bottom: 32px;
+}
+
+.margin-left {
+  margin-left: 32px;
+}
+
+.margin-right {
+  margin-right: 32px;
+}
+
+.margin-right-xs {
+  margin-right: 4px;
+}
+
+.right {
+  margin-left: auto;
 }
 
 .padding {

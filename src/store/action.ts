@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { getAvocadaInfoVM, getUserInfo } from '@/serves'
 import { setState } from "."
 
-let ModalInstance: undefined | ((msg?: GlobalState['global']['modalMsg']) => void )
+let ModalInstance: undefined | ((msg?: GlobalState['global']['modalMsg']) => Promise<void> )
 
 export const actions = {
   setToken: async ( msg: {token: string}) => {
@@ -22,7 +22,7 @@ export const actions = {
    */
   modalOption: async (msg: GlobalState['global']['modalMsg']) => {
     await delay(5)
-    ModalInstance?.(msg)
+    await ModalInstance?.(msg)
   },
   /**
    * 获取用户信息

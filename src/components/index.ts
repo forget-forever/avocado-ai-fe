@@ -1,6 +1,7 @@
 import ButtonAsync from './ButtonAsync';
 import Card from './Card';
 import ColumnView from './ColumnView';
+import ConversationInfo from './ConversationInfo';
 import CopyIcon from './CopyIcon';
 import Empty from './Empty';
 import ListItem from './ListItem';
@@ -37,5 +38,5 @@ export {
   Selector,
   Empty,
   RatioView,
-  
+  ConversationInfo,
 }

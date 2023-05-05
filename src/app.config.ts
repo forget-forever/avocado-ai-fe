@@ -51,6 +51,7 @@ export default {
       ]
     }
   ] as const,
+  enableShareAppMessage: true,
   window: {
     navigationStyle: "custom",
     backgroundTextStyle: 'light',

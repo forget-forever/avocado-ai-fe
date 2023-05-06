@@ -1,5 +1,6 @@
 import { ButtonAsync, Tag, TimeShow } from '@/components'
 import { useListData } from '@/hooks'
+// import { navigate } from '@/router'
 import { readNotification } from '@/serves'
 import { showMaskToast } from '@/utils'
 import { getSourceTypeBgColor, getSourceTypeText } from '@/utils/enum'
@@ -18,6 +19,11 @@ const MessageList: React.FC<{
     listData.map((item, index) => <View
       key={item.notificationId}
       className={styles.itemCard}
+      // onClick={() => {
+      //   if (getSourceTypeText(item.sourceType) === '对话提醒') {
+      //     navigate('chat', {params: {shortCode: item.sourceCode}})
+      //   }
+      // }}
     >
       <View className={styles.information}>
         <Tag type='primary' bgColor={getSourceTypeBgColor(getSourceTypeText(item.sourceType))}>

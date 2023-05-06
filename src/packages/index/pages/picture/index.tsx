@@ -21,7 +21,7 @@ const Picture: React.FC = () => {
 
   const [current, setCurrent] = useState(0)
 
-  const { conversationId, status, images } = data || {}
+  const { conversationId, status, images, comments } = data || {}
 
   useInertval(async () => {
     if (conversationId) {
@@ -59,7 +59,9 @@ const Picture: React.FC = () => {
 
       </AtTabsPane>
       <AtTabsPane current={current} index={1}>
-       
+        <Empty.Tip >
+          功能开发中
+        </Empty.Tip>
       </AtTabsPane>
     </AtTabs>
   </PageContainer>

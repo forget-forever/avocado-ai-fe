@@ -1,0 +1,17 @@
+.list {
+  [class~='item-extra__icon'] {
+    width: 12em;
+  }
+}
+
+.bottom-tip {
+  position: sticky;
+  bottom: 0;
+  padding: 32px;
+  z-index: 2;
+  justify-content: flex-end;
+  .button {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}

@@ -5,6 +5,7 @@ import { Text } from '@tarojs/components'
 type TimeTextType = {
   value?: dayjs.Dayjs | string | number | Date;
   valueFormat?: string;
+  /** 显示的格式 */
   showFormat?: string;
   /** 直接转成的格式，不走与现在时间的判断 */
   directFormat?: string;
@@ -12,6 +13,9 @@ type TimeTextType = {
 
 const getTimeText = (options: TimeTextType) => {
   const { value, valueFormat, showFormat = 'YYYY年MM月DD日 HH:mm', directFormat } = options
+  if (value === undefined || value === null) {
+    return '--'
+  }
   const valDayjs = dayjs(value, valueFormat)
   if (directFormat) {
     return valDayjs.format(directFormat)

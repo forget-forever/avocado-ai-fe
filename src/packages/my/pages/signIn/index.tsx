@@ -17,13 +17,13 @@ const SignIn: React.FC = () => {
       { getFieldDecorator('Note', {
       })(<AtTextarea value='' onChange={invalidFunc} />) }
     </Card>
-    <TitleDesc className='flex align-items'>
+    <TitleDesc>
       每日签到可获得{signGet}<Logo />
     </TitleDesc>
     <ButtonAsync
       showToast='提交中'
       type='primary'
-      className='width-8'
+      className='width-8 margin-top'
       onClick={() => {
         if (!values.Note) {
           actions.modalOption({

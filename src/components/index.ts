@@ -4,6 +4,7 @@ import ColumnView from './ColumnView';
 import ConversationInfo from './ConversationInfo';
 import CopyIcon from './CopyIcon';
 import Empty from './Empty';
+import ImageItem from './ImageItem';
 import ListItem from './ListItem';
 import ListTitle from './ListTitle';
 import Logo from './Logo';
@@ -39,4 +40,5 @@ export {
   Empty,
   RatioView,
   ConversationInfo,
+  ImageItem,
 }

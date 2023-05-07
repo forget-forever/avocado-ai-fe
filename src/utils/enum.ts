@@ -133,9 +133,21 @@ export const getSourceTypeBgColor = (sourceType: ReturnType<typeof getSourceType
 }
 
 export const enum ConversationCheckStatus {
+  /** 审核中 */
   Checking = 0,
+  /** 审核失败 */
   Failed = 1,
+  /** 已审核 */
   Successful = 2,
+}
+
+export const getCheckStatusText = (status?: ConversationCheckStatus) => {
+  switch(status) {
+    case ConversationCheckStatus.Checking: return '审核中，仅自己可见';
+    case ConversationCheckStatus.Failed: return '审核失败，仅自己可见';
+    case ConversationCheckStatus.Successful: return '已审核';
+    default: return ''
+  }
 }
 
 export const enum ConversationType {

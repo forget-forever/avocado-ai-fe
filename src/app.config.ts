@@ -36,6 +36,7 @@ export default {
         'pages/createCommunication/index',
         'pages/draw/index',
         'pages/picture/index',
+        'pages/pictureDetail/index',
       ]
     },
     {

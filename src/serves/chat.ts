@@ -63,3 +63,15 @@ export function sendMessage(model: ISmallCamel<API.SendMessageVM>) {
     { data: model, method: 'POST', showMsg: true },
   )
 }
+
+/**
+ * 通过conversationId获取绘图细节
+ * @param converesationId
+ * @returns
+ */
+export function getAiDrawingDetailsByConversationId(converesationId: string) {
+  return request<API.DrawingPictureDetailInfoVM[]>(
+    '/api/drawing/conversation/' + converesationId,
+    {}
+  )
+}

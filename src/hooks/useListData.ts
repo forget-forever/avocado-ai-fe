@@ -12,6 +12,7 @@ type useListDataResType<P, R> = {
   setListData: React.Dispatch<R[]>;
   changeRowData: (index: number, row: Partial<R>) => void;
   loading: boolean;
+  finish: boolean;
 }
 
 /**
@@ -101,7 +102,8 @@ const useListData = <P, R>(
     listData,
     setListData,
     changeRowData,
-    loading
+    loading,
+    finish: infinite.finish
   }
 
   usePullDownRefresh(refreshHandle?.({...res, infinite}) || refreshList)

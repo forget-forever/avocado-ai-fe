@@ -45,7 +45,7 @@ const Draw: React.FC = () => {
         label,
         children: ratioList.map(({ratioId, label}) => ({
           value: ratioId,
-          label: <RatioView base={20} ratio={label}>{label}</RatioView>
+          label: <RatioView base={24} ratio={label}>{label}</RatioView>
         }))
       })),
       propertiesMap: keyBy(proTemp, ele => ele.propertyId),
@@ -92,7 +92,7 @@ const Draw: React.FC = () => {
     navigate('picture', { params: {drawCode: res,}, type: 'redirect' })
   })
 
-  return <PageContainer title='AI绘图' notice='这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏'>
+  return <PageContainer title='AI绘图' notice='请勿上传、输入或生成违规内容，否则可能承担法律责任！'>
     <Card title='图片信息' className='margin-top'>
       <AtList hasBorder={false}>
         {getFieldDecorator('modelId')(<ModelSelect models={models} />)}

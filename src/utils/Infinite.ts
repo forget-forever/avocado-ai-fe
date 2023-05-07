@@ -13,7 +13,7 @@ export default class Infinite<P, T> {
   request: (params: P & IParams) => Promise<IPageList<T>>;
   private params: P & IParams;
   private loading: boolean;
-  private finish: boolean;
+  finish: boolean;
   private status: 'pedding' | 'destory';
   /**
    * 是否要开启加载警告，比如说到底了会出弹窗警告

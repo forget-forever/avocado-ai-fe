@@ -28,7 +28,7 @@ const ListItem: React.FC<{
   const { className, children, arrowIcon= 'at-icon-chevron-right item-extra__icon-arrow', icon, iconNode, note, hasBorder = true, describe, ...resetProps } = props
   return <View className={classNames('at-list__item', className, !hasBorder ? 'at-list__item--no-border' : '')} {...resetProps}>
   <View className='at-list__item-container'>
-    {icon && <View className='at-list__item-icon item-icon'>
+    {(icon || iconNode) && <View className='at-list__item-icon item-icon'>
       <Text className={classNames('at-icon at-icon-none', icon)} style={iconStyle}>
         {iconNode}
       </Text>

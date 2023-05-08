@@ -16,14 +16,14 @@ const RemainInfo: React.FC = () => {
     <View className={classNames(styles.infoItem)}>
       <View className='flex flex-center'>
         {remainCount}
-        <Logo />
+        <Logo top='0' />
       </View> 
       <View className={styles.title}>剩余数量</View>
     </View>
     <View className={classNames(styles.infoItem)}>
       <View className='flex flex-center'>
         {usedCount}
-        <Logo />
+        <Logo top='0' />
       </View>
       <View className={styles.title}>已使用</View>
     </View>

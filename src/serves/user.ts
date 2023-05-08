@@ -49,3 +49,12 @@ export function readNotification(notificationId: string) {
     method: 'PUT'
   })
 }
+
+/**
+ * 获取用户状态信息
+ * @param isHideLoading
+ * @returns
+ */
+export function getUserStatus() {
+  return request<API.UserStatusVM>('/api/user/status', {},)
+}

@@ -1,9 +1,13 @@
 import { delay, setLocalStorage } from "@/utils"
 import dayjs from "dayjs";
-import { getAvocadaInfoVM, getUserInfo } from '@/serves'
+import { getAvocadaInfoVM, getUserInfo, getUserStatus } from '@/serves'
+import { hideTabBarRedDot, showTabBarRedDot } from "@tarojs/taro";
 import { setState } from "."
 
+
 let ModalInstance: undefined | ((msg?: GlobalState['global']['modalMsg']) => Promise<void> )
+
+let stausTimeout: NodeJS.Timeout;
 
 export const actions = {
   setToken: async ( msg: {token: string}) => {
@@ -31,6 +35,20 @@ export const actions = {
     const [res, avoRes] = await Promise.all([getUserInfo(), getAvocadaInfoVM() ])
     setState('common', { userInfo: res, avoSettings: avoRes });
     setLocalStorage('userInfo', res)
+    return res
+  },
+  /**
+   * 检查信息状态
+   */
+  checkStatus: async () => {
+    clearTimeout(stausTimeout)
+    const res = await getUserStatus()
+    if (res.hasUnreadNotification) {
+      showTabBarRedDot({index: 1})
+    } else {
+      hideTabBarRedDot({index: 1})
+    }
+    stausTimeout = setTimeout(actions.checkStatus, 3000)
     return res
   },
   /**

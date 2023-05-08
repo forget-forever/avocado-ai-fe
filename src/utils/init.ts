@@ -11,6 +11,7 @@ export const initLogin = async () => {
   try {
     const res = await loginServe({code: loginMsg.code, platformType: PlatformType.WxMiniProgram, referCode: inviteCode});
     actions.setToken({ token: res });
+    actions.checkStatus();
   } catch (err) {
     console.error('登录失败了', err)
   }

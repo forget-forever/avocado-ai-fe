@@ -35,5 +35,13 @@ declare global {
       ReadTime?: Date
       CreateTime: Date
     }
+
+    /** */
+    interface UserStatusVM {
+      //UnreadNotificationCount: number
+      HasUnreadNotification: boolean
+      HasUnpaidOrder: boolean
+      //ConversationInfo: ConversationInfoVM | null
+    }
   }
 }

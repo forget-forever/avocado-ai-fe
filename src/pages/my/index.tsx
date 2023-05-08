@@ -1,9 +1,19 @@
 import { Card, ListItem, PageContainer } from "@/components"
 import { ProFile } from '@/pages/components'
 import { navigate } from "@/router"
-import { AtButton, AtList, AtListItem } from "taro-ui"
+import { actions } from "@/store"
+import { useRequest } from "taro-hooks"
+import { AtBadge, AtButton, AtIcon, AtList, AtListItem } from "taro-ui"
 
 export default () => {
+
+  const { data } = useRequest(async () => {
+    actions.getUserInfo()
+    const res = await actions.checkStatus()
+    return res
+  })
+
+  const { hasUnreadNotification } = data || {}
  
   return <PageContainer title='个人中心' hideBack>
     <ProFile exTraDom={<ProFile.SignIn />} className='sticky'>
@@ -11,12 +21,13 @@ export default () => {
     </ProFile>
     <Card title='我的' className='margin-top'>
       <AtList hasBorder={false}>
-        <AtListItem
-          iconInfo={{ value: 'bell'}}
-          title='消息通知'
-          arrow='right'
+        <ListItem
+          dot={hasUnreadNotification}
+          iconNode={<AtIcon value='bell' />}
           onClick={() => navigate('messageNotice')}
-        />
+        >
+          消息通知
+        </ListItem>
         <AtButton openType='share'>
           <ListItem icon='icon-liwu1'>邀请用户</ListItem>
         </AtButton>

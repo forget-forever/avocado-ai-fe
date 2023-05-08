@@ -111,7 +111,7 @@ const PictureDetail: React.FC = () => {
       </AtList>
     </Card>
     <View className={classNames('bg-white flex', styles.bottomTip)}>
-      已授权{ownerCount}用户
+      已授权 <Text className='text-blue'>{ownerCount}</Text> 用户
       <ButtonAsync type='primary' size='mini' className={styles.button} disabled={isOwner} onClick={getAuth}>
         {!isOwner ? <>获得授权 {buyAiDrawingPicture} <Logo /></> : '已有授权'}
       </ButtonAsync>

@@ -354,5 +354,9 @@ declare global {
       SourceType?: string;
       ConversationType: ConversationType
     }>
+
+    type GetContentWithoutWatermarkVM = ISmallCamel<{
+      Content: string
+    }>
   }
 }

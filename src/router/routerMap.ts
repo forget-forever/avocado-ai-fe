@@ -1,3 +1,4 @@
+import { getCurrentPages } from '@tarojs/taro';
 import app from '../app.config';
 
 declare type NumberList = 0 | 1
@@ -29,7 +30,19 @@ export type IRouterMap = {
   createCommunication?: never;
   draw?: never;
   picture: {drawCode: string};
-  pictureDetail: { pictureId: string }
+  pictureDetail: { pictureId: string },
+  downloadMedia: never,
+}
+
+/**
+ * 判断是否在tabBar页面
+ * @returns 
+ */
+export const inTabBarPage = () => {
+  const page =  getCurrentPages()
+  const pageUrl = page[page.length - 1].route as IPageList
+
+  return (['pages/index/index', 'pages/my/index'] as IPageList[]).includes(pageUrl)
 }
 
 // 可以不用登陆就能进的页面
@@ -50,5 +63,6 @@ export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPag
   createCommunication: () => '/packages/index/pages/createCommunication/index',
   draw: () => '/packages/index/pages/draw/index',
   picture: () => '/packages/index/pages/picture/index',
-  pictureDetail: () => '/packages/index/pages/pictureDetail/index'
+  pictureDetail: () => '/packages/index/pages/pictureDetail/index',
+  downloadMedia: () => '/packages/index/pages/downloadMedia/index'
 }

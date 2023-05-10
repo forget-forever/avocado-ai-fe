@@ -34,8 +34,16 @@ const Index: React.FC = () => {
             note='描述一幅画面，AI自动生成，每一张图片都是独一无二的。'
             arrow='right'
             thumb='https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/ChatGPT/icons/painting.png?x-oss-process=style/jmms'
-            hasBorder={false}
             onClick={() => navigate('draw')}
+          />
+          <AtListItem
+            className={style.listItem}
+            title='无水印下载视频/图集'
+            thumb='https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/ChatGPT/icons/watemark.png?x-oss-process=style/jmms'
+            arrow='right'
+            note='抖音、快手、小红书、微博、B站、皮皮虾、陌陌、头条、TikTok等200多个短视频平台。'
+            onClick={() => navigate('downloadMedia')}
+            hasBorder={false}
           />
         </AtList>
       </Card>

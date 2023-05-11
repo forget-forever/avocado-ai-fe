@@ -75,3 +75,14 @@ export function getAiDrawingDetailsByConversationId(converesationId: string) {
     {}
   )
 }
+
+/**
+ * 获取无水印内容
+ * @param model
+ * @returns
+ */
+export async function getContentWithoutWatermark(
+  model: API.GetContentWithoutWatermarkVM
+) {
+  return request('/api/common/noWatermark', { data: model, method: 'POST' })
+}

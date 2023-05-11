@@ -37,6 +37,7 @@ export default {
         'pages/draw/index',
         'pages/picture/index',
         'pages/pictureDetail/index',
+        'pages/downloadMedia/index',
       ]
     },
     {

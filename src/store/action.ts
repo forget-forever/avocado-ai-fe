@@ -2,6 +2,7 @@ import { delay, setLocalStorage } from "@/utils"
 import dayjs from "dayjs";
 import { getAvocadaInfoVM, getUserInfo, getUserStatus } from '@/serves'
 import { hideTabBarRedDot, showTabBarRedDot } from "@tarojs/taro";
+import { inTabBarPage } from "@/router/routerMap";
 import { setState } from "."
 
 
@@ -43,10 +44,13 @@ export const actions = {
   checkStatus: async () => {
     clearTimeout(stausTimeout)
     const res = await getUserStatus()
-    if (res.hasUnreadNotification) {
-      showTabBarRedDot({index: 1})
-    } else {
-      hideTabBarRedDot({index: 1})
+    if (inTabBarPage()) {
+      console.log('aa')
+      if (res.hasUnreadNotification) {
+        showTabBarRedDot({index: 1})
+      } else {
+        hideTabBarRedDot({index: 1})
+      }
     }
     stausTimeout = setTimeout(actions.checkStatus, 3000)
     return res

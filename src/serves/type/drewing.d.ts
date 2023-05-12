@@ -358,5 +358,14 @@ declare global {
     type GetContentWithoutWatermarkVM = ISmallCamel<{
       Content: string
     }>
+
+    type NoWatermarkContentInfoVM = ISmallCamel<{
+      ContentId: string
+      ContentUrl?: string
+      UserName: string
+      Img: string
+      Title: string
+      Pics?: string[]
+    }>
   }
 }

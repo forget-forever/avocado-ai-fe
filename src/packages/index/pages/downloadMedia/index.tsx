@@ -7,6 +7,7 @@ import { AtTextarea } from "taro-ui"
 import { getContentWithoutWatermark as getContent } from "@/serves"
 import { to } from "await-to-js"
 import { actions } from "@/store"
+import { navigate } from "@/router"
 
 const DownloadMedia: React.FC = () => {
   const { getFieldDecorator, validateFields } = useForm<API.GetContentWithoutWatermarkVM>()
@@ -18,13 +19,18 @@ const DownloadMedia: React.FC = () => {
       actions.showErrorToast(err)
       return
     }
+    await actions.modalOption({
+      title: '提示',
+      content: <>确定花费{getContentWithoutWatermark}<Logo />解析链接？</>
+    })
     const res = await getContent({ ...val })
     /** 跳转页面 */
+    navigate('mediaDetail', { params: {id: res} })
   })
 
   return <PageContainer title='无水印下载'>
     <Card title='分享文案/链接' className='margin-top width-9'>
-      { getFieldDecorator('content', { rules: [{required: true, message: '输入分享文案'}] })(
+      { getFieldDecorator('content', { rules: [{required: true, message: '输入分享文案！'}] })(
         <AtTextarea value='' onChange={invalidFunc} placeholder='平台视频分享文案（包括分享链接）' maxLength={200} />
       ) }
     </Card>

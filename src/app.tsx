@@ -24,7 +24,7 @@ class App extends Component {
     }
 
     const { token } = store.getState().common;
-    if (+dayjs().unix() - (token?.time || 0) > 60 * 60 * 24 * 3) {
+    if (!token?.val || +dayjs().unix() - (token?.time || 0) > 60 * 60 * 24 * 3) {
       console.log('init login')
       initLogin()
     } else {

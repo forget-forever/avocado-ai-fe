@@ -14,7 +14,7 @@ const Index: React.FC = () => {
   // }, [])
   
   return (
-    <PageContainer hideBack>
+    <PageContainer hideBack useContainer>
       {/* <AtNoticebar icon='volume-plus' marquee>
         这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
       </AtNoticebar> */}
@@ -35,7 +35,12 @@ const Index: React.FC = () => {
             arrow='right'
             thumb='https://aiquyin-static-beijing.oss-cn-beijing.aliyuncs.com/ChatGPT/icons/painting.png?x-oss-process=style/jmms'
             onClick={() => navigate('draw')}
+            hasBorder={false}
           />
+        </AtList>
+      </Card>
+      <Card title='其他' className='margin-top'>
+        <AtList hasBorder={false}>
           <AtListItem
             className={style.listItem}
             title='无水印下载视频/图集'

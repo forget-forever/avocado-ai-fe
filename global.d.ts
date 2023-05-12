@@ -62,7 +62,7 @@ declare type IDataObject = Record<IKey, any>
 /**
  * 转小驼峰
  */
-declare type ISmallCamel<T extends IDataObject> = {
+declare type ISmallCamel<T extends IValue> = {
   [K in keyof T as Uncapitalize<K>]: T[K] extends Date ? T[K] : T[K] extends object ? T[K] extends Array<unknown> ? Array<ISmallCamel<T[K][number]>> : ISmallCamel<T[K]> : T[K]
 }
 

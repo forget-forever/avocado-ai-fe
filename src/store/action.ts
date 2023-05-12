@@ -45,7 +45,6 @@ export const actions = {
     clearTimeout(stausTimeout)
     const res = await getUserStatus()
     if (inTabBarPage()) {
-      console.log('aa')
       if (res.hasUnreadNotification) {
         showTabBarRedDot({index: 1})
       } else {

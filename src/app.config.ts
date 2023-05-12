@@ -38,6 +38,7 @@ export default {
         'pages/picture/index',
         'pages/pictureDetail/index',
         'pages/downloadMedia/index',
+        'pages/mediaDetail/index'
       ]
     },
     {

@@ -32,6 +32,7 @@ export type IRouterMap = {
   picture: {drawCode: string};
   pictureDetail: { pictureId: string },
   downloadMedia: never,
+  mediaDetail: { id: string }
 }
 
 /**
@@ -64,5 +65,6 @@ export const routerMap: Record<keyof IRouterMap, (type: RouterType ) => `/${IPag
   draw: () => '/packages/index/pages/draw/index',
   picture: () => '/packages/index/pages/picture/index',
   pictureDetail: () => '/packages/index/pages/pictureDetail/index',
-  downloadMedia: () => '/packages/index/pages/downloadMedia/index'
+  downloadMedia: () => '/packages/index/pages/downloadMedia/index',
+  mediaDetail: () => '/packages/index/pages/mediaDetail/index'
 }

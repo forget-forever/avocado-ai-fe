@@ -1,5 +1,5 @@
-import { store } from "@/store";
 import { request as taroRequest } from "@tarojs/taro";
+import { getLocalStorage, initLogin } from ".";
 import { rootBase } from "../../config/proxy";
 import { filterNull, showMaskToast, toBigCamel, toSmallCamel } from "./utils";
 
@@ -36,21 +36,21 @@ const errorHandler = (err: Taro.request.SuccessCallbackResult<IResponseData<unkn
  * 自己handle的错误
  */
 // @ts-ignore
-const errorHandlerSelf = (err: ISmallCamel<Taro.request.SuccessCallbackResult<IResponseData<unknown>>['data']>) => {
-  switch (+err.code) {
-    case 10001:
-      showMaskToast(err.message)
-      return Promise.reject(new Error('未登录'));
-    // case 10001:
-    // showMaskToast(err.message)
-    //   return Promise.reject(new Error('访问频繁'));
-    // case 10002:
-    default:
-    showMaskToast(err.message)
-      return Promise.reject(new Error(err.message));
-  }
-  // return Promise.reject(err);
-}
+// const errorHandlerSelf = (err: ISmallCamel<Taro.request.SuccessCallbackResult<IResponseData<unknown>>['data']>) => {
+//   switch (+err.code) {
+//     case 10001:
+//       showMaskToast(err.message)
+//       return Promise.reject(new Error('未登录'));
+//     // case 10001:
+//     // showMaskToast(err.message)
+//     //   return Promise.reject(new Error('访问频繁'));
+//     // case 10002:
+//     default:
+//     showMaskToast(err.message)
+//       return Promise.reject(new Error(err.message));
+//   }
+//   // return Promise.reject(err);
+// }
 
 // type ICamelType = 'big' | 'small'
 /**
@@ -74,13 +74,13 @@ type IOptions = {
 /**
  * 对接口的返回值进行二次的封装
  * */
-export const request = async <T extends IValue = any, E = {}>(url: string, options: IOptions = {}) => {
+export const request = async <T extends IValue = any, E = {}>(url: string, options: IOptions = {}, retry = true): Promise<ISmallCamel<T>> => {
   const { paramsToBigCamel = true, data: params, showMsg } = options;
   let requestUrl = url.trim();
   if (!/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-\(\)]*[\w@?^=%&/~+#-\(\)])?$/.test(requestUrl)) {
     requestUrl = `${rootUrl}${requestUrl}`
   }
-  const { common: { token } } = store.getState()
+  const { token } = getLocalStorage('info') || {}
   try {
     const res = await taroRequest<IResponseData<T> & E>({
       url: requestUrl,
@@ -102,9 +102,25 @@ export const request = async <T extends IValue = any, E = {}>(url: string, optio
         if (showMsg && resData.message && resData.message !== '获取成功') {
           showMaskToast(resData.message.toString() || '')
         }
-        return resData.result
+        return resData.result as ISmallCamel<T>
       } else {
-        return errorHandlerSelf(resData)
+        switch (+resData.code) {
+          case 10001:
+            if (retry) {
+              await initLogin()
+              return request(url, options, false)
+            } else {
+              return Promise.reject(new Error('未登录'));
+            }
+            
+          // case 10001:
+          // showMaskToast(err.message)
+          //   return Promise.reject(new Error('访问频繁'));
+          // case 10002:
+          default:
+          showMaskToast(resData.message as string)
+            return Promise.reject(new Error(resData.message as string));
+        }
       }
     } else {
       return errorHandler(res)

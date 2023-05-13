@@ -55,6 +55,7 @@ export default {
     }
   ] as const,
   enableShareAppMessage: true,
+  enableShareTimeline: true,
   window: {
     navigationStyle: "custom",
     backgroundTextStyle: 'light',

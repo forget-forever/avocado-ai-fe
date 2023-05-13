@@ -1,0 +1,15 @@
+.nostyle {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  line-height: inherit;
+  font-size: inherit;
+  border-radius: 0;
+  text-align: inherit;
+  display: inline;
+}
+
+.nostyle::after {
+  border: none;
+}

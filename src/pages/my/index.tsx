@@ -1,16 +1,21 @@
-import { Card, ListItem, PageContainer } from "@/components"
+import { Card, ListItem, PageContainer, OpenButton } from "@/components"
 import { ProFile } from '@/pages/components'
 import { navigate } from "@/router"
 import { actions } from "@/store"
+import { useDidShow } from "@tarojs/taro"
 import { useRequest } from "taro-hooks"
-import { AtBadge, AtButton, AtIcon, AtList, AtListItem } from "taro-ui"
+import { AtIcon, AtList, AtListItem } from "taro-ui"
 
 export default () => {
 
-  const { data } = useRequest(async () => {
+  const { data, run: refresh } = useRequest(async () => {
     actions.getUserInfo()
     const res = await actions.checkStatus()
     return res
+  }, { manual: true })
+
+  useDidShow(() => {
+    refresh()
   })
 
   const { hasUnreadNotification } = data || {}
@@ -28,9 +33,9 @@ export default () => {
         >
           消息通知
         </ListItem>
-        <AtButton openType='share'>
+        <OpenButton openType='share' nostyle>
           <ListItem icon='icon-liwu1'>邀请用户</ListItem>
-        </AtButton>
+        </OpenButton>
         <AtListItem
           iconInfo={{ value: 'none', className: 'iconfont icon-changyongxinxi'}}
           title='我的信息'
@@ -54,9 +59,9 @@ export default () => {
           arrow='right'
           onClick={() => navigate('helpCenter')}
         />
-        <AtButton openType='feedback'>
+        <OpenButton openType='feedback' nostyle>
           <ListItem icon='icon-31wentifankui'>反馈bug/改进建议</ListItem>
-        </AtButton>
+        </OpenButton>
         <AtListItem
           iconInfo={{ value: 'none', className: 'iconfont icon-qianshuxieyi'}}
           title='服务条款与隐私协议'

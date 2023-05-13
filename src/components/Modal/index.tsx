@@ -31,6 +31,7 @@ interface Modal {
     msg?: ModalMsg;
     positiveButton?: React.ReactNode;
     passiveButton?: React.ReactNode;
+    isOpen: boolean;
   }
   setState: (s: Partial<Modal['state']>, cb?: () => void) => void
 }
@@ -39,12 +40,14 @@ class Modal extends Component {
     super(props);
     this.state = {
       msg: undefined,
+      isOpen: false
     }
   }
   showModal = (msg: ModalMsg) => {
     return new Promise<void>((resolve, reject) => {
       this.setState({
         msg,
+        isOpen: true,
         positiveButton: <ButtonAsync
           onClick={() => this.hideShow(() => resolve?.())}
           style={{ color: 'var(--defaultButtonFillColor)' }}
@@ -63,19 +66,17 @@ class Modal extends Component {
     const { onCancel } = this.props;
     onCancel?.()
     this.setState({
-      msg: undefined,
-      positiveButton: undefined,
-      passiveButton: undefined
+      isOpen: false
     }, cb);
   }
 
   render() {
-    const { msg, positiveButton, passiveButton } = this.state;
+    const { msg, positiveButton, passiveButton, isOpen } = this.state;
     const { style } = this.props;
     return (
       <AtModal
         customStyle={style}
-        isOpened={!!msg}
+        isOpened={isOpen}
         closeOnClickOverlay={msg?.closeOnClickOverlay ?? true}
         onCancel={() => this.hideShow()}
       >

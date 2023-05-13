@@ -98,7 +98,7 @@ export const request = async <T extends IValue = any, E = {}>(url: string, optio
     const {data, statusCode} = res;
     const resData = toSmallCamel(data);
     if(+statusCode <= 300 || +statusCode === 304) {
-      if (resData.isSuccess || +resData.code === 0) {
+      if (resData.isSuccess && +resData.code === 0) {
         if (showMsg && resData.message && resData.message !== '获取成功') {
           showMaskToast(resData.message.toString() || '')
         }

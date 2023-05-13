@@ -43,8 +43,9 @@ export const actions = {
    */
   checkStatus: async () => {
     clearTimeout(stausTimeout)
-    const res = await getUserStatus()
+    let res: PromiseReturn<typeof getUserStatus> | undefined
     if (inTabBarPage()) {
+      res = await getUserStatus()
       if (res.hasUnreadNotification) {
         showTabBarRedDot({index: 1})
       } else {

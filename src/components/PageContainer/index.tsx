@@ -4,7 +4,7 @@ import { actions, store } from '@/store';
 import { serializeParams } from '@/utils';
 import { useStatus }from '@/hooks';
 import { ScrollView } from '@tarojs/components';
-import { useDidShow, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
+import { useDidShow, useRouter, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import React, { CSSProperties, useMemo, Fragment, useRef, LegacyRef } from 'react';
 import classNames from 'classnames';
 import Modal from '../Modal';
@@ -75,6 +75,7 @@ const PageContainer: React.FC<IProps> = (props) => {
         success?.()
       } catch (error) {
         cancel?.()
+        return Promise.reject()
       }
       complete?.()
     })
@@ -85,20 +86,26 @@ const PageContainer: React.FC<IProps> = (props) => {
     const shareParams = { inviteCode: store.getState().common.userInfo?.inviteCode }
     return shareParams
   }
+  const route = useRouter()
 
   useShareAppMessage(() => {
     // if (res.from === 'button') {
     //   // 来自页面内转发按钮
     //   console.log(res.target)
     // }
-    const res = { ...share };
-    if (res.query){
-      res.path += `?${serializeParams({...res.query, ...getShareParams()})}`
+    const res = {
+      ...share,
+      path: share?.path || `/${route.path}`
     }
+    res.path += `?${serializeParams({...res.query, ...getShareParams()})}`
+    console.log(res)
     return res;
   })
   useShareTimeline(() => {
-    return {...share, query: JSON.stringify({...share?.query, ...getShareParams()})}
+    return {
+      ...share,
+      query: JSON.stringify({...share?.query, ...getShareParams()}),
+    }
   })
 
   let statusHeigit = 5

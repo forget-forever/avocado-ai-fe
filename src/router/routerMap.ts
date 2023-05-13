@@ -41,7 +41,7 @@ export type IRouterMap = {
  */
 export const inTabBarPage = () => {
   const page =  getCurrentPages()
-  const pageUrl = page[page.length - 1].route as IPageList
+  const pageUrl = page[page.length - 1]?.route as IPageList
 
   return (['pages/index/index', 'pages/my/index'] as IPageList[]).includes(pageUrl)
 }

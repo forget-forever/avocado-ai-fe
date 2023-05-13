@@ -8,6 +8,7 @@ import ImageItem from './ImageItem';
 import ListItem from './ListItem';
 import ListTitle from './ListTitle';
 import Logo from './Logo';
+import OpenButton from './OpenButton';
 import RatioView from './RatioView';
 import Selector from './Selector';
 import Tag from './Tag';
@@ -41,4 +42,6 @@ export {
   RatioView,
   ConversationInfo,
   ImageItem,
+  OpenButton,
 }
+

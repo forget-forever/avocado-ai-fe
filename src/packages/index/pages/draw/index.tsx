@@ -159,6 +159,7 @@ const Draw: React.FC = () => {
     <ButtonAsync type='primary' className='width-8 margin-top margin-bottom' onClick={submit}>
       开始绘图，需消耗{totalCost}<Logo />
     </ButtonAsync>
+    <View className='margin-top' />
   </PageContainer>
 }
 

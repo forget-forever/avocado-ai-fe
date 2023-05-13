@@ -2,7 +2,7 @@ import { ButtonAsync, Tag, TimeShow } from '@/components'
 import { useListData } from '@/hooks'
 // import { navigate } from '@/router'
 import { readNotification } from '@/serves'
-import { showMaskToast } from '@/utils'
+import { showToast } from '@/utils'
 import { getSourceTypeBgColor, getSourceTypeText } from '@/utils/enum'
 import { RichText, View } from '@tarojs/components'
 import classNames from 'classnames'
@@ -42,7 +42,7 @@ const MessageList: React.FC<{
           onClick={async () => {
             await readNotification(item.notificationId)
             changeRowData(index, {isRead: !item.isRead})
-            showMaskToast('已读成功')
+            showToast('已读成功')
           }}
         >
           已读

@@ -1,6 +1,5 @@
-import { Card, Logo, PageContainer } from "@/components"
+import { Card, Logo, OpenButton, PageContainer } from "@/components"
 import { View, Text } from "@tarojs/components";
-import { AtButton } from "taro-ui";
 
 const HelpCenter: React.FC = () => {
   return <PageContainer
@@ -14,7 +13,8 @@ const HelpCenter: React.FC = () => {
       <View className='flex align-items'>绑定微信公众号， 获取 10 <Logo top='0' /></View>
       <View className='flex align-items'>绑定手机号， 获得10 <Logo top='0' /></View>
       <View className='flex align-items'>
-        邀请新用户注册， 奖励10 <Logo top='0' /><AtButton openType='share' className='link-button'>立即邀请</AtButton>
+        邀请新用户注册， 奖励10 <Logo top='0' />
+        <OpenButton nostyle openType='share' className='link-button'>立即邀请</OpenButton>
       </View>
       <View className='flex align-items'>
         每日签到， 奖励3 <Logo top='0' />

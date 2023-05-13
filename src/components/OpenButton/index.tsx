@@ -10,7 +10,7 @@ const OpenButton: React.FC<{
 
   return <Button
     openType='share'
-    className={classNames(nostyle ? style.nostyle : '', className)}
+    className={classNames(className, nostyle ? style.nostyle : '')}
     {...resetProps}
   >
     {children}

@@ -76,8 +76,9 @@ const PageContainer: React.FC<IProps> = (props) => {
       } catch (error) {
         cancel?.()
         return Promise.reject()
+      } finally {
+        complete?.()
       }
-      complete?.()
     })
   })
 

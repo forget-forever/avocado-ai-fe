@@ -17,11 +17,11 @@ declare global {
       Note: string
     }
 
-    interface NotificationQuery {
+    type NotificationQuery = ISmallCamel<{
       IsRead?: boolean
       Page: number
       Limit: number
-    }
+    }>
 
     interface NotificationInfoVM {
       Id: number

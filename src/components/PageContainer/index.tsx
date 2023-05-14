@@ -99,7 +99,6 @@ const PageContainer: React.FC<IProps> = (props) => {
       path: share?.path || `/${route.path}`
     }
     res.path += `?${serializeParams({...res.query, ...getShareParams()})}`
-    console.log(res)
     return res;
   })
   useShareTimeline(() => {

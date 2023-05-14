@@ -54,12 +54,12 @@ const CreateCommunication: React.FC = () => {
         getFieldDecorator('roleDescription', {
           initialValue: '你是一个十分智能的助手',
           rules: [
-            { required: true, message: '请输入ChatGPT角色描述！' }
+            { required: true, message: '请输入AI角色描述！' }
           ]
         })(<AtTextarea
           value=''
           onChange={invalidFunc}
-          placeholder='请输入ChatGPT角色描述'
+          placeholder='请输入AI角色描述'
           maxLength={200}
           className='no-border'
         />)
@@ -67,10 +67,10 @@ const CreateCommunication: React.FC = () => {
     </AtForm>
     <View className={classNames('width-95 margin-top', styles.tip)}>
       <View>
-        ChatGPT会根据聊天上下文和用户进行的角色描述进行回答，为了更加精确的回答您的问题，您可以开启一个新的对话，并尽可能的描述您需要的角色信息。
+        AI会根据聊天上下文和用户进行的角色描述进行回答，为了更加精确的回答您的问题，您可以开启一个新的对话，并尽可能的描述您需要的角色信息。
       </View>
       <View className='text-red'>
-        最好描述ChatGPT的角色，不指定角色的话ChatGPT会根据聊天上下文自动分析。
+        最好描述AI的角色，不指定角色的话AI会根据聊天上下文自动分析。
       </View>
     </View>
     <ButtonAsync type='primary' className='width-8 margin-top' onClick={submitHandle}>

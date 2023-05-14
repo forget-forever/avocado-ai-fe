@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Provider } from 'react-redux'
 import dayjs from 'dayjs';
-import { getLaunchOptionsSync } from '@tarojs/taro';
+import { getLaunchOptionsSync, showShareMenu } from '@tarojs/taro';
 
 import './app.scss'
 import './assets/style/app.css';
@@ -18,6 +18,10 @@ class App extends Component {
   componentDidMount() { }
 
   onLaunch() {
+    showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    } as any)
     const launchOptions = getLaunchOptionsSync() || {}
     if (launchOptions.query?.inviteCode) {
       setLocalStorage('inviteCode', launchOptions.query?.inviteCode)

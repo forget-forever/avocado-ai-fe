@@ -67,7 +67,7 @@ declare global {
       ConversationId: string
       MessageId: string
       IsChatGpt: boolean
-      Content: string | JSX.Element
+      Content: string
       CreateTime: Date
       Status: number
       Name?: string

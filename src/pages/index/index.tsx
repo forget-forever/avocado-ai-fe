@@ -1,5 +1,4 @@
 import { Card, PageContainer } from '@/components';
-import { getOssUrl } from '@/utils';
 import React, { useEffect } from 'react'
 import { AtList, AtListItem } from 'taro-ui';
 import { navigate } from '@/router';
@@ -15,17 +14,14 @@ const Index: React.FC = () => {
   
   return (
     <PageContainer hideBack useContainer>
-      {/* <AtNoticebar icon='volume-plus' marquee>
-        这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
-      </AtNoticebar> */}
       <Card title='AI助手' margin='16px 0'>
         <AtList hasBorder={false}>
           <AtListItem
             className={style.listItem}
-            title='ChatGPT助手'
-            note='基于OpenAI的ChatGPT技术，实现的多功能AI助手。'
+            title='AI问答'
+            note='多功能问答工具, 为您解答各类问题'
             arrow='right'
-            thumb={getOssUrl('/ChatGPT/chatgpt.png?x-oss-process=style/jmms')}
+            thumb='https://status.zhoumeilei.cn/img/rengongzhineng.png'
             onClick={() => navigate('createCommunication')}
           />
           <AtListItem

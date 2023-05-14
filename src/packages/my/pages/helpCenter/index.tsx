@@ -21,8 +21,8 @@ const HelpCenter: React.FC = () => {
       </View>
     </Card>
     <Card renderIcon={<Text className='iconfont icon-changjianwentixiangguanwenti text-yellow text-xl' />} title='什么情况下消耗牛油果' className='margin-top'>
-      <View className='flex align-items'>向ChatGPT提问， 消耗 1 <Logo top='0' /></View>
-      <View className='flex align-items'>ChatGPT应用每个对话， 获得1 <Logo top='0' /></View>
+      <View className='flex align-items'>向AI助手提问， 消耗 1 <Logo top='0' /></View>
+      <View className='flex align-items'>人工智能应用每个对话， 获得1 <Logo top='0' /></View>
       <View className='flex align-items'>
         AI绘图，根据图片参数动态计算消耗 <Logo top='0' />
       </View>

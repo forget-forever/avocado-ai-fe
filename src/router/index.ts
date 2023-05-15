@@ -1,7 +1,7 @@
-import { actions, store } from "@/store";
+import { actions } from "@/store";
 import { navigateBack as taroNavigateBack, navigateTo, redirectTo, reLaunch, switchTab } from "@tarojs/taro";
 import { bindTipNode } from "../utils";
-import { serializeParams } from "../utils/utils";
+import { getLocalStorage, serializeParams } from "../utils/utils";
 import { IRouterMap, loginExcludeList, routerMap, RouterType } from "./routerMap";
 
 
@@ -27,7 +27,7 @@ export const navigate = <U extends keyof IRouterMap, T extends RouterType = 'nav
   straight: boolean = false
 ) => {
   if (!straight && !loginExcludeList.includes(url)) {
-    const { token } = store.getState().common;
+    const { token } = getLocalStorage('info') || {}
     if (!token?.val) {
       actions.modalOption({
         title: '绑定提醒',
